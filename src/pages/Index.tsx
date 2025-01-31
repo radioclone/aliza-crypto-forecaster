@@ -4,16 +4,17 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PriceCard } from '@/components/PriceCard';
 import { PriceChart } from '@/components/PriceChart';
-import { Github, ArrowUp } from "lucide-react";
+import { Github, ArrowRight, Bitcoin, Ethereum } from "lucide-react";
+import { CryptoTicker } from '@/components/CryptoTicker';
 
 const Index = () => {
   const [message, setMessage] = useState('');
 
   // Temporary mock data - will be replaced with Goat SDK data
   const marketData = [
-    { symbol: "BTC", price: 104350, change: -0.37, prediction: 105000 },
-    { symbol: "ETH", price: 3240.50, change: 0.65, prediction: 3300 },
-    { symbol: "SOL", price: 139.40, change: 0.35, prediction: 145 }
+    { symbol: "BTC", icon: <Bitcoin className="h-6 w-6" />, price: 104350, change: -0.37, prediction: 105000 },
+    { symbol: "ETH", icon: <Ethereum className="h-6 w-6" />, price: 3240.50, change: 0.65, prediction: 3300 },
+    { symbol: "SOL", icon: <Bitcoin className="h-6 w-6" />, price: 139.40, change: 0.35, prediction: 145 }
   ];
 
   const predefinedQuestions = [
@@ -41,7 +42,7 @@ const Index = () => {
       <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-semibold text-white">CryptoLens</h1>
+            <h1 className="text-xl font-semibold text-white">Ask Aliza</h1>
             <Button variant="outline" size="sm" className="border-white/20 hover:bg-white/5">
               Start New Chat
             </Button>
@@ -53,30 +54,14 @@ const Index = () => {
           </a>
         </div>
         
-        {/* Market Ticker */}
-        <div className="w-full overflow-hidden bg-black/50 border-t border-white/10">
-          <div className="container mx-auto px-4 py-2">
-            <div className="flex items-center gap-8 animate-slide-in overflow-x-auto">
-              {marketData.map((item) => (
-                <div key={item.symbol} className="flex items-center gap-2 whitespace-nowrap text-white">
-                  <span className="font-medium">{item.symbol}</span>
-                  <span className="text-sm">${item.price.toLocaleString()}</span>
-                  <span className={`text-sm flex items-center ${item.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                    {item.change >= 0 ? <ArrowUp className="h-3 w-3" /> : null}
-                    {item.change}%
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <CryptoTicker marketData={marketData} />
       </header>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 pt-32 pb-8">
         {/* Welcome Card */}
         <Card className="p-6 mb-8 neo-blur">
-          <h2 className="text-2xl font-bold mb-4 text-gradient">Welcome to CryptoLens powered by AI!</h2>
+          <h2 className="text-2xl font-bold mb-4 text-gradient">Welcome to Ask Aliza powered by AI!</h2>
           <p className="text-white/80">
             Open source AI chatbot that uses function calling to render relevant TradingView crypto
             market widgets. Built with Vercel AI SDK, TradingView Widgets, and powered by
@@ -113,11 +98,11 @@ const Index = () => {
                 size="icon"
                 variant="ghost"
               >
-                <ArrowUp className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
             <p className="text-xs text-center text-white/40 mt-2">
-              CryptoLens may provide inaccurate information and does not provide investment advice.
+              Ask Aliza may provide inaccurate information and does not provide investment advice.
             </p>
           </div>
         </div>
