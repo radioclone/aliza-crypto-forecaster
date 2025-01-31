@@ -14,7 +14,7 @@ const Index = () => {
   const marketData = [
     { symbol: "BTC", icon: <Bitcoin className="h-6 w-6" />, price: 104350, change: -0.37, prediction: 105000 },
     { symbol: "ETH", icon: <Coins className="h-6 w-6" />, price: 3240.50, change: 0.65, prediction: 3300 },
-    { symbol: "SOL", icon: <Bitcoin className="h-6 w-6" />, price: 139.40, change: 0.35, prediction: 145 }
+    { symbol: "SOL", icon: <Coins className="h-6 w-6" />, price: 139.40, change: 0.35, prediction: 145 }
   ];
 
   const predefinedQuestions = [
