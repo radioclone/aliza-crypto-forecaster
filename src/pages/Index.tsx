@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PriceCard } from '@/components/PriceCard';
 import { PriceChart } from '@/components/PriceChart';
-import { Github, ArrowRight, Bitcoin, Ethereum } from "lucide-react";
+import { Github, ArrowRight, Bitcoin, Coins } from "lucide-react";
 import { CryptoTicker } from '@/components/CryptoTicker';
 
 const Index = () => {
@@ -13,7 +13,7 @@ const Index = () => {
   // Temporary mock data - will be replaced with Goat SDK data
   const marketData = [
     { symbol: "BTC", icon: <Bitcoin className="h-6 w-6" />, price: 104350, change: -0.37, prediction: 105000 },
-    { symbol: "ETH", icon: <Ethereum className="h-6 w-6" />, price: 3240.50, change: 0.65, prediction: 3300 },
+    { symbol: "ETH", icon: <Coins className="h-6 w-6" />, price: 3240.50, change: 0.65, prediction: 3300 },
     { symbol: "SOL", icon: <Bitcoin className="h-6 w-6" />, price: 139.40, change: 0.35, prediction: 145 }
   ];
 
