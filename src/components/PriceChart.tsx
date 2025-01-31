@@ -11,8 +11,8 @@ interface PriceChartProps {
 
 export const PriceChart = ({ data }: PriceChartProps) => {
   return (
-    <Card className="p-6 h-[400px] backdrop-blur-lg bg-white/80 border border-gray-200 rounded-xl shadow-sm animate-fade-in">
-      <h3 className="text-lg font-semibold mb-4">Price History & Predictions</h3>
+    <Card className="p-6 h-[400px] neo-blur rounded-xl animate-fade-in">
+      <h3 className="text-lg font-semibold mb-4 text-white">Price History & Predictions</h3>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <XAxis 
@@ -26,9 +26,10 @@ export const PriceChart = ({ data }: PriceChartProps) => {
           />
           <Tooltip 
             contentStyle={{ 
-              backgroundColor: 'rgba(255, 255, 255, 0.9)',
-              border: '1px solid #E5E7EB',
-              borderRadius: '8px'
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '8px',
+              color: '#fff'
             }}
           />
           <Line 
