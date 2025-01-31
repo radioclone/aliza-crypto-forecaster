@@ -52,11 +52,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        crypto: {
-          accent: "#34D399",
-          muted: "#9CA3AF",
-          background: "#F9FAFB",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -85,7 +80,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
-        "slide-in": "slide-in 0.3s ease-out",
+        "slide-in": "slide-in 15s linear infinite",
       },
     },
   },
