@@ -22,18 +22,27 @@ export class ElevenLabsService {
 
   private async initialize() {
     try {
-      const { data: { secret }, error } = await supabase.rpc('get_service_secret', {
-        secret_name: 'ELEVEN_LABS_API_KEY'
-      });
+      const { data, error } = await supabase
+        .rpc('get_service_secret', { secret_name: 'ELEVEN_LABS_API_KEY' });
       
       if (error) throw error;
       
-      this.apiKey = secret;
-      this.isInitialized = true;
-      console.log("ElevenLabs service initialized successfully");
+      // Check if we got a valid response with a secret
+      if (data && data.length > 0 && data[0].secret) {
+        this.apiKey = data[0].secret;
+        this.isInitialized = true;
+        console.log("ElevenLabs service initialized successfully");
+      } else {
+        throw new Error("No API key found");
+      }
     } catch (error) {
       console.error("Failed to initialize ElevenLabs service:", error);
       this.isInitialized = false;
+      toast({
+        title: "Service Initialization Failed",
+        description: "Voice synthesis service could not be initialized. Please try again later.",
+        variant: "destructive",
+      });
     }
   }
 
