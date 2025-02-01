@@ -7,7 +7,6 @@ import { FAQSection } from '@/components/FAQSection';
 import { NewsSection } from '@/components/NewsSection';
 import { soundManager } from "@/utils/sounds";
 import { BackgroundProvider } from '@/components/backgrounds/BackgroundProvider';
-import { VoiceSummaryButton } from '@/components/VoiceSummaryButton';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCryptoPrices, transformCryptoData } from '@/services/crypto/CryptoService';
 import { BrandButton } from '@/components/BrandButton';
@@ -64,7 +63,6 @@ const Index = () => {
             <TabsContent value="market" className="space-y-6 animate-fade-in">
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-semibold text-white">{t('market.title')}</h2>
-                <VoiceSummaryButton type="market" data={displayData} />
               </div>
               {isPricesLoading ? (
                 <div className="flex items-center justify-center py-12">
@@ -82,7 +80,6 @@ const Index = () => {
             <TabsContent value="education" className="animate-fade-in">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-white">{t('education.title')}</h2>
-                <VoiceSummaryButton type="education" data={[]} />
               </div>
               <FAQSection />
             </TabsContent>
@@ -90,7 +87,6 @@ const Index = () => {
             <TabsContent value="news" className="animate-fade-in">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-white">{t('news.title')}</h2>
-                <VoiceSummaryButton type="news" data={[]} />
               </div>
               <NewsSection />
             </TabsContent>
