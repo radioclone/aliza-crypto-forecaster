@@ -21,28 +21,30 @@ export const MarketHeader = () => {
 
   return (
     <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
-      <div className="container mx-auto px-4 h-14 flex justify-between items-center">
-        <div className="flex items-center gap-4 h-full py-2">
-          <img 
-            src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Retroverse%20Logo%20Animation.gif"
-            alt="Retroverse"
-            className="h-full w-auto object-contain"
-          />
+      <div className="container mx-auto px-4 h-16 flex justify-between items-center">
+        <div className="flex items-center gap-4 h-full">
+          <div className="h-full flex items-center">
+            <img 
+              src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Retroverse%20Logo%20Animation.gif"
+              alt="Retroverse"
+              className="h-full w-auto object-contain"
+            />
+          </div>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <LanguageSelector />
           <Button
             variant="ghost"
             size="sm"
-            className="text-white hover:bg-white/10"
+            className="text-white hover:bg-white/10 hidden sm:flex"
             onClick={handleSuggestion}
             onMouseEnter={() => soundManager.playSound('click')}
           >
             <MessageSquarePlus className="h-4 w-4 mr-2" />
-            {t('common.suggestions')}
+            <span className="hidden md:inline">{t('common.suggestions')}</span>
           </Button>
-          <div className="relative w-64">
+          <div className="relative w-48 md:w-64">
             <Input
               type="text"
               placeholder={t('common.search')}
