@@ -6,11 +6,14 @@ import { PriceCard } from '@/components/PriceCard';
 import { PriceChart } from '@/components/PriceChart';
 import { Github, ArrowRight, Bitcoin, Coins } from "lucide-react";
 import { CryptoTicker } from '@/components/CryptoTicker';
+import { ChatMessage } from '@/components/ChatMessage';
 
 const Index = () => {
   const [message, setMessage] = useState('');
+  const [chatHistory, setChatHistory] = useState<Array<{ message: string; isUser: boolean }>>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Temporary mock data - will be replaced with Goat SDK data
+  // Temporary mock data - will be replaced with real data
   const marketData = [
     { symbol: "BTC", icon: <Bitcoin className="h-6 w-6" />, price: 104350, change: -0.37, prediction: 105000 },
     { symbol: "ETH", icon: <Coins className="h-6 w-6" />, price: 3240.50, change: 0.65, prediction: 3300 },
@@ -36,6 +39,26 @@ const Index = () => {
     }
   ];
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+
+    // Add user message to chat
+    setChatHistory(prev => [...prev, { message, isUser: true }]);
+    setIsLoading(true);
+
+    // Temporary response - will be replaced with AI response
+    setTimeout(() => {
+      setChatHistory(prev => [...prev, { 
+        message: "I'm currently in development, but I'll be able to help you with crypto analysis soon!", 
+        isUser: false 
+      }]);
+      setIsLoading(false);
+    }, 1000);
+
+    setMessage('');
+  };
+
   return (
     <div className="min-h-screen bg-black">
       {/* Header */}
@@ -58,7 +81,7 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 pt-32 pb-8">
+      <main className="container mx-auto px-4 pt-32 pb-32">
         {/* Welcome Card */}
         <Card className="p-6 mb-8 neo-blur">
           <h2 className="text-2xl font-bold mb-4 text-gradient">Welcome to Ask Aliza powered by AI!</h2>
@@ -69,12 +92,29 @@ const Index = () => {
           </p>
         </Card>
 
+        {/* Chat History */}
+        <div className="space-y-4 mb-8">
+          {chatHistory.map((chat, index) => (
+            <ChatMessage key={index} message={chat.message} isUser={chat.isUser} />
+          ))}
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="bg-white/5 rounded-lg p-4 animate-pulse">
+                <div className="h-4 w-24 bg-white/10 rounded"></div>
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Predefined Questions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {predefinedQuestions.map((question, index) => (
             <Card 
               key={index}
               className="p-4 hover:bg-white/5 transition-colors cursor-pointer neo-blur"
+              onClick={() => {
+                setMessage(question.title + " " + question.subtitle);
+              }}
             >
               <h3 className="font-medium text-white">{question.title}</h3>
               <p className="text-sm text-white/60">{question.subtitle}</p>
@@ -85,7 +125,7 @@ const Index = () => {
         {/* Chat Input */}
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
           <div className="container mx-auto max-w-4xl">
-            <div className="relative">
+            <form onSubmit={handleSubmit} className="relative">
               <Input
                 type="text"
                 placeholder="Send a message."
@@ -94,13 +134,15 @@ const Index = () => {
                 className="pr-12 bg-white/5 border-white/10 text-white placeholder:text-white/40"
               />
               <Button 
+                type="submit"
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/10"
                 size="icon"
                 variant="ghost"
+                disabled={isLoading}
               >
                 <ArrowRight className="h-4 w-4" />
               </Button>
-            </div>
+            </form>
             <p className="text-xs text-center text-white/40 mt-2">
               Ask Aliza may provide inaccurate information and does not provide investment advice.
             </p>
