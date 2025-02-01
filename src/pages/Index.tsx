@@ -7,7 +7,7 @@ import { PriceCard } from '@/components/PriceCard';
 import { PriceChart } from '@/components/PriceChart';
 import { CryptoTicker } from '@/components/CryptoTicker';
 import { CryptoListItem } from '@/components/CryptoListItem';
-import { marketData } from '@/config/marketData';
+import { marketData as staticMarketData } from '@/config/marketData';
 import { ChatMessage } from '@/components/ChatMessage';
 import { GoatService } from '@/services/goat/GoatService';
 import { toast } from "@/components/ui/use-toast";
@@ -23,6 +23,8 @@ import { soundManager } from "@/utils/sounds";
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { BackgroundProvider } from '@/components/backgrounds/BackgroundProvider';
 import { VoiceSummaryButton } from '@/components/VoiceSummaryButton';
+import { useQuery } from '@tanstack/react-query';
+import { fetchCryptoPrices, transformCryptoData } from '@/services/crypto/CryptoService';
 
 const Index = () => {
   const { toast } = useToast();
@@ -31,6 +33,23 @@ const Index = () => {
   const [chatHistory, setChatHistory] = useState<Array<{ message: string; isUser: boolean }>>([]);
   const [isLoading, setIsLoading] = useState(false);
   const goatService = GoatService.getInstance();
+
+  const { data: cryptoData, isLoading: isPricesLoading, error: pricesError } = useQuery({
+    queryKey: ['cryptoPrices'],
+    queryFn: fetchCryptoPrices,
+    refetchInterval: 30000, // Refetch every 30 seconds
+    select: (data) => transformCryptoData(data, staticMarketData),
+    onError: (error) => {
+      console.error('Error fetching crypto prices:', error);
+      toast({
+        title: t('toast.error'),
+        description: t('toast.errorFetchingPrices'),
+        variant: "destructive"
+      });
+    }
+  });
+
+  const displayData = cryptoData || staticMarketData;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,7 +117,9 @@ const Index = () => {
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <h1 className="text-xl font-semibold text-white">{t('common.title')}</h1>
-              <Badge variant="secondary" className="bg-white/10">{t('common.liveMarketData')}</Badge>
+              <Badge variant="secondary" className="bg-white/10">
+                {isPricesLoading ? 'Updating...' : t('common.liveMarketData')}
+              </Badge>
             </div>
             <div className="flex items-center gap-4">
               <LanguageSelector />
@@ -124,7 +145,7 @@ const Index = () => {
             </div>
           </div>
           
-          <CryptoTicker marketData={marketData} />
+          <CryptoTicker marketData={displayData} />
         </header>
 
         <main className="container mx-auto px-4 pt-32 pb-32">
@@ -144,13 +165,19 @@ const Index = () => {
             <TabsContent value="market" className="space-y-6 animate-fade-in">
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-semibold text-white">{t('market.title')}</h2>
-                <VoiceSummaryButton type="market" data={marketData} />
+                <VoiceSummaryButton type="market" data={displayData} />
               </div>
-              <div className="grid gap-6">
-                {marketData.map((crypto) => (
-                  <CryptoListItem key={crypto.symbol} data={crypto} />
-                ))}
-              </div>
+              {isPricesLoading ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader className="h-8 w-8 animate-spin text-white/60" />
+                </div>
+              ) : (
+                <div className="grid gap-6">
+                  {displayData.map((crypto) => (
+                    <CryptoListItem key={crypto.symbol} data={crypto} />
+                  ))}
+                </div>
+              )}
             </TabsContent>
 
             <TabsContent value="education" className="animate-fade-in">
