@@ -55,6 +55,9 @@ const Index = () => {
 
   const displayData = cryptoData || staticMarketData;
 
+  // Calculate if market is bullish (average change is positive)
+  const isMarketBullish = displayData.reduce((acc, crypto) => acc + crypto.change, 0) / displayData.length > 0;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
@@ -125,7 +128,12 @@ const Index = () => {
                 alt="Retroverse"
                 className="h-8 w-auto"
               />
-              <Badge variant="secondary" className="bg-white/10">
+              <Badge variant="secondary" className="bg-white/10 flex items-center gap-2">
+                <div 
+                  className={`w-2 h-2 rounded-full animate-pulse ${
+                    isMarketBullish ? 'bg-[#0FA0CE]' : 'bg-[#ea384c]'
+                  }`}
+                />
                 {isPricesLoading ? 'Updating...' : t('common.liveMarketData')}
               </Badge>
             </div>
