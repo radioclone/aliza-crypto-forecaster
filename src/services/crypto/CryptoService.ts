@@ -2,7 +2,7 @@ import { CryptoData } from "@/types/crypto";
 
 const COINGECKO_BASE_URL = 'https://api.coingecko.com/api/v3';
 
-// Map our symbols to CoinGecko IDs
+// Map our symbols to CoinGecko IDs - updated with correct IDs
 const COIN_IDS: { [key: string]: string } = {
   BTC: 'bitcoin',
   ETH: 'ethereum',
@@ -13,14 +13,15 @@ const COIN_IDS: { [key: string]: string } = {
   DOT: 'polkadot',
   UNI: 'uniswap',
   AVAX: 'avalanche-2',
-  MATIC: 'matic-network',
+  MATIC: 'polygon',
   ATOM: 'cosmos',
   LINK: 'chainlink',
-  MODE: 'mode-token'
+  MODE: 'mode' // Note: If MODE isn't listed on CoinGecko, we'll need to handle this separately
 };
 
 export const fetchCryptoPrices = async () => {
   try {
+    console.log('Fetching crypto prices...');
     const ids = Object.values(COIN_IDS).join(',');
     const response = await fetch(
       `${COINGECKO_BASE_URL}/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`,
@@ -33,10 +34,12 @@ export const fetchCryptoPrices = async () => {
     );
     
     if (!response.ok) {
+      console.error(`CoinGecko API error: ${response.status}`);
       throw new Error(`Failed to fetch crypto prices: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log('Received price data:', data);
     return data;
   } catch (error) {
     console.error('Error fetching crypto prices:', error);
@@ -45,30 +48,27 @@ export const fetchCryptoPrices = async () => {
 };
 
 export const transformCryptoData = (rawData: any, staticData: CryptoData[]): CryptoData[] => {
-  if (!rawData) return staticData;
+  if (!rawData) {
+    console.log('No raw data received, using static data');
+    return staticData;
+  }
 
   return staticData.map(crypto => {
     const coinId = COIN_IDS[crypto.symbol];
     const priceData = rawData[coinId];
 
     if (!priceData) {
-      console.log(`No price data found for ${crypto.symbol}`);
+      console.log(`No price data found for ${crypto.symbol} (CoinGecko ID: ${coinId})`);
       return crypto;
     }
 
-    const price = Number(priceData.usd) || 0;
-    const change = Number(priceData.usd_24h_change?.toFixed(2)) || 0;
-    const volume = Number(priceData.usd_24h_vol) || 0;
-    const marketCap = Number(priceData.usd_market_cap) || 0;
-    const prediction = price * 1.1; // Simple prediction logic
-
     return {
       ...crypto,
-      price,
-      change,
-      volume24h: volume,
-      marketCap,
-      prediction
+      price: Number(priceData.usd) || crypto.price,
+      change: Number(priceData.usd_24h_change?.toFixed(2)) || crypto.change,
+      volume24h: Number(priceData.usd_24h_vol) || crypto.volume24h,
+      marketCap: Number(priceData.usd_market_cap) || crypto.marketCap,
+      prediction: Number(priceData.usd) * 1.1 // Simple prediction logic
     };
   });
 };
