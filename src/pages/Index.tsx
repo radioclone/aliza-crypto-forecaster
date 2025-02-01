@@ -121,7 +121,7 @@ const Index = () => {
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <img 
-                src={supabase.storage.from('assets_brand').getPublicUrl('Retroverse Logo Animation').data?.publicUrl || ''}
+                src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Retroverse%20Logo%20Animation.gif"
                 alt="Retroverse"
                 className="h-8 w-auto"
               />
