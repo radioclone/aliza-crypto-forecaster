@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { CryptoData } from "@/types/crypto";
 
 const COINGECKO_BASE_URL = 'https://api.coingecko.com/api/v3';
 
@@ -38,7 +39,16 @@ export const fetchCryptoPrices = async () => {
   }
 };
 
-export const transformCryptoData = (rawData: any, staticData: any[]) => {
+export const formatPrice = (price: number): number => {
+  if (price >= 1) {
+    return Number(price.toFixed(2));
+  } else {
+    // For prices less than 1, use more decimal places
+    return Number(price.toFixed(6));
+  }
+};
+
+export const transformCryptoData = (rawData: any, staticData: CryptoData[]): CryptoData[] => {
   return staticData.map(crypto => {
     const coinId = COIN_IDS[crypto.symbol as keyof typeof COIN_IDS];
     const priceData = rawData[coinId];
@@ -50,11 +60,11 @@ export const transformCryptoData = (rawData: any, staticData: any[]) => {
 
     return {
       ...crypto,
-      price: priceData.usd || crypto.price,
-      change: priceData.usd_24h_change?.toFixed(2) || crypto.change,
-      volume24h: priceData.usd_24h_vol || crypto.volume24h,
-      marketCap: priceData.usd_market_cap || crypto.marketCap,
-      prediction: (priceData.usd * 1.1).toFixed(2) // Simple prediction logic
+      price: formatPrice(priceData.usd),
+      change: Number(priceData.usd_24h_change?.toFixed(2)) || crypto.change,
+      volume24h: Math.round(priceData.usd_24h_vol) || crypto.volume24h,
+      marketCap: Math.round(priceData.usd_market_cap) || crypto.marketCap,
+      prediction: formatPrice(priceData.usd * 1.1) // Simple prediction logic
     };
   });
 };

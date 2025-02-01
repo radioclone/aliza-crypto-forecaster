@@ -39,13 +39,15 @@ const Index = () => {
     queryFn: fetchCryptoPrices,
     refetchInterval: 30000, // Refetch every 30 seconds
     select: (data) => transformCryptoData(data, staticMarketData),
-    onError: (error) => {
-      console.error('Error fetching crypto prices:', error);
-      toast({
-        title: t('toast.error'),
-        description: t('toast.errorFetchingPrices'),
-        variant: "destructive"
-      });
+    meta: {
+      onError: (error: Error) => {
+        console.error('Error fetching crypto prices:', error);
+        toast({
+          title: t('toast.error'),
+          description: t('toast.errorFetchingPrices'),
+          variant: "destructive"
+        });
+      }
     }
   });
 
