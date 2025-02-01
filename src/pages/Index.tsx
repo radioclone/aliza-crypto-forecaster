@@ -17,6 +17,7 @@ import { FAQSection } from '@/components/FAQSection';
 import { NewsSection } from '@/components/NewsSection';
 import { MessageSquarePlus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { AIPromptSuggestions } from "@/components/AIPromptSuggestions";
 
 const Index = () => {
   const { toast } = useToast();
@@ -50,6 +51,10 @@ const Index = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handlePromptSelect = (prompt: string) => {
+    setMessage(prompt);
   };
 
   const handleSuggestion = () => {
@@ -133,7 +138,8 @@ const Index = () => {
           </div>
 
           <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
-            <div className="container mx-auto max-w-4xl">
+            <div className="container mx-auto max-w-4xl space-y-4">
+              <AIPromptSuggestions onPromptSelect={handlePromptSelect} />
               <form onSubmit={handleSubmit} className="relative">
                 <Input
                   type="text"
@@ -157,7 +163,7 @@ const Index = () => {
                   )}
                 </Button>
               </form>
-              <p className="text-xs text-center text-white/40 mt-2">
+              <p className="text-xs text-center text-white/40">
                 Ask Aliza provides educational content about cryptocurrency. Not financial advice.
               </p>
             </div>

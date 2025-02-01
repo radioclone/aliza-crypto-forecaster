@@ -7,6 +7,10 @@ import dotIcon from "cryptocurrency-icons/svg/color/dot.svg";
 import avaxIcon from "cryptocurrency-icons/svg/color/avax.svg";
 import maticIcon from "cryptocurrency-icons/svg/color/matic.svg";
 import linkIcon from "cryptocurrency-icons/svg/color/link.svg";
+import dogeIcon from "cryptocurrency-icons/svg/color/doge.svg";
+import uniIcon from "cryptocurrency-icons/svg/color/uni.svg";
+import xrpIcon from "cryptocurrency-icons/svg/color/xrp.svg";
+import atomIcon from "cryptocurrency-icons/svg/color/atom.svg";
 
 // Sample price history data
 export const priceHistoryData = [
@@ -48,6 +52,19 @@ export const marketData: CryptoData[] = [
     price: 139.40,
     change: 0.35,
     prediction: 145,
+    volume24h: 8420000000,
+    marketCap: 62000000000,
+    priceHistory: priceHistoryData
+  },
+  {
+    symbol: "XRP",
+    name: "Ripple",
+    icon: <img src={xrpIcon} alt="XRP" className="h-6 w-6" />,
+    price: 0.62,
+    change: 1.20,
+    prediction: 0.70,
+    volume24h: 2420000000,
+    marketCap: 32000000000,
     priceHistory: priceHistoryData
   },
   {
@@ -57,6 +74,19 @@ export const marketData: CryptoData[] = [
     price: 0.85,
     change: -1.20,
     prediction: 0.95,
+    volume24h: 1420000000,
+    marketCap: 28000000000,
+    priceHistory: priceHistoryData
+  },
+  {
+    symbol: "DOGE",
+    name: "Dogecoin",
+    icon: <img src={dogeIcon} alt="DOGE" className="h-6 w-6" />,
+    price: 0.12,
+    change: 2.50,
+    prediction: 0.15,
+    volume24h: 980000000,
+    marketCap: 15000000000,
     priceHistory: priceHistoryData
   },
   {
@@ -66,6 +96,19 @@ export const marketData: CryptoData[] = [
     price: 9.25,
     change: 2.15,
     prediction: 10.50,
+    volume24h: 720000000,
+    marketCap: 11000000000,
+    priceHistory: priceHistoryData
+  },
+  {
+    symbol: "UNI",
+    name: "Uniswap",
+    icon: <img src={uniIcon} alt="UNI" className="h-6 w-6" />,
+    price: 7.80,
+    change: -0.90,
+    prediction: 8.50,
+    volume24h: 520000000,
+    marketCap: 8900000000,
     priceHistory: priceHistoryData
   },
   {
@@ -75,6 +118,8 @@ export const marketData: CryptoData[] = [
     price: 42.30,
     change: 1.75,
     prediction: 45.00,
+    volume24h: 890000000,
+    marketCap: 14500000000,
     priceHistory: priceHistoryData
   },
   {
@@ -84,6 +129,19 @@ export const marketData: CryptoData[] = [
     price: 1.15,
     change: -0.45,
     prediction: 1.25,
+    volume24h: 650000000,
+    marketCap: 10800000000,
+    priceHistory: priceHistoryData
+  },
+  {
+    symbol: "ATOM",
+    name: "Cosmos",
+    icon: <img src={atomIcon} alt="ATOM" className="h-6 w-6" />,
+    price: 9.85,
+    change: 1.30,
+    prediction: 11.00,
+    volume24h: 480000000,
+    marketCap: 7200000000,
     priceHistory: priceHistoryData
   },
   {
@@ -93,6 +151,21 @@ export const marketData: CryptoData[] = [
     price: 18.90,
     change: 3.20,
     prediction: 20.00,
+    volume24h: 750000000,
+    marketCap: 9800000000,
     priceHistory: priceHistoryData
   }
+];
+
+export const aiPrompts = [
+  "What's your prediction for Bitcoin's price next month?",
+  "Explain the concept of DeFi in simple terms",
+  "How does staking work?",
+  "What are the risks of cryptocurrency investment?",
+  "Compare proof of work vs proof of stake",
+  "Explain what a smart contract is",
+  "How do cryptocurrency wallets work?",
+  "What is the impact of halving on Bitcoin?",
+  "Explain the concept of gas fees",
+  "What are layer 2 scaling solutions?"
 ];
