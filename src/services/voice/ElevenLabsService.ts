@@ -62,6 +62,10 @@ export class ElevenLabsService {
     }
   }
 
+  private async delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   public async speak(text: string): Promise<void> {
     try {
       // Wait for initialization if it's still pending
@@ -86,6 +90,8 @@ export class ElevenLabsService {
         const source = audioContext.createBufferSource();
         source.buffer = cachedAudio;
         source.connect(audioContext.destination);
+        // Add a small delay before starting playback
+        await this.delay(100);
         source.start();
         return;
       }
@@ -123,6 +129,8 @@ export class ElevenLabsService {
       const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
       this.audioCache.set(cacheKey, audioBuffer);
       
+      // Add a small delay before playing
+      await this.delay(100);
       await audio.play();
       
       console.log("Speech generated and playing successfully");
