@@ -6,7 +6,7 @@ export const AlizaBranding = () => {
   return (
     <Button
       variant="ghost"
-      className="fixed bottom-32 left-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
+      className="fixed bottom-4 left-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
       onClick={() => window.open('https://elizaos.ai', '_blank')}
       onMouseEnter={() => soundManager.playSound('hover')}
     >
