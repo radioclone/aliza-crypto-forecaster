@@ -26,7 +26,7 @@ export const MarketHeader = () => {
           <img 
             src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Retroverse%20Logo%20Animation.gif"
             alt="Retroverse"
-            className="h-12 w-auto object-contain py-1"
+            className="h-10 w-auto object-contain py-1.5"
           />
         </div>
         
