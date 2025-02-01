@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Loader } from "lucide-react";
+import { useEffect, useState } from "react";
+import { GoatService } from "@/services/goat/GoatService";
 
 interface NewsItem {
   title: string;
@@ -8,28 +10,57 @@ interface NewsItem {
   link: string;
 }
 
-const newsItems: NewsItem[] = [
-  {
-    title: "Bitcoin ETF Approval Impact",
-    description: "Analysis of how the Bitcoin ETF approval affects the crypto market",
-    date: "2024-02-01",
-    link: "#"
-  },
-  {
-    title: "Ethereum Network Updates",
-    description: "Latest developments in the Ethereum ecosystem and upcoming changes",
-    date: "2024-02-01",
-    link: "#"
-  },
-  {
-    title: "DeFi Market Analysis",
-    description: "Current state of decentralized finance and market opportunities",
-    date: "2024-02-01",
-    link: "#"
-  }
-];
-
 export const NewsSection = () => {
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const goatService = GoatService.getInstance();
+
+  useEffect(() => {
+    const generateNews = async () => {
+      setIsLoading(true);
+      try {
+        // Generate news summaries using GoatService
+        const topics = [
+          "Latest cryptocurrency market trends",
+          "Recent blockchain technology developments",
+          "DeFi ecosystem updates"
+        ];
+
+        const currentDate = new Date().toISOString().split('T')[0];
+        const newItems = await Promise.all(
+          topics.map(async (topic) => {
+            const description = await goatService.processUserRequest(`Summarize the latest news about ${topic}`);
+            return {
+              title: topic,
+              description,
+              date: currentDate,
+              link: "#"
+            };
+          })
+        );
+
+        setNewsItems(newItems);
+      } catch (error) {
+        console.error("Error generating news:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    generateNews();
+    // Refresh news every 3 hours
+    const interval = setInterval(generateNews, 10800000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <Loader className="h-6 w-6 animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4">
       {newsItems.map((item, index) => (
