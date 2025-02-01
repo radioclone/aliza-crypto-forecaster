@@ -23,11 +23,17 @@ export const fetchCryptoPrices = async () => {
   try {
     const ids = Object.values(COIN_IDS).join(',');
     const response = await fetch(
-      `${COINGECKO_BASE_URL}/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`
+      `${COINGECKO_BASE_URL}/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache'
+        }
+      }
     );
     
     if (!response.ok) {
-      throw new Error('Failed to fetch crypto prices');
+      throw new Error(`Failed to fetch crypto prices: ${response.status}`);
     }
 
     const data = await response.json();
@@ -39,13 +45,28 @@ export const fetchCryptoPrices = async () => {
   }
 };
 
-export const formatPrice = (price: number): number => {
+export const formatPrice = (price: number): string => {
+  if (!price || isNaN(price)) return '0.00';
+  
   if (price >= 1) {
-    return Number(price.toFixed(2));
+    return price.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
   } else {
-    // For prices less than 1, use more decimal places
-    return Number(price.toFixed(6));
+    return price.toLocaleString(undefined, {
+      minimumFractionDigits: 6,
+      maximumFractionDigits: 6
+    });
   }
+};
+
+export const formatLargeNumber = (num: number): string => {
+  if (!num || isNaN(num)) return '0';
+  
+  return num.toLocaleString(undefined, {
+    maximumFractionDigits: 0
+  });
 };
 
 export const transformCryptoData = (rawData: any, staticData: CryptoData[]): CryptoData[] => {
@@ -58,13 +79,19 @@ export const transformCryptoData = (rawData: any, staticData: CryptoData[]): Cry
       return crypto;
     }
 
+    const price = Number(priceData.usd) || 0;
+    const change = Number(priceData.usd_24h_change?.toFixed(2)) || 0;
+    const volume = Number(priceData.usd_24h_vol) || 0;
+    const marketCap = Number(priceData.usd_market_cap) || 0;
+    const prediction = price * 1.1; // Simple prediction logic
+
     return {
       ...crypto,
-      price: formatPrice(priceData.usd),
-      change: Number(priceData.usd_24h_change?.toFixed(2)) || crypto.change,
-      volume24h: Math.round(priceData.usd_24h_vol) || crypto.volume24h,
-      marketCap: Math.round(priceData.usd_market_cap) || crypto.marketCap,
-      prediction: formatPrice(priceData.usd * 1.1) // Simple prediction logic
+      price,
+      change,
+      volume24h: volume,
+      marketCap,
+      prediction
     };
   });
 };
