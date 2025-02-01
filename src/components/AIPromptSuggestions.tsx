@@ -14,16 +14,20 @@ interface AIPromptSuggestionsProps {
 export const AIPromptSuggestions = ({ onPromptSelect, setChatHistory }: AIPromptSuggestionsProps) => {
   const { t } = useTranslation();
   const [displayedPrompts, setDisplayedPrompts] = useState<string[]>(() => {
-    const shuffled = [...aiPrompts].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 3);
+    // Always include AiFi prompt (last in array) and get 2 random others
+    const aifiPrompt = aiPrompts[aiPrompts.length - 1];
+    const otherPrompts = [...aiPrompts.slice(0, -1)].sort(() => 0.5 - Math.random()).slice(0, 2);
+    return [...otherPrompts, aifiPrompt];
   });
 
   const goatService = GoatService.getInstance();
 
   const refreshPrompts = () => {
     soundManager.playSound('click');
-    const shuffled = [...aiPrompts].sort(() => 0.5 - Math.random());
-    setDisplayedPrompts(shuffled.slice(0, 3));
+    // Keep AiFi prompt and refresh others
+    const aifiPrompt = aiPrompts[aiPrompts.length - 1];
+    const otherPrompts = [...aiPrompts.slice(0, -1)].sort(() => 0.5 - Math.random()).slice(0, 2);
+    setDisplayedPrompts([...otherPrompts, aifiPrompt]);
   };
 
   const handlePromptClick = async (promptKey: string) => {
