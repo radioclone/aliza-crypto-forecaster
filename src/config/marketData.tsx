@@ -23,11 +23,8 @@ import modeIcon from "/lovable-uploads/eec3796c-9458-4edb-a83c-5ff4ae7fd72d.png"
 
 // Custom Solana icon component with gradient
 const SolanaIcon = () => (
-  <div className="relative w-6 h-6 rounded-full overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-[#9945FF] via-[#8752F3] to-[#FC81FF]" />
-    <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
-      S
-    </div>
+  <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-[#9945FF] via-[#8752F3] to-[#FC81FF] flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
+    <span className="text-white font-bold text-sm">S</span>
   </div>
 );
 
