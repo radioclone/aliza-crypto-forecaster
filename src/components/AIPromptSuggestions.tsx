@@ -4,17 +4,21 @@ import { aiPrompts } from "@/config/marketData";
 import { useState } from "react";
 import { soundManager } from "@/utils/sounds";
 import { useTranslation } from "react-i18next";
+import { GoatService } from "@/services/goat/GoatService";
 
 interface AIPromptSuggestionsProps {
   onPromptSelect: (prompt: string) => void;
+  setChatHistory: (history: any) => void;
 }
 
-export const AIPromptSuggestions = ({ onPromptSelect }: AIPromptSuggestionsProps) => {
+export const AIPromptSuggestions = ({ onPromptSelect, setChatHistory }: AIPromptSuggestionsProps) => {
   const { t } = useTranslation();
   const [displayedPrompts, setDisplayedPrompts] = useState<string[]>(() => {
     const shuffled = [...aiPrompts].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
   });
+
+  const goatService = GoatService.getInstance();
 
   const refreshPrompts = () => {
     soundManager.playSound('click');
@@ -22,9 +26,24 @@ export const AIPromptSuggestions = ({ onPromptSelect }: AIPromptSuggestionsProps
     setDisplayedPrompts(shuffled.slice(0, 3));
   };
 
-  const handlePromptClick = (promptKey: string) => {
+  const handlePromptClick = async (promptKey: string) => {
     soundManager.playSound('click');
-    onPromptSelect(t(promptKey));
+    const translatedPrompt = t(promptKey);
+    onPromptSelect(translatedPrompt);
+    
+    // Automatically add user message to chat
+    setChatHistory(prev => [...prev, { message: translatedPrompt, isUser: true }]);
+    
+    try {
+      const response = await goatService.processUserRequest(translatedPrompt);
+      if (response) {
+        setChatHistory(prev => [...prev, { message: response, isUser: false }]);
+        soundManager.playSound('receive');
+      }
+    } catch (error) {
+      console.error("Error processing prompt:", error);
+      soundManager.playSound('error');
+    }
   };
 
   const handleHover = () => {
