@@ -1,8 +1,9 @@
 import { toast } from "@/components/ui/use-toast";
+import i18n from "@/config/i18n";
 
 export class ElevenLabsService {
   private static instance: ElevenLabsService;
-  private voiceId: string = "tAyJHzLYtBgIx7ftaXQ8";
+  private voiceId: string = "tAyJHzLYtBgIx7ftaXQ8"; // Default voice ID (Aria)
   
   private constructor() {}
   
@@ -33,7 +34,7 @@ export class ElevenLabsService {
           },
           body: JSON.stringify({
             text,
-            model_id: "eleven_monolingual_v1",
+            model_id: "eleven_multilingual_v2", // Using multilingual model
             voice_settings: {
               stability: 0.5,
               similarity_boost: 0.5,
