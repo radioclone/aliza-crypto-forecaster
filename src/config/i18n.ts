@@ -19,6 +19,7 @@ const enUS = {
     aiPrompt4: 'What are NFTs?',
     aiPrompt5: 'How to start investing in crypto?',
     aiPrompt6: 'What is DeFi?',
+    aiPrompt7: 'What is AiFi in crypto?', // New AiFi prompt
   },
   tabs: {
     market: 'Market',
@@ -60,6 +61,7 @@ const jaJP = {
     aiPrompt4: 'NFTとは？',
     aiPrompt5: '暗号通貨投資を始めるには？',
     aiPrompt6: 'DeFiとは？',
+    aiPrompt7: '暗号通貨のAiFiとは？', // New AiFi prompt
   },
   tabs: {
     market: '市場',
@@ -101,6 +103,7 @@ const deDE = {
     aiPrompt4: 'Was sind NFTs?',
     aiPrompt5: 'Wie fängt man mit Krypto-Investment an?',
     aiPrompt6: 'Was ist DeFi?',
+    aiPrompt7: 'Was ist AiFi in Krypto?', // New AiFi prompt
   },
   tabs: {
     market: 'Markt',
@@ -142,6 +145,7 @@ const daDK = {
     aiPrompt4: 'Hvad er NFTs?',
     aiPrompt5: 'Hvordan starter man med at investere i krypto?',
     aiPrompt6: 'Hvad er DeFi?',
+    aiPrompt7: 'Hvad er AiFi i krypto?', // New AiFi prompt
   },
   tabs: {
     market: 'Marked',
@@ -183,6 +187,7 @@ const arAR = {
     aiPrompt4: 'ما هي الرموز غير القابلة للاستبدال؟',
     aiPrompt5: 'كيف أبدأ الاستثمار في العملات المشفرة؟',
     aiPrompt6: 'ما هو التمويل اللامركزي؟',
+    aiPrompt7: 'ما هو AiFi في العملات المشفرة؟', // New AiFi prompt
   },
   tabs: {
     market: 'السوق',
@@ -224,6 +229,7 @@ const heIL = {
     aiPrompt4: 'מה זה NFT?',
     aiPrompt5: 'איך מתחילים להשקיע בקריפטו?',
     aiPrompt6: 'מה זה DeFi?',
+    aiPrompt7: 'מה זה AiFi בקריפטו?', // New AiFi prompt
   },
   tabs: {
     market: 'שוק',
@@ -265,6 +271,7 @@ const hiIN = {
     aiPrompt4: 'NFT क्या हैं?',
     aiPrompt5: 'क्रिप्टो में निवेश कैसे शुरू करें?',
     aiPrompt6: 'DeFi क्या है?',
+    aiPrompt7: 'क्रिप्टो में AiFi क्या है?', // New AiFi prompt
   },
   tabs: {
     market: 'मार्केट',
@@ -306,6 +313,7 @@ const urPK = {
     aiPrompt4: 'NFTs کیا ہیں؟',
     aiPrompt5: 'کرپٹو میں سرمایہ کاری کیسے شروع کریں؟',
     aiPrompt6: 'DeFi کیا ہے؟',
+    aiPrompt7: 'کرپٹو میں AiFi کیا ہے؟', // New AiFi prompt
   },
   tabs: {
     market: 'مارکیٹ',
@@ -347,6 +355,7 @@ const zhCN = {
     aiPrompt4: '什么是NFT？',
     aiPrompt5: '如何开始加密货币投资？',
     aiPrompt6: '什么是DeFi？',
+    aiPrompt7: '什么是加密货币中的AiFi？', // New AiFi prompt
   },
   tabs: {
     market: '市场',
@@ -380,6 +389,7 @@ const esES = {
     aiPrompt4: '¿Qué son los NFTs?',
     aiPrompt5: '¿Cómo empezar a invertir en cripto?',
     aiPrompt6: '¿Qué es DeFi?',
+    aiPrompt7: '¿Qué es AiFi en cripto?', // New AiFi prompt
   },
   tabs: {
     market: 'Mercado',
@@ -427,3 +437,4 @@ i18n
   });
 
 export default i18n;
+

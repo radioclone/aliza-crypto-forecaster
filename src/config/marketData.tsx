@@ -1,12 +1,3 @@
-export const aiPrompts = [
-  'common.aiPrompt1',
-  'common.aiPrompt2',
-  'common.aiPrompt3',
-  'common.aiPrompt4',
-  'common.aiPrompt5',
-  'common.aiPrompt6',
-];
-
 import { CryptoData } from "@/types/crypto";
 import btcIcon from "cryptocurrency-icons/svg/color/btc.svg";
 import ethIcon from "cryptocurrency-icons/svg/color/eth.svg";
@@ -20,6 +11,16 @@ import uniIcon from "cryptocurrency-icons/svg/color/uni.svg";
 import xrpIcon from "cryptocurrency-icons/svg/color/xrp.svg";
 import atomIcon from "cryptocurrency-icons/svg/color/atom.svg";
 import modeIcon from "/lovable-uploads/eec3796c-9458-4edb-a83c-5ff4ae7fd72d.png";
+
+export const aiPrompts = [
+  'common.aiPrompt1',
+  'common.aiPrompt2',
+  'common.aiPrompt3',
+  'common.aiPrompt4',
+  'common.aiPrompt5',
+  'common.aiPrompt6',
+  'common.aiPrompt7', // New AiFi prompt
+];
 
 // Custom Solana icon component with gradient
 const SolanaIcon = () => (
