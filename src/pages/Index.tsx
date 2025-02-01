@@ -10,6 +10,7 @@ import { BackgroundProvider } from '@/components/backgrounds/BackgroundProvider'
 import { useQuery } from '@tanstack/react-query';
 import { fetchCryptoPrices, transformCryptoData } from '@/services/crypto/CryptoService';
 import { BrandButton } from '@/components/BrandButton';
+import { AlizaBranding } from '@/components/AlizaBranding';
 import { CryptoListItem } from '@/components/CryptoListItem';
 import { MarketHeader } from '@/components/header/MarketHeader';
 import { MarketStatus } from '@/components/market/MarketStatus';
@@ -96,6 +97,7 @@ const Index = () => {
           <ChatInterface />
         </main>
         <BrandButton />
+        <AlizaBranding />
         
         {/* Attribution */}
         <div className="fixed bottom-4 right-4 text-xs text-white/60">
