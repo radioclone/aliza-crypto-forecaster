@@ -11,7 +11,7 @@ export const BrandButton = () => {
       <img 
         src="/lovable-uploads/d7ea9b1b-6571-4d32-966d-5bef2fd611dd.png"
         alt="Mode Network Brand"
-        className="w-16 h-16 opacity-70 hover:opacity-100 transition-opacity"
+        className="w-24 h-24 opacity-70 hover:opacity-100 transition-opacity"
       />
     </Button>
   );
