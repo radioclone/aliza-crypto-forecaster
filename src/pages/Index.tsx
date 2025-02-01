@@ -22,6 +22,7 @@ import { AIPromptSuggestions } from '@/components/AIPromptSuggestions';
 import { soundManager } from "@/utils/sounds";
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { BackgroundProvider } from '@/components/backgrounds/BackgroundProvider';
+import { VoiceSummaryButton } from '@/components/VoiceSummaryButton';
 
 const Index = () => {
   const { toast } = useToast();
@@ -129,25 +130,42 @@ const Index = () => {
         <main className="container mx-auto px-4 pt-32 pb-32">
           <Tabs defaultValue="market" className="space-y-8" onValueChange={handleTabChange}>
             <TabsList className="bg-white/5 border border-white/10">
-              <TabsTrigger value="market" className="data-[state=active]:bg-white/10">{t('tabs.market')}</TabsTrigger>
-              <TabsTrigger value="education" className="data-[state=active]:bg-white/10">{t('tabs.education')}</TabsTrigger>
-              <TabsTrigger value="news" className="data-[state=active]:bg-white/10">{t('tabs.news')}</TabsTrigger>
+              <TabsTrigger value="market" className="data-[state=active]:bg-white/10">
+                {t('tabs.market')}
+              </TabsTrigger>
+              <TabsTrigger value="education" className="data-[state=active]:bg-white/10">
+                {t('tabs.education')}
+              </TabsTrigger>
+              <TabsTrigger value="news" className="data-[state=active]:bg-white/10">
+                {t('tabs.news')}
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="market" className="space-y-6 animate-fade-in">
+              <div className="flex justify-between items-center">
+                <h2 className="text-xl font-semibold text-white">{t('market.title')}</h2>
+                <VoiceSummaryButton type="market" data={marketData} />
+              </div>
               <div className="grid gap-6">
                 {marketData.map((crypto) => (
                   <CryptoListItem key={crypto.symbol} data={crypto} />
                 ))}
               </div>
-              <PriceChart data={[]} />
             </TabsContent>
 
             <TabsContent value="education" className="animate-fade-in">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold text-white">{t('education.title')}</h2>
+                <VoiceSummaryButton type="education" data={[]} />
+              </div>
               <FAQSection />
             </TabsContent>
 
             <TabsContent value="news" className="animate-fade-in">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold text-white">{t('news.title')}</h2>
+                <VoiceSummaryButton type="news" data={[]} />
+              </div>
               <NewsSection />
             </TabsContent>
           </Tabs>
