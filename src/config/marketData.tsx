@@ -20,6 +20,7 @@ import dogeIcon from "cryptocurrency-icons/svg/color/doge.svg";
 import uniIcon from "cryptocurrency-icons/svg/color/uni.svg";
 import xrpIcon from "cryptocurrency-icons/svg/color/xrp.svg";
 import atomIcon from "cryptocurrency-icons/svg/color/atom.svg";
+import modeIcon from "/lovable-uploads/eec3796c-9458-4edb-a83c-5ff4ae7fd72d.png";
 
 // Custom Solana SVG icon with correct colors
 const solanaIcon = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIxMDAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM5OTQ1RkY7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGQzgxRkY7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMjgxLjQ4IDEzNS4yNGwtNTcuMTMgMjkuMjktNzAuMjUgMzUuOThjLTQuMjUgMi4xNy05LjE0IDIuMTctMTMuMzkgMGwtNTIuMDktMjYuNjljLTQuMjUtMi4xNyA5LjE0LTIuMTcgMTMuMzkgMGw1Mi4wOSAyNi42OWM0LjI1IDIuMTcgNi44OSA2LjM0IDYuODkgMTAuOTN2NzEuNzFsMTMuMzktNi44NVY5OC42NmMwLTQuNTkgMi42NC04Ljc2IDYuODktMTAuOTNsNTIuMDktMjYuNjljNC4yNSAyLjE3IDkuMTQtMi4xNyAxMy4zOSAwbDUyLjA5IDI2LjY5YzQuMjUgMi4xNyA2Ljg5IDYuMzQgNi44OSAxMC45M3YtNTMuMzhjMC00LjU5IDIuNDgtOC43NiA2Ljg5LTEwLjkzbDUyLjA5LTI2LjY5YzQuMjUtMi4xNyA5LjE0LTIuMTcgMTMuMzkgMHptMTI3LjM4IDBsNTIuMDkgMjYuNjljNC4yNSAyLjE3IDYuODkgNi4zNCA2Ljg5IDEwLjkzdjUzLjM4YzAgNC41OS0yLjY0IDguNzYtNi44OSAxMC45M2wtNTIuMDkgMjYuNjljLTQuMjUgMi4xNy05LjE0IDIuMTctMTMuMzkgMGwtNTIuMDktMjYuNjljLTQuMjUtMi4xNy02Ljg5LTYuMzQtNi44OS0xMC45M3YtNTMuMzhjMC00LjU5IDIuNjQtOC43NiA2Ljg5LTEwLjkzbDUyLjA5LTI2LjY5YzQuMjUtMi4xNyA5LjE0LTIuMTcgMTMuMzkgMHoiLz48L3N2Zz4=`;
@@ -60,7 +61,7 @@ export const marketData: CryptoData[] = [
   {
     symbol: "MODE",
     name: "Mode Network",
-    icon: <DollarSign className="text-purple-500" />, // Using DollarSign as a placeholder for Mode Network
+    icon: <img src={modeIcon} alt="MODE" className="h-6 w-6" />,
     price: 0.85,
     change: 15.25,
     prediction: 1.00,
