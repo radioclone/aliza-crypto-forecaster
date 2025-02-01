@@ -3,18 +3,18 @@ import { Button } from "@/components/ui/button";
 import { soundManager } from "@/utils/sounds";
 import { BirthDataCard } from './BirthDataCard';
 import { useToast } from "@/components/ui/use-toast";
+import { BirthData } from '@/types/birth';
 
 export const AlizaBranding = () => {
   const [showBirthCard, setShowBirthCard] = useState(false);
   const { toast } = useToast();
 
-  const handleBirthDataSubmit = (data: any) => {
+  const handleBirthDataSubmit = (data: BirthData) => {
     console.log('Birth data submitted:', data);
     toast({
       title: "Processing Your Birth Data",
       description: "Analyzing your astrological profile and market compatibility...",
     });
-    // Here we'll implement the prediction logic in a separate service
     setShowBirthCard(false);
   };
 

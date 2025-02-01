@@ -2,28 +2,16 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Calendar } from "lucide-react";
 import { soundManager } from "@/utils/sounds";
 import { useToast } from "@/components/ui/use-toast";
+import { DateSelector } from './birth/DateSelector';
+import { BirthData } from '@/types/birth';
+import { PredictionService } from '@/services/predictions/PredictionService';
 
 interface BirthDataCardProps {
   onClose: () => void;
   onSubmit: (data: BirthData) => void;
-}
-
-interface BirthData {
-  date: string;
-  month: string;
-  year: string;
-  time: string;
-  birthplace: string;
 }
 
 export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
@@ -36,16 +24,7 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
     birthplace: '',
   });
 
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
-  const dates = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 100 }, (_, i) => (currentYear - i).toString());
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     soundManager.playSound('click');
     
@@ -59,7 +38,18 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
       return;
     }
 
-    onSubmit(birthData);
+    try {
+      // Get prediction from service
+      const prediction = await PredictionService.generatePrediction(birthData);
+      console.log('Prediction generated:', prediction);
+      onSubmit(birthData);
+    } catch (error) {
+      toast({
+        title: "Error Generating Prediction",
+        description: "There was an error processing your birth data. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -74,58 +64,11 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <Label>Date</Label>
-              <Select 
-                onValueChange={(value) => setBirthData({ ...birthData, date: value })}
-                onOpenChange={() => soundManager.playSound('click')}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Date" />
-                </SelectTrigger>
-                <SelectContent>
-                  {dates.map((date) => (
-                    <SelectItem key={date} value={date}>{date}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label>Month</Label>
-              <Select 
-                onValueChange={(value) => setBirthData({ ...birthData, month: value })}
-                onOpenChange={() => soundManager.playSound('click')}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Month" />
-                </SelectTrigger>
-                <SelectContent>
-                  {months.map((month) => (
-                    <SelectItem key={month} value={month}>{month}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label>Year</Label>
-              <Select 
-                onValueChange={(value) => setBirthData({ ...birthData, year: value })}
-                onOpenChange={() => soundManager.playSound('click')}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Year" />
-                </SelectTrigger>
-                <SelectContent>
-                  {years.map((year) => (
-                    <SelectItem key={year} value={year}>{year}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+          <DateSelector 
+            onDateChange={(value) => setBirthData({ ...birthData, date: value })}
+            onMonthChange={(value) => setBirthData({ ...birthData, month: value })}
+            onYearChange={(value) => setBirthData({ ...birthData, year: value })}
+          />
 
           <div>
             <Label>Time of Birth (24h format)</Label>
