@@ -14,6 +14,7 @@ import { AlizaBranding } from '@/components/AlizaBranding';
 import { CryptoListItem } from '@/components/CryptoListItem';
 import { MarketHeader } from '@/components/header/MarketHeader';
 import { MarketStatus } from '@/components/market/MarketStatus';
+import { MarketSentimentLED } from '@/components/market/MarketSentimentLED';
 import { ChatInterface } from '@/components/chat/ChatInterface';
 import { CryptoTicker } from '@/components/CryptoTicker';
 import { AudioPlayer } from '@/components/audio/AudioPlayer';
@@ -48,6 +49,7 @@ const Index = () => {
           <MarketStatus isLoading={isPricesLoading} marketData={displayData} />
         </div>
         <CryptoTicker marketData={displayData} />
+        <MarketSentimentLED marketData={displayData} />
 
         <main className="container mx-auto px-4 pt-32 pb-32">
           <Tabs defaultValue="market" className="space-y-8" onValueChange={handleTabChange}>
