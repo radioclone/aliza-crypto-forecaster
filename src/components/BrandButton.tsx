@@ -6,7 +6,7 @@ export const BrandButton = () => {
   return (
     <Button
       variant="ghost"
-      className="fixed bottom-32 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
+      className="fixed bottom-24 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
       onClick={() => window.open('https://app.mode.network/ai-terminal/chat/', '_blank')}
       onMouseEnter={() => soundManager.playSound('hover')}
     >
