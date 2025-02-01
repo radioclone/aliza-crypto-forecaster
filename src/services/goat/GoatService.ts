@@ -15,13 +15,14 @@ export class GoatService {
     return GoatService.instance;
   }
 
-  async processUserRequest(message: string) {
+  async processUserRequest(message: string): Promise<string> {
     try {
-      // Future: Add wallet and plugin processing here
+      console.log("GoatService processing message:", message);
       const response = await this.elizaService.processMessage(message);
+      console.log("GoatService received response:", response);
       return response;
     } catch (error) {
-      console.error("Error processing request:", error);
+      console.error("Error in GoatService:", error);
       throw error;
     }
   }

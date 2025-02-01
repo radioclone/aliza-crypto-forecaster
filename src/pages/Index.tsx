@@ -36,18 +36,30 @@ const Index = () => {
     setIsLoading(true);
 
     try {
+      console.log("Processing message with GoatService:", userMessage);
       const response = await goatService.processUserRequest(userMessage);
-      setChatHistory(prev => [...prev, { message: response, isUser: false }]);
-      toast({
-        title: "Response received",
-        description: "Got the latest crypto insights for you!",
-      });
+      console.log("Received response from GoatService:", response);
+      
+      if (response) {
+        setChatHistory(prev => [...prev, { message: response, isUser: false }]);
+        toast({
+          title: "Response received",
+          description: "Got the latest crypto insights for you!",
+        });
+      } else {
+        throw new Error("No response received from GoatService");
+      }
     } catch (error) {
+      console.error("Error in chat:", error);
       toast({
         title: "Error",
         description: "Failed to get response. Please try again.",
         variant: "destructive"
       });
+      setChatHistory(prev => [...prev, { 
+        message: "I apologize, but I'm having trouble processing your request at the moment. Please try again.", 
+        isUser: false 
+      }]);
     } finally {
       setIsLoading(false);
     }
