@@ -16,6 +16,7 @@ import { MarketHeader } from '@/components/header/MarketHeader';
 import { MarketStatus } from '@/components/market/MarketStatus';
 import { ChatInterface } from '@/components/chat/ChatInterface';
 import { CryptoTicker } from '@/components/CryptoTicker';
+import { AudioPlayer } from '@/components/audio/AudioPlayer';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const Index = () => {
