@@ -11,7 +11,7 @@ import { ChatMessage } from '@/components/ChatMessage';
 import { GoatService } from '@/services/goat/GoatService';
 import { toast } from "@/components/ui/use-toast";
 import { Badge } from "@/components/ui/badge";
-import { Search } from "lucide-react";
+import { Search, Loader, ArrowRightIcon } from "lucide-react";
 
 const Index = () => {
   const [message, setMessage] = useState('');
@@ -89,7 +89,7 @@ const Index = () => {
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-white/5 rounded-lg p-4 animate-pulse flex items-center gap-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader className="h-4 w-4 animate-spin" />
                   <span className="text-white/60">Analyzing your question...</span>
                 </div>
               </div>
@@ -115,9 +115,9 @@ const Index = () => {
                   disabled={isLoading}
                 >
                   {isLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader className="h-4 w-4 animate-spin" />
                   ) : (
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRightIcon className="h-4 w-4" />
                   )}
                 </Button>
               </form>
