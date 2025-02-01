@@ -8,9 +8,10 @@ export class ElevenLabsService {
   private audioCache: Map<string, AudioBuffer> = new Map();
   private apiKey: string | null = null;
   private isInitialized: boolean = false;
+  private initializationPromise: Promise<void> | null = null;
   
   private constructor() {
-    this.initialize();
+    this.initializationPromise = this.initialize();
   }
   
   public static getInstance(): ElevenLabsService {
@@ -22,47 +23,52 @@ export class ElevenLabsService {
 
   private async initialize() {
     try {
+      console.log("Initializing ElevenLabs service...");
+      
       const { data, error } = await supabase
         .rpc('get_service_secret', { secret_name: 'ELEVEN_LABS_API_KEY' });
       
       if (error) {
+        console.error("Supabase error:", error);
         throw error;
       }
       
-      // Check if we got a valid response with a secret
-      if (data && Array.isArray(data) && data.length > 0 && data[0].secret) {
-        this.apiKey = data[0].secret;
-        this.isInitialized = true;
-        console.log("ElevenLabs service initialized successfully");
-      } else {
-        throw new Error("No API key found");
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        throw new Error("No API key data returned");
       }
+
+      const secretData = data[0];
+      if (!secretData || typeof secretData.secret !== 'string') {
+        throw new Error("Invalid API key format");
+      }
+
+      this.apiKey = secretData.secret;
+      this.isInitialized = true;
+      console.log("ElevenLabs service initialized successfully");
     } catch (error) {
       console.error("Failed to initialize ElevenLabs service:", error);
       this.isInitialized = false;
       toast({
         title: "Service Initialization Failed",
-        description: "Voice synthesis service could not be initialized. Please try again later.",
+        description: "Voice synthesis service could not be initialized. Please ensure your API key is properly configured.",
         variant: "destructive",
       });
+      throw error;
     }
   }
 
   public async speak(text: string): Promise<void> {
     try {
-      console.log("ElevenLabsService speaking:", text);
-      
-      if (!this.isInitialized || !this.apiKey) {
-        await this.initialize();
-        if (!this.apiKey) {
-          toast({
-            title: "Voice Service Unavailable",
-            description: "Voice synthesis is currently unavailable. Please try again later.",
-            variant: "destructive",
-          });
-          return;
-        }
+      // Wait for initialization if it's still pending
+      if (this.initializationPromise) {
+        await this.initializationPromise;
       }
+
+      if (!this.isInitialized || !this.apiKey) {
+        throw new Error("Service not properly initialized");
+      }
+
+      console.log("ElevenLabsService speaking:", text);
 
       // Generate cache key based on text content and voice ID
       const cacheKey = `${text}_${this.voiceId}`;
@@ -99,7 +105,8 @@ export class ElevenLabsService {
       );
 
       if (!response.ok) {
-        throw new Error(`Failed to generate speech: ${response.statusText}`);
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Failed to generate speech');
       }
 
       const audioBlob = await response.blob();
@@ -118,9 +125,10 @@ export class ElevenLabsService {
       console.error("Error in ElevenLabsService:", error);
       toast({
         title: "Voice Error",
-        description: "Failed to generate voice summary. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to generate voice summary. Please try again.",
         variant: "destructive",
       });
+      throw error;
     }
   }
 
