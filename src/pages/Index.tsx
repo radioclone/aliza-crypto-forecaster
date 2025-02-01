@@ -15,8 +15,11 @@ import { Search, Loader, ArrowRightIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FAQSection } from '@/components/FAQSection';
 import { NewsSection } from '@/components/NewsSection';
+import { MessageSquarePlus } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
+  const { toast } = useToast();
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Array<{ message: string; isUser: boolean }>>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +52,13 @@ const Index = () => {
     }
   };
 
+  const handleSuggestion = () => {
+    toast({
+      title: "Suggestions",
+      description: "Have ideas to improve our platform? We'd love to hear them! Send us your feedback.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-black font-sans">
       <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
@@ -58,6 +68,15 @@ const Index = () => {
             <Badge variant="secondary" className="bg-white/10">Live Market Data</Badge>
           </div>
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-white hover:bg-white/10"
+              onClick={handleSuggestion}
+            >
+              <MessageSquarePlus className="h-4 w-4 mr-2" />
+              Suggestions
+            </Button>
             <div className="relative w-64">
               <Input
                 type="text"

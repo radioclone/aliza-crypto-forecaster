@@ -1,6 +1,15 @@
 import { CryptoDisplayProps } from "@/types/crypto";
 import { formatNumber } from "@/lib/utils";
-import { ArrowUp, ArrowDown } from "lucide-react";
+import { ArrowUp, ArrowDown, LineChart } from "lucide-react";
+import { Button } from "./ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { PriceChart } from "./PriceChart";
 
 export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
   const isPositive = data.change >= 0;
@@ -30,6 +39,24 @@ export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
           <div className="text-sm text-white/60">Market Cap</div>
           <div className="font-medium">${formatNumber(data.marketCap || 0)}</div>
         </div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <LineChart className="h-4 w-4" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[800px] bg-black border-white/10">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                {data.icon}
+                {data.name} Price History & Prediction
+              </DialogTitle>
+            </DialogHeader>
+            <div className="h-[400px]">
+              <PriceChart data={data.priceHistory || []} />
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

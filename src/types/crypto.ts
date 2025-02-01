@@ -1,3 +1,9 @@
+export interface PriceHistoryData {
+  timestamp: string;
+  price: number;
+  predicted: number;
+}
+
 export interface CryptoData {
   symbol: string;
   name: string;
@@ -7,6 +13,7 @@ export interface CryptoData {
   prediction: number;
   volume24h?: number;
   marketCap?: number;
+  priceHistory?: PriceHistoryData[];
 }
 
 export interface CryptoDisplayProps {
