@@ -12,6 +12,9 @@ import { GoatService } from '@/services/goat/GoatService';
 import { toast } from "@/components/ui/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { Search, Loader, ArrowRightIcon } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { FAQSection } from '@/components/FAQSection';
+import { NewsSection } from '@/components/NewsSection';
 
 const Index = () => {
   const [message, setMessage] = useState('');
@@ -70,17 +73,31 @@ const Index = () => {
       </header>
 
       <main className="container mx-auto px-4 pt-32 pb-32">
-        <div className="grid gap-6">
-          {marketData.map((crypto) => (
-            <CryptoListItem key={crypto.symbol} data={crypto} />
-          ))}
-        </div>
+        <Tabs defaultValue="market" className="space-y-8">
+          <TabsList className="bg-white/5 border border-white/10">
+            <TabsTrigger value="market" className="data-[state=active]:bg-white/10">Market</TabsTrigger>
+            <TabsTrigger value="education" className="data-[state=active]:bg-white/10">Education</TabsTrigger>
+            <TabsTrigger value="news" className="data-[state=active]:bg-white/10">News</TabsTrigger>
+          </TabsList>
 
-        <div className="mt-8">
-          <PriceChart data={[]} />
-        </div>
+          <TabsContent value="market" className="space-y-6 animate-fade-in">
+            <div className="grid gap-6">
+              {marketData.map((crypto) => (
+                <CryptoListItem key={crypto.symbol} data={crypto} />
+              ))}
+            </div>
+            <PriceChart data={[]} />
+          </TabsContent>
 
-        {/* Chat section */}
+          <TabsContent value="education" className="animate-fade-in">
+            <FAQSection />
+          </TabsContent>
+
+          <TabsContent value="news" className="animate-fade-in">
+            <NewsSection />
+          </TabsContent>
+        </Tabs>
+
         <div className="mt-8">
           <div className="space-y-4 mb-8">
             {chatHistory.map((chat, index) => (
