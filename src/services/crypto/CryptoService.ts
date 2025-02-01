@@ -1,9 +1,9 @@
-import { supabase } from "@/integrations/supabase/client";
 import { CryptoData } from "@/types/crypto";
 
 const COINGECKO_BASE_URL = 'https://api.coingecko.com/api/v3';
 
-const COIN_IDS = {
+// Map our symbols to CoinGecko IDs
+const COIN_IDS: { [key: string]: string } = {
   BTC: 'bitcoin',
   ETH: 'ethereum',
   SOL: 'solana',
@@ -16,7 +16,7 @@ const COIN_IDS = {
   MATIC: 'matic-network',
   ATOM: 'cosmos',
   LINK: 'chainlink',
-  MODE: 'mode'
+  MODE: 'mode-token'
 };
 
 export const fetchCryptoPrices = async () => {
@@ -37,7 +37,6 @@ export const fetchCryptoPrices = async () => {
     }
 
     const data = await response.json();
-    console.log('CoinGecko API Response:', data);
     return data;
   } catch (error) {
     console.error('Error fetching crypto prices:', error);
@@ -45,33 +44,11 @@ export const fetchCryptoPrices = async () => {
   }
 };
 
-export const formatPrice = (price: number): string => {
-  if (!price || isNaN(price)) return '0.00';
-  
-  if (price >= 1) {
-    return price.toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-  } else {
-    return price.toLocaleString(undefined, {
-      minimumFractionDigits: 6,
-      maximumFractionDigits: 6
-    });
-  }
-};
-
-export const formatLargeNumber = (num: number): string => {
-  if (!num || isNaN(num)) return '0';
-  
-  return num.toLocaleString(undefined, {
-    maximumFractionDigits: 0
-  });
-};
-
 export const transformCryptoData = (rawData: any, staticData: CryptoData[]): CryptoData[] => {
+  if (!rawData) return staticData;
+
   return staticData.map(crypto => {
-    const coinId = COIN_IDS[crypto.symbol as keyof typeof COIN_IDS];
+    const coinId = COIN_IDS[crypto.symbol];
     const priceData = rawData[coinId];
 
     if (!priceData) {
