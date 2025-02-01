@@ -15,7 +15,7 @@ const App = () => {
         defaultOptions: {
           queries: {
             staleTime: 60 * 1000, // Data is fresh for 1 minute
-            cacheTime: 5 * 60 * 1000, // Cache is kept for 5 minutes
+            gcTime: 5 * 60 * 1000, // Cache is kept for 5 minutes (renamed from cacheTime)
             retry: 2,
             refetchOnWindowFocus: false,
             refetchOnMount: false,
