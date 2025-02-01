@@ -38,7 +38,7 @@ const Index = () => {
   };
 
   return (
-    <BackgroundProvider type="starry">
+    <BackgroundProvider type="space">
       <div className="min-h-screen font-sans">
         <MarketHeader />
         <div className="container mx-auto px-4">
