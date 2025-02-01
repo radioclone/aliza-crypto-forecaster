@@ -115,7 +115,7 @@ const Index = () => {
               <div className="space-y-2">
                 <h4 className="text-sm font-semibold">Eliza OS</h4>
                 <p className="text-xs text-white/80">
-                  This project draws inspiration from the Kickass Eliza OS open-source project. 
+                  This project draws inspiration from the Kickass Eliza OS open-source movement. 
                   Click to visit the original project.
                 </p>
               </div>
