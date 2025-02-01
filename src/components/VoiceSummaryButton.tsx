@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { GoatService } from "@/services/goat/GoatService";
 import { toast } from "@/components/ui/use-toast";
@@ -12,6 +12,7 @@ interface VoiceSummaryButtonProps {
 
 export const VoiceSummaryButton = ({ type, data }: VoiceSummaryButtonProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const goatService = GoatService.getInstance();
 
   const generateSummary = (type: string, data: any) => {
@@ -28,19 +29,19 @@ export const VoiceSummaryButton = ({ type, data }: VoiceSummaryButtonProps) => {
   };
 
   const handleVoiceSummary = async () => {
-    if (isPlaying) {
-      setIsPlaying(false);
+    if (isPlaying || isLoading) {
       return;
     }
     
     try {
-      setIsPlaying(true);
+      setIsLoading(true);
       soundManager.playSound('click');
       const summary = generateSummary(type, data);
       
       // Cache key based on content type and data
       const cacheKey = `voice_summary_${type}_${JSON.stringify(data)}`;
       
+      setIsPlaying(true);
       await goatService.processUserRequest(summary);
       
       toast({
@@ -55,6 +56,7 @@ export const VoiceSummaryButton = ({ type, data }: VoiceSummaryButtonProps) => {
         variant: "destructive",
       });
     } finally {
+      setIsLoading(false);
       setIsPlaying(false);
     }
   };
@@ -64,10 +66,12 @@ export const VoiceSummaryButton = ({ type, data }: VoiceSummaryButtonProps) => {
       variant="ghost"
       size="icon"
       onClick={handleVoiceSummary}
-      disabled={isPlaying}
+      disabled={isPlaying || isLoading}
       className="transition-all duration-300 hover:bg-white/10"
     >
-      {isPlaying ? (
+      {isLoading ? (
+        <Loader2 className="h-5 w-5 animate-spin" />
+      ) : isPlaying ? (
         <VolumeX className="h-5 w-5 animate-pulse" />
       ) : (
         <Volume2 className="h-5 w-5" />

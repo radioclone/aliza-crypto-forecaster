@@ -1,15 +1,16 @@
 import { toast } from "@/components/ui/use-toast";
 import i18n from "@/config/i18n";
+import { supabase } from "@/integrations/supabase/client";
 
 export class ElevenLabsService {
   private static instance: ElevenLabsService;
   private voiceId: string = "tAyJHzLYtBgIx7ftaXQ8"; // Aria's voice ID
   private audioCache: Map<string, AudioBuffer> = new Map();
   private apiKey: string | null = null;
+  private isInitialized: boolean = false;
   
   private constructor() {
-    // Get API key from environment
-    this.apiKey = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
+    this.initialize();
   }
   
   public static getInstance(): ElevenLabsService {
@@ -19,20 +20,40 @@ export class ElevenLabsService {
     return ElevenLabsService.instance;
   }
 
+  private async initialize() {
+    try {
+      const { data: { secret }, error } = await supabase.rpc('get_service_secret', {
+        secret_name: 'ELEVEN_LABS_API_KEY'
+      });
+      
+      if (error) throw error;
+      
+      this.apiKey = secret;
+      this.isInitialized = true;
+      console.log("ElevenLabs service initialized successfully");
+    } catch (error) {
+      console.error("Failed to initialize ElevenLabs service:", error);
+      this.isInitialized = false;
+    }
+  }
+
   public async speak(text: string): Promise<void> {
     try {
       console.log("ElevenLabsService speaking:", text);
       
-      if (!this.apiKey) {
-        toast({
-          title: "Voice Service Unavailable",
-          description: "Voice synthesis is currently unavailable. Please try again later.",
-          variant: "destructive",
-        });
-        return;
+      if (!this.isInitialized || !this.apiKey) {
+        await this.initialize();
+        if (!this.apiKey) {
+          toast({
+            title: "Voice Service Unavailable",
+            description: "Voice synthesis is currently unavailable. Please try again later.",
+            variant: "destructive",
+          });
+          return;
+        }
       }
 
-      // Generate cache key based on text content
+      // Generate cache key based on text content and voice ID
       const cacheKey = `${text}_${this.voiceId}`;
 
       // Check cache first
