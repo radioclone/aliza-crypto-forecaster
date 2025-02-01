@@ -14,6 +14,11 @@ const languages = [
   { code: 'ja', name: '日本語' },
   { code: 'de', name: 'Deutsch' },
   { code: 'da', name: 'Dansk' },
+  { code: 'ar', name: 'العربية' },
+  { code: 'he', name: 'עברית' },
+  { code: 'hi', name: 'हिन्दी' },
+  { code: 'ur', name: 'اردو' },
+  { code: 'zh', name: '中文' },
 ];
 
 export const LanguageSelector = () => {

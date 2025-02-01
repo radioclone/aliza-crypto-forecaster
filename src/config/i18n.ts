@@ -137,6 +137,176 @@ const daDK = {
   },
 };
 
+// Arabic translations
+const arAR = {
+  common: {
+    search: 'البحث عن العملات المشفرة...',
+    suggestions: 'اقتراحات',
+    liveMarketData: 'بيانات السوق المباشرة',
+    currentPrice: 'السعر الحالي',
+    predictedPrice: 'السعر المتوقع',
+    volume: 'حجم 24 ساعة',
+    marketCap: 'القيمة السوقية',
+    priceHistory: 'تاريخ السعر والتنبؤ',
+  },
+  tabs: {
+    market: 'السوق',
+    education: 'التعليم',
+    news: 'الأخبار',
+  },
+  chat: {
+    placeholder: 'اسأل أي شيء عن العملات المشفرة...',
+    analyzing: 'تحليل سؤالك...',
+    disclaimer: 'تقدم Aliza محتوى تعليمي حول العملات المشفرة. ليست نصيحة مالية.',
+    suggestedQuestions: 'أسئلة مقترحة',
+    refresh: 'تحديث',
+  },
+  toast: {
+    responseReceived: 'تم استلام الرد',
+    responseDescription: 'حصلت على أحدث رؤى العملات المشفرة!',
+    error: 'خطأ',
+    errorDescription: 'فشل في الحصول على رد. حاول مرة اخرى.',
+    suggestions: 'اقتراحات',
+    suggestionsDescription: 'هل لديك أفكار لتحسين منصتنا؟ نود أن نسمع ملاحظاتك!',
+  },
+};
+
+// Hebrew translations
+const heIL = {
+  common: {
+    search: 'חפש מטבעות קריפטו...',
+    suggestions: 'הצעות',
+    liveMarketData: 'נתוני שוק בזמן אמת',
+    currentPrice: 'מחיר נוכחי',
+    predictedPrice: 'מחיר חזוי',
+    volume: 'נפח 24 שעות',
+    marketCap: 'שווי שוק',
+    priceHistory: 'היסטוריית מחירים ותחזית',
+  },
+  tabs: {
+    market: 'שוק',
+    education: 'חינוך',
+    news: 'חדשות',
+  },
+  chat: {
+    placeholder: 'שאל כל דבר על קריפטו...',
+    analyzing: 'מנתח את השאלה שלך...',
+    disclaimer: 'Aliza מספקת תוכן חינוכי על מטבעות קריפטוגרפיים. לא ייעוץ פיננסי.',
+    suggestedQuestions: 'שאלות מוצעות',
+    refresh: 'רענן',
+  },
+  toast: {
+    responseReceived: 'התקבלה תשובה',
+    responseDescription: 'קיבלת את התובנות העדכניות ביותר על קריפטו!',
+    error: 'שגיאה',
+    errorDescription: 'נכשל בקבלת תשובה. אנא נסה שוב.',
+    suggestions: 'הצעות',
+    suggestionsDescription: 'יש לך רעיונות לשיפור הפלטפורמה שלנו? נשמח לשמוע את המשוב שלך!',
+  },
+};
+
+// Hindi translations
+const hiIN = {
+  common: {
+    search: 'क्रिप्टोकरेंसी खोजें...',
+    suggestions: 'सुझाव',
+    liveMarketData: 'लाइव मार्केट डेटा',
+    currentPrice: 'वर्तमान मूल्य',
+    predictedPrice: 'अनुमानित मूल्य',
+    volume: '24 घंटे का वॉल्यूम',
+    marketCap: 'मार्केट कैप',
+    priceHistory: 'मूल्य इतिहास और भविष्यवाणी',
+  },
+  tabs: {
+    market: 'मार्केट',
+    education: 'शिक्षा',
+    news: 'समाचार',
+  },
+  chat: {
+    placeholder: 'क्रिप्टो के बारे में कुछ भी पूछें...',
+    analyzing: 'आपका प्रश्न विश्लेषण कर रहे हैं...',
+    disclaimer: 'Aliza क्रिप्टोकरेंसी के बारे में शैक्षिक सामग्री प्रदान करती है। वित्तीय सलाह नहीं है।',
+    suggestedQuestions: 'सुझाए गए प्रश्न',
+    refresh: 'रीफ्रेश',
+  },
+  toast: {
+    responseReceived: 'जवाब मिला',
+    responseDescription: 'आपके लिए नवीनतम क्रिप्टो अंतर्दृष्टि मिली!',
+    error: 'त्रुटि',
+    errorDescription: 'जवाब प्राप्त करने में विफल। कृपया पुनः प्रयास करें।',
+    suggestions: 'सुझाव',
+    suggestionsDescription: 'हमारे प्लेटफॉर्म को बेहतर बनाने के लिए विचार हैं? हम आपकी प्रतिक्रिया सुनना चाहेंगे!',
+  },
+};
+
+// Urdu translations
+const urPK = {
+  common: {
+    search: 'کرپٹو کرنسی تلاش کریں...',
+    suggestions: 'تجاویز',
+    liveMarketData: 'لائیو مارکیٹ ڈیٹا',
+    currentPrice: 'موجودہ قیمت',
+    predictedPrice: 'متوقع قیمت',
+    volume: '24 گھنٹے کا والیوم',
+    marketCap: 'مارکیٹ کیپ',
+    priceHistory: 'قیمت کی تاریخ اور پیشن گوئی',
+  },
+  tabs: {
+    market: 'مارکیٹ',
+    education: 'تعلیم',
+    news: 'خبریں',
+  },
+  chat: {
+    placeholder: 'کرپٹو کے بارے میں کچھ بھی پوچھیں...',
+    analyzing: 'آپ کا سوال تجزیہ کر رہے ہیں...',
+    disclaimer: 'Aliza کرپٹو کرنسی کے بارے میں تعلیمی مواد فراہم کرتی ہے۔ مالی مشورہ نہیں ہے۔',
+    suggestedQuestions: 'تجویز کردہ سوالات',
+    refresh: 'ریفریش',
+  },
+  toast: {
+    responseReceived: 'جواب موصول ہوا',
+    responseDescription: 'آپ کے لیے تازہ ترین کرپٹو بصیرت حاصل کی!',
+    error: 'خرابی',
+    errorDescription: 'جواب حاصل کرنے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔',
+    suggestions: 'تجاویز',
+    suggestionsDescription: 'ہمارے پلیٹ فارم کو بہتر بنانے کے لیے خیالات ہیں؟ ہم آپ کی رائے سننا چاہیں گے!',
+  },
+};
+
+// Mandarin translations
+const zhCN = {
+  common: {
+    search: '搜索加密货币...',
+    suggestions: '建议',
+    liveMarketData: '实时市场数据',
+    currentPrice: '当前价格',
+    predictedPrice: '预测价格',
+    volume: '24小时交易量',
+    marketCap: '市值',
+    priceHistory: '价格历史和预测',
+  },
+  tabs: {
+    market: '市场',
+    education: '教育',
+    news: '新闻',
+  },
+  chat: {
+    placeholder: '询问任何关于加密货币的问题...',
+    analyzing: '正在分析您的问题...',
+    disclaimer: 'Aliza提供加密货币教育内容。不构成财务建议。',
+    suggestedQuestions: '建议的问题',
+    refresh: '刷新',
+  },
+  toast: {
+    responseReceived: '收到回复',
+    responseDescription: '为您获取最新的加密货币见解！',
+    error: '错误',
+    errorDescription: '获取回复失败。请重试。',
+    suggestions: '建议',
+    suggestionsDescription: '有改进我们平台的想法吗？我们很乐意听取您的反馈！',
+  },
+};
+
 // Initialize i18next
 i18n
   .use(initReactI18next)
@@ -146,6 +316,11 @@ i18n
       ja: { translation: jaJP },
       de: { translation: deDE },
       da: { translation: daDK },
+      ar: { translation: arAR },
+      he: { translation: heIL },
+      hi: { translation: hiIN },
+      ur: { translation: urPK },
+      zh: { translation: zhCN },
     },
     lng: 'en',
     fallbackLng: 'en',
