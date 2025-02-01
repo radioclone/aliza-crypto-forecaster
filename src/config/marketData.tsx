@@ -8,6 +8,7 @@ export const aiPrompts = [
 ];
 
 import { CryptoData } from "@/types/crypto";
+import { DollarSign } from "lucide-react"; // Added import for Mode Network icon
 import btcIcon from "cryptocurrency-icons/svg/color/btc.svg";
 import ethIcon from "cryptocurrency-icons/svg/color/eth.svg";
 import adaIcon from "cryptocurrency-icons/svg/color/ada.svg";
@@ -59,7 +60,7 @@ export const marketData: CryptoData[] = [
   {
     symbol: "MODE",
     name: "Mode Network",
-    icon: <img src={modeIcon} alt="MODE" className="h-6 w-6" />,
+    icon: <DollarSign className="text-purple-500" />, // Using DollarSign as a placeholder for Mode Network
     price: 0.85,
     change: 15.25,
     prediction: 1.00,
