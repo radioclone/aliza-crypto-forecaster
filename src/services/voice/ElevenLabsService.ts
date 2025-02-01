@@ -3,7 +3,7 @@ import i18n from "@/config/i18n";
 
 export class ElevenLabsService {
   private static instance: ElevenLabsService;
-  private voiceId: string = "tAyJHzLYtBgIx7ftaXQ8"; // Default voice ID (Aria)
+  private voiceId: string = "tAyJHzLYtBgIx7ftaXQ8"; // Aria's voice ID
   
   private constructor() {}
   
@@ -18,7 +18,7 @@ export class ElevenLabsService {
     try {
       console.log("ElevenLabsService speaking:", text);
       
-      // Check if API key is configured
+      // Get API key from Supabase Edge Function environment
       const apiKey = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
       if (!apiKey) {
         throw new Error("ElevenLabs API key not configured");
@@ -34,7 +34,7 @@ export class ElevenLabsService {
           },
           body: JSON.stringify({
             text,
-            model_id: "eleven_multilingual_v2", // Using multilingual model
+            model_id: "eleven_multilingual_v2", // Using multilingual model for better language support
             voice_settings: {
               stability: 0.5,
               similarity_boost: 0.5,
@@ -50,11 +50,13 @@ export class ElevenLabsService {
       const audioBlob = await response.blob();
       const audio = new Audio(URL.createObjectURL(audioBlob));
       await audio.play();
+      
+      console.log("Speech generated and playing successfully");
     } catch (error) {
       console.error("Error in ElevenLabsService:", error);
       toast({
-        title: "Error",
-        description: "Failed to generate speech. Please ensure the API key is configured correctly.",
+        title: i18n.t('toast.error'),
+        description: i18n.t('toast.errorDescription'),
         variant: "destructive",
       });
     }
