@@ -14,7 +14,7 @@ export const BrandButton = () => {
           alt="Mode Network Brand"
           className="w-24 h-24 opacity-70 hover:opacity-100 transition-opacity"
         />
-        <span className="text-xs text-white/70 mt-1">Forecast</span>
+        <span className="text-xs text-white/70 -mt-2">Forecast</span>
       </div>
     </Button>
   );
