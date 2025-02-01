@@ -8,13 +8,13 @@ export const BrandButton = () => {
       className="fixed bottom-4 left-4 z-50 p-0 h-auto w-auto hover:bg-transparent"
       onClick={() => window.open('https://mode.network', '_blank')}
     >
-      <div className="flex flex-col items-center">
+      <div className="relative flex flex-col items-center">
         <img 
           src="/lovable-uploads/d7ea9b1b-6571-4d32-966d-5bef2fd611dd.png"
           alt="Mode Network Brand"
-          className="w-24 h-24 opacity-70 hover:opacity-100 transition-opacity"
+          className="w-20 h-20 opacity-70 hover:opacity-100 transition-opacity"
         />
-        <span className="text-xs text-white/70 -mt-2">Forecast</span>
+        <span className="absolute bottom-1 text-xs text-white/70">Forecast</span>
       </div>
     </Button>
   );
