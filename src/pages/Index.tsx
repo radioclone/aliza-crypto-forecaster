@@ -94,7 +94,7 @@ const Index = () => {
       <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-semibold text-white">Crypto Analytics</h1>
+            <h1 className="text-xl font-semibold text-white">{t('common.title')}</h1>
             <Badge variant="secondary" className="bg-white/10">{t('common.liveMarketData')}</Badge>
           </div>
           <div className="flex items-center gap-4">

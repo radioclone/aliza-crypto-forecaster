@@ -1,3 +1,12 @@
+export const aiPrompts = [
+  'common.aiPrompt1',
+  'common.aiPrompt2',
+  'common.aiPrompt3',
+  'common.aiPrompt4',
+  'common.aiPrompt5',
+  'common.aiPrompt6',
+];
+
 import { CryptoData } from "@/types/crypto";
 import btcIcon from "cryptocurrency-icons/svg/color/btc.svg";
 import ethIcon from "cryptocurrency-icons/svg/color/eth.svg";
@@ -157,17 +166,4 @@ export const marketData: CryptoData[] = [
     marketCap: 9800000000,
     priceHistory: priceHistoryData
   }
-];
-
-export const aiPrompts = [
-  "What's your prediction for Bitcoin's price next month?",
-  "Explain the concept of DeFi in simple terms",
-  "How does staking work?",
-  "What are the risks of cryptocurrency investment?",
-  "Compare proof of work vs proof of stake",
-  "Explain what a smart contract is",
-  "How do cryptocurrency wallets work?",
-  "What is the impact of halving on Bitcoin?",
-  "Explain the concept of gas fees",
-  "What are layer 2 scaling solutions?"
 ];
