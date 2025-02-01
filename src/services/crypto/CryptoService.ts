@@ -16,7 +16,8 @@ const COIN_IDS: { [key: string]: string } = {
   MATIC: 'polygon',
   ATOM: 'cosmos',
   LINK: 'chainlink',
-  MODE: 'mode' // Note: If MODE isn't listed on CoinGecko, we'll need to handle this separately
+  MODE: 'mode',
+  AR: 'arweave'
 };
 
 export const fetchCryptoPrices = async () => {
