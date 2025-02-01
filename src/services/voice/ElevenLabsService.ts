@@ -25,10 +25,12 @@ export class ElevenLabsService {
       const { data, error } = await supabase
         .rpc('get_service_secret', { secret_name: 'ELEVEN_LABS_API_KEY' });
       
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
       
       // Check if we got a valid response with a secret
-      if (data && data.length > 0 && data[0].secret) {
+      if (data && Array.isArray(data) && data.length > 0 && data[0].secret) {
         this.apiKey = data[0].secret;
         this.isInitialized = true;
         console.log("ElevenLabs service initialized successfully");
