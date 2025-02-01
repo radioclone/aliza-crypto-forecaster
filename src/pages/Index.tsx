@@ -15,6 +15,7 @@ import { MarketHeader } from '@/components/header/MarketHeader';
 import { MarketStatus } from '@/components/market/MarketStatus';
 import { ChatInterface } from '@/components/chat/ChatInterface';
 import { CryptoTicker } from '@/components/CryptoTicker';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const Index = () => {
   const { t } = useTranslation();
@@ -95,6 +96,32 @@ const Index = () => {
           <ChatInterface />
         </main>
         <BrandButton />
+        
+        {/* Attribution */}
+        <div className="fixed bottom-4 right-4 text-xs text-white/60">
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <a 
+                href="https://www.elizaos.ai/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-white/80 transition-colors"
+                onClick={() => soundManager.playSound('click')}
+              >
+                * Attribution: Inspired by the open-source project Eliza OS
+              </a>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80 bg-black/90 border-white/10 text-white p-4">
+              <div className="space-y-2">
+                <h4 className="text-sm font-semibold">Eliza OS</h4>
+                <p className="text-xs text-white/80">
+                  This project draws inspiration from the innovative Eliza OS open-source project. 
+                  Click to visit the original project.
+                </p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
       </div>
     </BackgroundProvider>
   );
