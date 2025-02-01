@@ -16,13 +16,20 @@ export class ElevenLabsService {
   public async speak(text: string): Promise<void> {
     try {
       console.log("ElevenLabsService speaking:", text);
+      
+      // Check if API key is configured
+      const apiKey = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
+      if (!apiKey) {
+        throw new Error("ElevenLabs API key not configured");
+      }
+
       const response = await fetch(
         `https://api.elevenlabs.io/v1/text-to-speech/${this.voiceId}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "xi-api-key": process.env.ELEVEN_LABS_API_KEY || "",
+            "xi-api-key": apiKey,
           },
           body: JSON.stringify({
             text,
@@ -46,7 +53,7 @@ export class ElevenLabsService {
       console.error("Error in ElevenLabsService:", error);
       toast({
         title: "Error",
-        description: "Failed to generate speech. Please try again.",
+        description: "Failed to generate speech. Please ensure the API key is configured correctly.",
         variant: "destructive",
       });
     }
