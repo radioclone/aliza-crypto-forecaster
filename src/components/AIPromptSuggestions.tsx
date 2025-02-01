@@ -9,7 +9,6 @@ interface AIPromptSuggestionsProps {
 
 export const AIPromptSuggestions = ({ onPromptSelect }: AIPromptSuggestionsProps) => {
   const [displayedPrompts, setDisplayedPrompts] = useState<string[]>(() => {
-    // Randomly select 3 prompts initially
     const shuffled = [...aiPrompts].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
   });
@@ -20,16 +19,16 @@ export const AIPromptSuggestions = ({ onPromptSelect }: AIPromptSuggestionsProps
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 animate-fade-in">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium text-white/60">Suggested Questions</h3>
         <Button
           variant="ghost"
           size="sm"
           onClick={refreshPrompts}
-          className="text-white/60 hover:text-white"
+          className="text-white/60 hover:text-white transition-all duration-300 hover:scale-105"
         >
-          <Sparkles className="h-4 w-4 mr-2" />
+          <Sparkles className="h-4 w-4 mr-2 animate-pulse" />
           Refresh
         </Button>
       </div>
@@ -39,7 +38,7 @@ export const AIPromptSuggestions = ({ onPromptSelect }: AIPromptSuggestionsProps
             key={index}
             variant="secondary"
             size="sm"
-            className="bg-white/5 hover:bg-white/10 text-white/80"
+            className="bg-white/5 hover:bg-white/10 text-white/80 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/5"
             onClick={() => onPromptSelect(prompt)}
           >
             {prompt}

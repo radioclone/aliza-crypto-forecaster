@@ -15,9 +15,11 @@ export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
   const isPositive = data.change >= 0;
 
   return (
-    <div className="flex items-center gap-4 p-4 neo-blur rounded-lg hover:bg-white/5 transition-all">
+    <div className="flex items-center gap-4 p-4 neo-blur rounded-lg hover:bg-white/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 group">
       <div className="flex items-center gap-3">
-        {data.icon}
+        <div className="transform transition-transform duration-300 group-hover:scale-110">
+          {data.icon}
+        </div>
         <div>
           <h3 className="font-semibold text-white">{data.name}</h3>
           <span className="text-sm text-white/60">{data.symbol}</span>
@@ -25,7 +27,9 @@ export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
       </div>
       <div className="ml-auto flex items-center gap-6">
         <div className="text-right">
-          <div className="font-medium">${formatNumber(data.price)}</div>
+          <div className="font-medium transition-colors duration-300 group-hover:text-white">
+            ${formatNumber(data.price)}
+          </div>
           <div className={`text-sm flex items-center justify-end ${isPositive ? 'text-green-400' : 'text-red-400'}`}>
             {isPositive ? <ArrowUp className="h-3 w-3 mr-1" /> : <ArrowDown className="h-3 w-3 mr-1" />}
             {Math.abs(data.change)}%
@@ -41,11 +45,15 @@ export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
         </div>
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="ghost" size="icon">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="transition-all duration-300 hover:bg-white/10 hover:scale-110"
+            >
               <LineChart className="h-4 w-4" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[800px] bg-black border-white/10">
+          <DialogContent className="sm:max-w-[800px] bg-black border-white/10 animate-in fade-in-0 zoom-in-95">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 {data.icon}
