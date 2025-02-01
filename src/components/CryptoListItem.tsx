@@ -10,9 +10,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { PriceChart } from "./PriceChart";
+import { soundManager } from "@/utils/sounds";
 
 export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
   const isPositive = data.change >= 0;
+
+  const handleChartOpen = () => {
+    soundManager.playSound('click');
+  };
 
   return (
     <div className="flex items-center gap-4 p-4 neo-blur rounded-lg hover:bg-white/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 group">
@@ -49,6 +54,7 @@ export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
               variant="ghost" 
               size="icon"
               className="transition-all duration-300 hover:bg-white/10 hover:scale-110"
+              onClick={handleChartOpen}
             >
               <LineChart className="h-4 w-4" />
             </Button>

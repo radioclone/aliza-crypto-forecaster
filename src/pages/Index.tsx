@@ -18,6 +18,7 @@ import { NewsSection } from '@/components/NewsSection';
 import { MessageSquarePlus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { AIPromptSuggestions } from "@/components/AIPromptSuggestions";
+import { soundManager } from "@/utils/sounds";
 
 const Index = () => {
   const { toast } = useToast();
@@ -34,6 +35,7 @@ const Index = () => {
     setChatHistory(prev => [...prev, { message: userMessage, isUser: true }]);
     setMessage('');
     setIsLoading(true);
+    soundManager.playSound('send');
 
     try {
       console.log("Processing message with GoatService:", userMessage);
@@ -42,6 +44,7 @@ const Index = () => {
       
       if (response) {
         setChatHistory(prev => [...prev, { message: response, isUser: false }]);
+        soundManager.playSound('receive');
         toast({
           title: "Response received",
           description: "Got the latest crypto insights for you!",
@@ -51,6 +54,7 @@ const Index = () => {
       }
     } catch (error) {
       console.error("Error in chat:", error);
+      soundManager.playSound('error');
       toast({
         title: "Error",
         description: "Failed to get response. Please try again.",
@@ -67,9 +71,11 @@ const Index = () => {
 
   const handlePromptSelect = (prompt: string) => {
     setMessage(prompt);
+    soundManager.playSound('click');
   };
 
   const handleSuggestion = () => {
+    soundManager.playSound('click');
     toast({
       title: "Suggestions",
       description: "Have ideas to improve our platform? We'd love to hear them! Send us your feedback.",
