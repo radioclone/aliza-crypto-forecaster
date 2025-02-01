@@ -22,11 +22,11 @@ export const MarketHeader = () => {
   return (
     <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 h-8">
           <img 
             src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Retroverse%20Logo%20Animation.gif"
             alt="Retroverse"
-            className="h-10 w-auto object-contain py-1.5"
+            className="h-full w-auto object-contain"
           />
         </div>
         
