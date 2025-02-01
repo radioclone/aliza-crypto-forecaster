@@ -17,7 +17,7 @@ import { FAQSection } from '@/components/FAQSection';
 import { NewsSection } from '@/components/NewsSection';
 import { MessageSquarePlus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { AIPromptSuggestions } from "@/components/AIPromptSuggestions";
+import { AIPromptSuggestions } from '@/components/AIPromptSuggestions';
 import { soundManager } from "@/utils/sounds";
 
 const Index = () => {
@@ -74,6 +74,10 @@ const Index = () => {
     soundManager.playSound('click');
   };
 
+  const handleTabChange = () => {
+    soundManager.playSound('click');
+  };
+
   const handleSuggestion = () => {
     soundManager.playSound('click');
     toast({
@@ -96,6 +100,7 @@ const Index = () => {
               size="sm"
               className="text-white hover:bg-white/10"
               onClick={handleSuggestion}
+              onMouseEnter={() => soundManager.playSound('click')}
             >
               <MessageSquarePlus className="h-4 w-4 mr-2" />
               Suggestions
@@ -105,6 +110,7 @@ const Index = () => {
                 type="text"
                 placeholder="Search cryptocurrencies..."
                 className="pl-10 bg-white/5 border-white/10"
+                onClick={() => soundManager.playSound('click')}
               />
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
             </div>
@@ -115,7 +121,7 @@ const Index = () => {
       </header>
 
       <main className="container mx-auto px-4 pt-32 pb-32">
-        <Tabs defaultValue="market" className="space-y-8">
+        <Tabs defaultValue="market" className="space-y-8" onValueChange={handleTabChange}>
           <TabsList className="bg-white/5 border border-white/10">
             <TabsTrigger value="market" className="data-[state=active]:bg-white/10">Market</TabsTrigger>
             <TabsTrigger value="education" className="data-[state=active]:bg-white/10">Education</TabsTrigger>
@@ -166,6 +172,7 @@ const Index = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   className="pr-12 bg-white/5 border-white/10 text-white placeholder:text-white/40"
                   disabled={isLoading}
+                  onClick={() => soundManager.playSound('click')}
                 />
                 <Button 
                   type="submit"
@@ -173,6 +180,7 @@ const Index = () => {
                   size="icon"
                   variant="ghost"
                   disabled={isLoading}
+                  onMouseEnter={() => soundManager.playSound('click')}
                 >
                   {isLoading ? (
                     <Loader className="h-4 w-4 animate-spin" />
