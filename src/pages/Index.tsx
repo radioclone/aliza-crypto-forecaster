@@ -7,11 +7,14 @@ import { PriceChart } from '@/components/PriceChart';
 import { Github, ArrowRight, Bitcoin, Coins } from "lucide-react";
 import { CryptoTicker } from '@/components/CryptoTicker';
 import { ChatMessage } from '@/components/ChatMessage';
+import { GoatService } from '@/services/goat/GoatService';
+import { toast } from "@/components/ui/use-toast";
 
 const Index = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Array<{ message: string; isUser: boolean }>>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const goatService = GoatService.getInstance();
 
   // Temporary mock data - will be replaced with real data
   const marketData = [
@@ -47,16 +50,19 @@ const Index = () => {
     setChatHistory(prev => [...prev, { message, isUser: true }]);
     setIsLoading(true);
 
-    // Temporary response - will be replaced with AI response
-    setTimeout(() => {
-      setChatHistory(prev => [...prev, { 
-        message: "I'm currently in development, but I'll be able to help you with crypto analysis soon!", 
-        isUser: false 
-      }]);
+    try {
+      const response = await goatService.processUserRequest(message);
+      setChatHistory(prev => [...prev, { message: response, isUser: false }]);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to get response. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
       setIsLoading(false);
-    }, 1000);
-
-    setMessage('');
+      setMessage('');
+    }
   };
 
   return (
