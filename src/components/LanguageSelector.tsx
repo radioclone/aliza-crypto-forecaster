@@ -11,6 +11,7 @@ import { soundManager } from "@/utils/sounds";
 
 const languages = [
   { code: 'en', name: 'English' },
+  { code: 'es', name: 'Español' },
   { code: 'ja', name: '日本語' },
   { code: 'de', name: 'Deutsch' },
   { code: 'da', name: 'Dansk' },

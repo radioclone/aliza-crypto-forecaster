@@ -1,69 +1,97 @@
-# Welcome to your Lovable project
+# Aliza Crypto Forecaster
 
-## Project info
+## Architecture Overview
 
-**URL**: https://lovable.dev/projects/85e9713a-f5e6-48cd-aa48-d90d1f312c47
+### Core Technologies
+- **Frontend Framework**: React 18 with Vite
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **State Management**: React Query for server state
+- **Internationalization**: i18next for multi-language support
+- **Voice Integration**: ElevenLabs API for text-to-speech
 
-## How can I edit this code?
+### AI Integration
+- **Model**: Custom Eliza-based AI service
+- **Features**: 
+  - Natural language processing for crypto queries
+  - Real-time response generation
+  - Voice synthesis for spoken responses
+  - Multi-language support
 
-There are several ways of editing your application.
+### Blockchain Integration
+- **Market Data**: Real-time cryptocurrency price tracking
+- **Price Predictions**: AI-powered market analysis
+- **Educational Content**: Comprehensive blockchain and crypto education
 
-**Use Lovable**
+### User Interface
+- **Responsive Design**: Mobile-first approach
+- **Dark Theme**: Optimized for reduced eye strain
+- **Interactive Elements**: 
+  - Live market data ticker
+  - Price charts and predictions
+  - AI chat interface
+  - Voice interaction capabilities
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/85e9713a-f5e6-48cd-aa48-d90d1f312c47) and start prompting.
+### Key Features
+1. **Real-time Market Analysis**
+   - Live cryptocurrency price updates
+   - Market cap and volume tracking
+   - Historical price charts
 
-Changes made via Lovable will be committed automatically to this repo.
+2. **AI Assistant (Aliza)**
+   - Natural language chat interface
+   - Voice-enabled interactions
+   - Educational content delivery
+   - Multi-language support (10 languages)
 
-**Use your preferred IDE**
+3. **Educational Resources**
+   - Blockchain technology explanations
+   - Cryptocurrency investment guides
+   - DeFi and NFT education
+   - Smart contract tutorials
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### User Interaction Flow
+1. **Initial Engagement**
+   - Users are greeted with live market data
+   - Can select their preferred language
+   - Access to quick navigation tabs
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. **Market Analysis**
+   - View real-time crypto prices
+   - Analyze historical data
+   - Access price predictions
 
-Follow these steps:
+3. **AI Interaction**
+   - Chat with Aliza via text
+   - Receive voice responses
+   - Get educational content
+   - Access suggested questions
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+4. **Learning Journey**
+   - Browse educational resources
+   - Understand blockchain basics
+   - Learn about crypto investment
+   - Explore DeFi concepts
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Security Features
+- Secure API key management
+- Client-side data encryption
+- Protected voice synthesis integration
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Getting Started
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables:
+   ```
+   ELEVEN_LABS_API_KEY=your_key_here
+   ```
+4. Start development server: `npm run dev`
 
-**Edit a file directly in GitHub**
+## Contributing
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Please read our contributing guidelines before submitting pull requests.
 
-**Use GitHub Codespaces**
+## License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/85e9713a-f5e6-48cd-aa48-d90d1f312c47) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project is licensed under the MIT License - see the LICENSE file for details.
