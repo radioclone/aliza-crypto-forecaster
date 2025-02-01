@@ -57,6 +57,17 @@ export const marketData: CryptoData[] = [
     priceHistory: priceHistoryData
   },
   {
+    symbol: "MODE",
+    name: "Mode Network",
+    icon: <img src={modeIcon} alt="MODE" className="h-6 w-6" />,
+    price: 0.85,
+    change: 15.25,
+    prediction: 1.00,
+    volume24h: 12500000,
+    marketCap: 85000000,
+    priceHistory: priceHistoryData
+  },
+  {
     symbol: "SOL",
     name: "Solana",
     icon: <img src={solanaIcon} alt="SOL" className="h-6 w-6" />,
