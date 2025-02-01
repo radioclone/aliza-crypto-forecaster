@@ -14,7 +14,11 @@ const App = () => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
+            staleTime: 60 * 1000, // Data is fresh for 1 minute
+            cacheTime: 5 * 60 * 1000, // Cache is kept for 5 minutes
+            retry: 2,
+            refetchOnWindowFocus: false,
+            refetchOnMount: false,
           },
         },
       })

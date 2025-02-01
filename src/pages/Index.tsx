@@ -21,6 +21,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { AIPromptSuggestions } from '@/components/AIPromptSuggestions';
 import { soundManager } from "@/utils/sounds";
 import { LanguageSelector } from '@/components/LanguageSelector';
+import { BackgroundProvider } from '@/components/backgrounds/BackgroundProvider';
 
 const Index = () => {
   const { toast } = useToast();
@@ -90,117 +91,119 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black font-sans">
-      <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <h1 className="text-xl font-semibold text-white">{t('common.title')}</h1>
-            <Badge variant="secondary" className="bg-white/10">{t('common.liveMarketData')}</Badge>
-          </div>
-          <div className="flex items-center gap-4">
-            <LanguageSelector />
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-white hover:bg-white/10"
-              onClick={handleSuggestion}
-              onMouseEnter={() => soundManager.playSound('click')}
-            >
-              <MessageSquarePlus className="h-4 w-4 mr-2" />
-              {t('common.suggestions')}
-            </Button>
-            <div className="relative w-64">
-              <Input
-                type="text"
-                placeholder={t('common.search')}
-                className="pl-10 bg-white/5 border-white/10"
-                onClick={() => soundManager.playSound('click')}
-              />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
+    <BackgroundProvider type="starry">
+      <div className="min-h-screen font-sans">
+        <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
+          <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <h1 className="text-xl font-semibold text-white">{t('common.title')}</h1>
+              <Badge variant="secondary" className="bg-white/10">{t('common.liveMarketData')}</Badge>
             </div>
-          </div>
-        </div>
-        
-        <CryptoTicker marketData={marketData} />
-      </header>
-
-      <main className="container mx-auto px-4 pt-32 pb-32">
-        <Tabs defaultValue="market" className="space-y-8" onValueChange={handleTabChange}>
-          <TabsList className="bg-white/5 border border-white/10">
-            <TabsTrigger value="market" className="data-[state=active]:bg-white/10">{t('tabs.market')}</TabsTrigger>
-            <TabsTrigger value="education" className="data-[state=active]:bg-white/10">{t('tabs.education')}</TabsTrigger>
-            <TabsTrigger value="news" className="data-[state=active]:bg-white/10">{t('tabs.news')}</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="market" className="space-y-6 animate-fade-in">
-            <div className="grid gap-6">
-              {marketData.map((crypto) => (
-                <CryptoListItem key={crypto.symbol} data={crypto} />
-              ))}
-            </div>
-            <PriceChart data={[]} />
-          </TabsContent>
-
-          <TabsContent value="education" className="animate-fade-in">
-            <FAQSection />
-          </TabsContent>
-
-          <TabsContent value="news" className="animate-fade-in">
-            <NewsSection />
-          </TabsContent>
-        </Tabs>
-
-        <div className="mt-8">
-          <div className="space-y-4 mb-8">
-            {chatHistory.map((chat, index) => (
-              <ChatMessage key={index} message={chat.message} isUser={chat.isUser} />
-            ))}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-white/5 rounded-lg p-4 animate-pulse flex items-center gap-2">
-                  <Loader className="h-4 w-4 animate-spin" />
-                  <span className="text-white/60">{t('chat.analyzing')}</span>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
-            <div className="container mx-auto max-w-4xl space-y-4">
-              <AIPromptSuggestions onPromptSelect={handlePromptSelect} />
-              <form onSubmit={handleSubmit} className="relative">
+            <div className="flex items-center gap-4">
+              <LanguageSelector />
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white hover:bg-white/10"
+                onClick={handleSuggestion}
+                onMouseEnter={() => soundManager.playSound('click')}
+              >
+                <MessageSquarePlus className="h-4 w-4 mr-2" />
+                {t('common.suggestions')}
+              </Button>
+              <div className="relative w-64">
                 <Input
                   type="text"
-                  placeholder={t('chat.placeholder')}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="pr-12 bg-white/5 border-white/10 text-white placeholder:text-white/40"
-                  disabled={isLoading}
+                  placeholder={t('common.search')}
+                  className="pl-10 bg-white/5 border-white/10"
                   onClick={() => soundManager.playSound('click')}
                 />
-                <Button 
-                  type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/10"
-                  size="icon"
-                  variant="ghost"
-                  disabled={isLoading}
-                  onMouseEnter={() => soundManager.playSound('click')}
-                >
-                  {isLoading ? (
-                    <Loader className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <ArrowRightIcon className="h-4 w-4" />
-                  )}
-                </Button>
-              </form>
-              <p className="text-xs text-center text-white/40">
-                {t('chat.disclaimer')}
-              </p>
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
+          
+          <CryptoTicker marketData={marketData} />
+        </header>
+
+        <main className="container mx-auto px-4 pt-32 pb-32">
+          <Tabs defaultValue="market" className="space-y-8" onValueChange={handleTabChange}>
+            <TabsList className="bg-white/5 border border-white/10">
+              <TabsTrigger value="market" className="data-[state=active]:bg-white/10">{t('tabs.market')}</TabsTrigger>
+              <TabsTrigger value="education" className="data-[state=active]:bg-white/10">{t('tabs.education')}</TabsTrigger>
+              <TabsTrigger value="news" className="data-[state=active]:bg-white/10">{t('tabs.news')}</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="market" className="space-y-6 animate-fade-in">
+              <div className="grid gap-6">
+                {marketData.map((crypto) => (
+                  <CryptoListItem key={crypto.symbol} data={crypto} />
+                ))}
+              </div>
+              <PriceChart data={[]} />
+            </TabsContent>
+
+            <TabsContent value="education" className="animate-fade-in">
+              <FAQSection />
+            </TabsContent>
+
+            <TabsContent value="news" className="animate-fade-in">
+              <NewsSection />
+            </TabsContent>
+          </Tabs>
+
+          <div className="mt-8">
+            <div className="space-y-4 mb-8">
+              {chatHistory.map((chat, index) => (
+                <ChatMessage key={index} message={chat.message} isUser={chat.isUser} />
+              ))}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-white/5 rounded-lg p-4 animate-pulse flex items-center gap-2">
+                    <Loader className="h-4 w-4 animate-spin" />
+                    <span className="text-white/60">{t('chat.analyzing')}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
+              <div className="container mx-auto max-w-4xl space-y-4">
+                <AIPromptSuggestions onPromptSelect={handlePromptSelect} />
+                <form onSubmit={handleSubmit} className="relative">
+                  <Input
+                    type="text"
+                    placeholder={t('chat.placeholder')}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="pr-12 bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                    disabled={isLoading}
+                    onClick={() => soundManager.playSound('click')}
+                  />
+                  <Button 
+                    type="submit"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/10"
+                    size="icon"
+                    variant="ghost"
+                    disabled={isLoading}
+                    onMouseEnter={() => soundManager.playSound('click')}
+                  >
+                    {isLoading ? (
+                      <Loader className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <ArrowRightIcon className="h-4 w-4" />
+                    )}
+                  </Button>
+                </form>
+                <p className="text-xs text-center text-white/40">
+                  {t('chat.disclaimer')}
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </BackgroundProvider>
   );
 };
 
