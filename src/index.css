@@ -48,7 +48,6 @@
   @apply transition-transform duration-300 hover:scale-105;
 }
 
-/* Base styles for future UI overlays */
 .overlay-base {
   @apply fixed inset-0 backdrop-blur-sm bg-black/40 z-50;
 }
@@ -59,4 +58,30 @@
 
 .text-gradient {
   @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee2 {
+  animation: marquee2 40s linear infinite;
 }
