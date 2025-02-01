@@ -9,12 +9,12 @@ export const AlizaBranding = () => {
   const { toast } = useToast();
 
   const handleBirthDataSubmit = (data: any) => {
-    // Here we'll later implement the astrological prediction logic
     console.log('Birth data submitted:', data);
     toast({
       title: "Processing Your Birth Data",
       description: "Analyzing your astrological profile and market compatibility...",
     });
+    // Here we'll implement the prediction logic in a separate service
     setShowBirthCard(false);
   };
 

@@ -164,6 +164,12 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
               Get Prediction
             </Button>
           </div>
+
+          <p className="text-[10px] text-white/40 text-center mt-4 italic">
+            * Disclaimer: The predictions provided are for entertainment purposes only. 
+            Not financial or life advice. Any decisions made based on these predictions 
+            are solely your responsibility.
+          </p>
         </form>
       </div>
     </div>
