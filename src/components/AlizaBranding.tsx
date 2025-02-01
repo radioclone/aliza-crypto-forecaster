@@ -12,7 +12,7 @@ export const AlizaBranding = () => {
     >
       <div className="relative flex flex-col items-center">
         <img 
-          src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//AskAliza%20Branding.gif"
+          src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Ask%20Aliza%20Branding..gif"
           alt="Ask Aliza Branding"
           className="w-32 h-auto opacity-90 hover:opacity-100 transition-opacity"
         />
