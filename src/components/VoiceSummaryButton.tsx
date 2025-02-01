@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Volume2, Volume2Off } from "lucide-react";
+import { Volume2, VolumeX } from "lucide-react";
 import { useState } from "react";
 import { GoatService } from "@/services/goat/GoatService";
 import { toast } from "@/components/ui/use-toast";
@@ -28,12 +28,19 @@ export const VoiceSummaryButton = ({ type, data }: VoiceSummaryButtonProps) => {
   };
 
   const handleVoiceSummary = async () => {
-    if (isPlaying) return;
+    if (isPlaying) {
+      setIsPlaying(false);
+      return;
+    }
     
     try {
       setIsPlaying(true);
       soundManager.playSound('click');
       const summary = generateSummary(type, data);
+      
+      // Cache key based on content type and data
+      const cacheKey = `voice_summary_${type}_${JSON.stringify(data)}`;
+      
       await goatService.processUserRequest(summary);
       
       toast({
@@ -61,7 +68,7 @@ export const VoiceSummaryButton = ({ type, data }: VoiceSummaryButtonProps) => {
       className="transition-all duration-300 hover:bg-white/10"
     >
       {isPlaying ? (
-        <Volume2Off className="h-5 w-5 animate-pulse" />
+        <VolumeX className="h-5 w-5 animate-pulse" />
       ) : (
         <Volume2 className="h-5 w-5" />
       )}

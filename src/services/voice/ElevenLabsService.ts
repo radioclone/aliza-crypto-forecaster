@@ -4,6 +4,7 @@ import i18n from "@/config/i18n";
 export class ElevenLabsService {
   private static instance: ElevenLabsService;
   private voiceId: string = "tAyJHzLYtBgIx7ftaXQ8"; // Aria's voice ID
+  private audioCache: Map<string, AudioBuffer> = new Map();
   
   private constructor() {}
   
@@ -18,10 +19,25 @@ export class ElevenLabsService {
     try {
       console.log("ElevenLabsService speaking:", text);
       
-      // Get API key from Supabase Edge Function environment
+      // Get API key from environment
       const apiKey = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
       if (!apiKey) {
         throw new Error("ElevenLabs API key not configured");
+      }
+
+      // Generate cache key based on text content
+      const cacheKey = `${text}_${this.voiceId}`;
+
+      // Check cache first
+      const cachedAudio = this.audioCache.get(cacheKey);
+      if (cachedAudio) {
+        console.log("Using cached audio");
+        const audioContext = new AudioContext();
+        const source = audioContext.createBufferSource();
+        source.buffer = cachedAudio;
+        source.connect(audioContext.destination);
+        source.start();
+        return;
       }
 
       const response = await fetch(
@@ -34,7 +50,7 @@ export class ElevenLabsService {
           },
           body: JSON.stringify({
             text,
-            model_id: "eleven_multilingual_v2", // Using multilingual model for better language support
+            model_id: "eleven_multilingual_v2",
             voice_settings: {
               stability: 0.5,
               similarity_boost: 0.5,
@@ -49,6 +65,13 @@ export class ElevenLabsService {
 
       const audioBlob = await response.blob();
       const audio = new Audio(URL.createObjectURL(audioBlob));
+      
+      // Store in cache
+      const arrayBuffer = await audioBlob.arrayBuffer();
+      const audioContext = new AudioContext();
+      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+      this.audioCache.set(cacheKey, audioBuffer);
+      
       await audio.play();
       
       console.log("Speech generated and playing successfully");
