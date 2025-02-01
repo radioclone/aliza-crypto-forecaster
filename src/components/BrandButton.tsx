@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
+import { soundManager } from "@/utils/sounds";
 
 export const BrandButton = () => {
   return (
@@ -7,6 +8,7 @@ export const BrandButton = () => {
       variant="ghost"
       className="fixed bottom-4 left-4 z-50 p-0 h-auto w-auto hover:bg-transparent"
       onClick={() => window.open('https://mode.network', '_blank')}
+      onMouseEnter={() => soundManager.playSound('hover')}
     >
       <div className="relative flex flex-col items-center">
         <img 
