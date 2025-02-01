@@ -169,7 +169,10 @@ const Index = () => {
 
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
               <div className="container mx-auto max-w-4xl space-y-4">
-                <AIPromptSuggestions onPromptSelect={handlePromptSelect} />
+                <AIPromptSuggestions 
+                  onPromptSelect={handlePromptSelect} 
+                  setChatHistory={setChatHistory}
+                />
                 <form onSubmit={handleSubmit} className="relative">
                   <Input
                     type="text"
