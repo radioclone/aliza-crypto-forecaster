@@ -1,0 +1,18 @@
+import React from 'react';
+import { Button } from "@/components/ui/button";
+
+export const BrandButton = () => {
+  return (
+    <Button
+      variant="ghost"
+      className="fixed bottom-4 left-4 z-50 p-0 h-auto w-auto hover:bg-transparent"
+      onClick={() => window.open('https://mode.network', '_blank')}
+    >
+      <img 
+        src="/lovable-uploads/d7ea9b1b-6571-4d32-966d-5bef2fd611dd.png"
+        alt="Mode Network Brand"
+        className="w-16 h-16 opacity-70 hover:opacity-100 transition-opacity"
+      />
+    </Button>
+  );
+};

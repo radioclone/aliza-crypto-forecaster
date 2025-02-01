@@ -25,6 +25,7 @@ import { BackgroundProvider } from '@/components/backgrounds/BackgroundProvider'
 import { VoiceSummaryButton } from '@/components/VoiceSummaryButton';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCryptoPrices, transformCryptoData } from '@/services/crypto/CryptoService';
+import { BrandButton } from '@/components/BrandButton';
 
 const Index = () => {
   const { toast } = useToast();
@@ -252,6 +253,7 @@ const Index = () => {
             </div>
           </div>
         </main>
+        <BrandButton />
       </div>
     </BackgroundProvider>
   );
