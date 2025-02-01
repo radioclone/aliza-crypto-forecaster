@@ -17,11 +17,16 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
   const goatService = GoatService.getInstance();
 
-  // Temporary mock data - will be replaced with real data
+  // Enhanced market data with more cryptocurrencies
   const marketData = [
     { symbol: "BTC", icon: <Bitcoin className="h-6 w-6" />, price: 104350, change: -0.37, prediction: 105000 },
-    { symbol: "ETH", icon: <Coins className="h-6 w-6" />, price: 3240.50, change: 0.65, prediction: 3300 },
-    { symbol: "SOL", icon: <Coins className="h-6 w-6" />, price: 139.40, change: 0.35, prediction: 145 }
+    { symbol: "ETH", icon: <Coins className="h-6 w-6 text-blue-400" />, price: 3240.50, change: 0.65, prediction: 3300 },
+    { symbol: "SOL", icon: <Coins className="h-6 w-6 text-purple-400" />, price: 139.40, change: 0.35, prediction: 145 },
+    { symbol: "ADA", icon: <Coins className="h-6 w-6 text-blue-500" />, price: 0.85, change: -1.20, prediction: 0.95 },
+    { symbol: "DOT", icon: <Coins className="h-6 w-6 text-pink-400" />, price: 9.25, change: 2.15, prediction: 10.50 },
+    { symbol: "AVAX", icon: <Coins className="h-6 w-6 text-red-400" />, price: 42.30, change: 1.75, prediction: 45.00 },
+    { symbol: "MATIC", icon: <Coins className="h-6 w-6 text-purple-500" />, price: 1.15, change: -0.45, prediction: 1.25 },
+    { symbol: "LINK", icon: <Coins className="h-6 w-6 text-blue-300" />, price: 18.90, change: 3.20, prediction: 20.00 }
   ];
 
   const suggestedQuestions = [
