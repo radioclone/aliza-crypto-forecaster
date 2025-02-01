@@ -26,6 +26,7 @@ import { VoiceSummaryButton } from '@/components/VoiceSummaryButton';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCryptoPrices, transformCryptoData } from '@/services/crypto/CryptoService';
 import { BrandButton } from '@/components/BrandButton';
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const { toast } = useToast();
@@ -119,7 +120,11 @@ const Index = () => {
         <header className="border-b border-white/10 bg-black/80 backdrop-blur-sm fixed top-0 w-full z-50">
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <h1 className="text-xl font-semibold text-white">{t('common.title')}</h1>
+              <img 
+                src={`${supabase.storage.from('assets_brand').getPublicUrl('Retroverse Logo Animation').data.publicUrl}`}
+                alt="Retroverse"
+                className="h-8 w-auto"
+              />
               <Badge variant="secondary" className="bg-white/10">
                 {isPricesLoading ? 'Updating...' : t('common.liveMarketData')}
               </Badge>
