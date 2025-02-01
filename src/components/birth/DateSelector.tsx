@@ -30,7 +30,10 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
       <div>
         <Label>Date</Label>
         <Select 
-          onValueChange={onDateChange}
+          onValueChange={(value) => {
+            console.log('Date selected:', value);
+            onDateChange(value);
+          }}
           onOpenChange={() => soundManager.playSound('click')}
         >
           <SelectTrigger className="bg-white/5">
@@ -38,7 +41,9 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
           </SelectTrigger>
           <SelectContent className="max-h-[200px] overflow-y-auto bg-background">
             {dates.map((date) => (
-              <SelectItem key={date} value={date}>{date}</SelectItem>
+              <SelectItem key={date} value={date}>
+                {date}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -58,7 +63,10 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
           </SelectTrigger>
           <SelectContent className="max-h-[200px] overflow-y-auto bg-background">
             {months.map((month, index) => (
-              <SelectItem key={month} value={String(index + 1).padStart(2, '0')}>
+              <SelectItem 
+                key={month} 
+                value={String(index + 1).padStart(2, '0')}
+              >
                 {month}
               </SelectItem>
             ))}
@@ -80,7 +88,9 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
           </SelectTrigger>
           <SelectContent className="max-h-[200px] overflow-y-auto bg-background">
             {years.map((year) => (
-              <SelectItem key={year} value={year}>{year}</SelectItem>
+              <SelectItem key={year} value={year}>
+                {year}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
