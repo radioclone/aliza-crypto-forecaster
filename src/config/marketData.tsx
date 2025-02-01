@@ -1,7 +1,7 @@
 import { CryptoData } from "@/types/crypto";
 import btcIcon from "cryptocurrency-icons/svg/color/btc.svg";
 import ethIcon from "cryptocurrency-icons/svg/color/eth.svg";
-import solIcon from "cryptocurrency-icons/svg/color/sol.svg";
+import solIconDefault from "cryptocurrency-icons/svg/color/sol.svg"; // Renamed import
 import adaIcon from "cryptocurrency-icons/svg/color/ada.svg";
 import dotIcon from "cryptocurrency-icons/svg/color/dot.svg";
 import avaxIcon from "cryptocurrency-icons/svg/color/avax.svg";
