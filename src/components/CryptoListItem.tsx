@@ -19,8 +19,15 @@ export const CryptoListItem = ({ data }: CryptoDisplayProps) => {
     soundManager.playSound('click');
   };
 
+  const handleHover = () => {
+    soundManager.playSound('click');
+  };
+
   return (
-    <div className="flex items-center gap-4 p-4 neo-blur rounded-lg hover:bg-white/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 group">
+    <div 
+      className="flex items-center gap-4 p-4 neo-blur rounded-lg hover:bg-white/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 group"
+      onMouseEnter={handleHover}
+    >
       <div className="flex items-center gap-3">
         <div className="transform transition-transform duration-300 group-hover:scale-110">
           {data.icon}
