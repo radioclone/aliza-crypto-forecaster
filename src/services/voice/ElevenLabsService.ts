@@ -34,12 +34,17 @@ export class ElevenLabsService {
       }
       
       if (!data || !Array.isArray(data) || data.length === 0) {
-        throw new Error("No API key data returned");
+        throw new Error("No API key data returned from database");
       }
 
       const secretData = data[0];
       if (!secretData || typeof secretData.secret !== 'string') {
-        throw new Error("Invalid API key format");
+        throw new Error("Invalid API key format in database");
+      }
+
+      // Verify the API key is not empty
+      if (!secretData.secret.trim()) {
+        throw new Error("API key is empty");
       }
 
       this.apiKey = secretData.secret;
@@ -50,7 +55,7 @@ export class ElevenLabsService {
       this.isInitialized = false;
       toast({
         title: "Service Initialization Failed",
-        description: "Voice synthesis service could not be initialized. Please ensure your API key is properly configured.",
+        description: `Voice synthesis service could not be initialized: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
       });
       throw error;
