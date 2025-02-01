@@ -17,11 +17,11 @@ export const VoiceSummaryButton = ({ type, data }: VoiceSummaryButtonProps) => {
   const generateSummary = (type: string, data: any) => {
     switch (type) {
       case 'market':
-        return `Here's a quick market summary: Bitcoin is trading at $${data[0].price.toLocaleString()} with ${data[0].change}% change. Ethereum is at $${data[1].price.toLocaleString()} with ${data[1].change}% change.`;
+        return `Quick market update: BTC $${data[0].price.toLocaleString()} (${data[0].change}%), ETH $${data[1].price.toLocaleString()} (${data[1].change}%)`;
       case 'education':
-        return "Here's a summary of the latest educational content about cryptocurrency and blockchain technology.";
+        return "Latest crypto education: Learn about blockchain technology, DeFi, and crypto trading basics.";
       case 'news':
-        return "Here's a summary of the latest crypto market news and developments.";
+        return "Latest crypto headlines: Market trends, regulatory updates, and major cryptocurrency developments.";
       default:
         return "";
     }
