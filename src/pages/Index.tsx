@@ -121,7 +121,7 @@ const Index = () => {
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <img 
-                src={`${supabase.storage.from('assets_brand').getPublicUrl('Retroverse Logo Animation').data.publicUrl}`}
+                src={supabase.storage.from('assets_brand').getPublicUrl('Retroverse Logo Animation').data?.publicUrl || ''}
                 alt="Retroverse"
                 className="h-8 w-auto"
               />
@@ -129,6 +129,7 @@ const Index = () => {
                 {isPricesLoading ? 'Updating...' : t('common.liveMarketData')}
               </Badge>
             </div>
+            
             <div className="flex items-center gap-4">
               <LanguageSelector />
               <Button
