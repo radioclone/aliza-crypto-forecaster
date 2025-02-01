@@ -5,8 +5,12 @@ export class ElevenLabsService {
   private static instance: ElevenLabsService;
   private voiceId: string = "tAyJHzLYtBgIx7ftaXQ8"; // Aria's voice ID
   private audioCache: Map<string, AudioBuffer> = new Map();
+  private apiKey: string | null = null;
   
-  private constructor() {}
+  private constructor() {
+    // Get API key from environment
+    this.apiKey = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
+  }
   
   public static getInstance(): ElevenLabsService {
     if (!ElevenLabsService.instance) {
@@ -19,10 +23,13 @@ export class ElevenLabsService {
     try {
       console.log("ElevenLabsService speaking:", text);
       
-      // Get API key from environment
-      const apiKey = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
-      if (!apiKey) {
-        throw new Error("ElevenLabs API key not configured");
+      if (!this.apiKey) {
+        toast({
+          title: "Voice Service Unavailable",
+          description: "Voice synthesis is currently unavailable. Please try again later.",
+          variant: "destructive",
+        });
+        return;
       }
 
       // Generate cache key based on text content
@@ -46,7 +53,7 @@ export class ElevenLabsService {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "xi-api-key": apiKey,
+            "xi-api-key": this.apiKey,
           },
           body: JSON.stringify({
             text,
@@ -60,7 +67,7 @@ export class ElevenLabsService {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to generate speech");
+        throw new Error(`Failed to generate speech: ${response.statusText}`);
       }
 
       const audioBlob = await response.blob();
@@ -78,8 +85,8 @@ export class ElevenLabsService {
     } catch (error) {
       console.error("Error in ElevenLabsService:", error);
       toast({
-        title: i18n.t('toast.error'),
-        description: i18n.t('toast.errorDescription'),
+        title: "Voice Error",
+        description: "Failed to generate voice summary. Please try again.",
         variant: "destructive",
       });
     }
