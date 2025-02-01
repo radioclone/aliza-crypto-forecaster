@@ -8,6 +8,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { DateSelector } from './birth/DateSelector';
 import { BirthData } from '@/types/birth';
 import { PredictionService } from '@/services/predictions/PredictionService';
+import { PredictionDisplay } from './PredictionDisplay';
 
 interface BirthDataCardProps {
   onClose: () => void;
@@ -23,12 +24,13 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
     time: '',
     birthplace: '',
   });
+  const [prediction, setPrediction] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     soundManager.playSound('click');
     
-    // Basic validation
     if (!birthData.date || !birthData.month || !birthData.year || !birthData.time || !birthData.birthplace) {
       toast({
         title: "Missing Information",
@@ -38,10 +40,10 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
       return;
     }
 
+    setIsLoading(true);
     try {
-      // Get prediction from service
-      const prediction = await PredictionService.generatePrediction(birthData);
-      console.log('Prediction generated:', prediction);
+      const predictionResult = await PredictionService.generatePrediction(birthData);
+      setPrediction(predictionResult);
       onSubmit(birthData);
     } catch (error) {
       toast({
@@ -49,8 +51,14 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
         description: "There was an error processing your birth data. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  if (prediction) {
+    return <PredictionDisplay prediction={prediction} />;
+  }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-[100]" onClick={onClose}>
@@ -60,7 +68,7 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
       >
         <div className="flex items-center gap-2 mb-6">
           <Calendar className="w-6 h-6" />
-          <h2 className="text-xl font-semibold">Input</h2>
+          <h2 className="text-xl font-semibold">Input Birth Details</h2>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -102,9 +110,10 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
             </Button>
             <Button 
               type="submit"
+              disabled={isLoading}
               onMouseEnter={() => soundManager.playSound('hover')}
             >
-              Get Prediction
+              {isLoading ? "Generating..." : "Get Prediction"}
             </Button>
           </div>
 
