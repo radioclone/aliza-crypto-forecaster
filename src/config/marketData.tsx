@@ -97,7 +97,7 @@ export const marketData: CryptoData[] = [
     symbol: "AR",
     name: "Arweave",
     icon: (
-      <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-[#FF7A45] to-[#FF4D4F] p-0.5 transition-transform duration-300 hover:scale-110">
+      <div className="relative w-6 h-6 rounded-full overflow-hidden bg-black p-0.5 transition-transform duration-300 hover:scale-110">
         <img 
           src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Arweave%201.png" 
           alt="AR" 
