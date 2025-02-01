@@ -21,8 +21,15 @@ import xrpIcon from "cryptocurrency-icons/svg/color/xrp.svg";
 import atomIcon from "cryptocurrency-icons/svg/color/atom.svg";
 import modeIcon from "/lovable-uploads/eec3796c-9458-4edb-a83c-5ff4ae7fd72d.png";
 
-// Custom Solana SVG icon with correct colors
-const solanaIcon = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIxMDAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM5OTQ1RkY7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGQzgxRkY7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMjgxLjQ4IDEzNS4yNGwtNTcuMTMgMjkuMjktNzAuMjUgMzUuOThjLTQuMjUgMi4xNy05LjE0IDIuMTctMTMuMzkgMGwtNTIuMDktMjYuNjljLTQuMjUtMi4xNyA5LjE0LTIuMTcgMTMuMzkgMGw1Mi4wOSAyNi42OWM0LjI1IDIuMTcgNi44OSA2LjM0IDYuODkgMTAuOTN2NzEuNzFsMTMuMzktNi44NVY5OC42NmMwLTQuNTkgMi42NC04Ljc2IDYuODktMTAuOTNsNTIuMDktMjYuNjljNC4yNSAyLjE3IDkuMTQtMi4xNyAxMy4zOSAwbDUyLjA5IDI2LjY5YzQuMjUgMi4xNyA2Ljg5IDYuMzQgNi44OSAxMC45M3YtNTMuMzhjMC00LjU5IDIuNDgtOC43NiA2Ljg5LTEwLjkzbDUyLjA5LTI2LjY5YzQuMjUtMi4xNyA5LjE0LTIuMTcgMTMuMzkgMHptMTI3LjM4IDBsNTIuMDkgMjYuNjljNC4yNSAyLjE3IDYuODkgNi4zNCA2Ljg5IDEwLjkzdjUzLjM4YzAgNC41OS0yLjY0IDguNzYtNi44OSAxMC45M2wtNTIuMDkgMjYuNjljLTQuMjUgMi4xNy05LjE0IDIuMTctMTMuMzkgMGwtNTIuMDktMjYuNjljLTQuMjUtMi4xNy02Ljg5LTYuMzQtNi44OS0xMC45M3YtNTMuMzhjMC00LjU5IDIuNjQtOC43NiA2Ljg5LTEwLjkzbDUyLjA5LTI2LjY5YzQuMjUtMi4xNyA5LjE0LTIuMTcgMTMuMzkgMHoiLz48L3N2Zz4=`;
+// Custom Solana icon component with gradient
+const SolanaIcon = () => (
+  <div className="relative w-6 h-6 rounded-full overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-[#9945FF] via-[#8752F3] to-[#FC81FF]" />
+    <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
+      S
+    </div>
+  </div>
+);
 
 // Sample price history data
 export const priceHistoryData = [
@@ -79,7 +86,7 @@ export const marketData: CryptoData[] = [
   {
     symbol: "SOL",
     name: "Solana",
-    icon: <img src={solanaIcon} alt="SOL" className="h-6 w-6" />,
+    icon: <SolanaIcon />,
     price: 139.40,
     change: 0.35,
     prediction: 145,
