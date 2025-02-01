@@ -51,7 +51,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
           <SelectTrigger className="bg-white/5">
             <SelectValue placeholder="Date" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-popover/95 backdrop-blur-sm">
             {dates.map((date) => (
               <SelectItem key={date} value={date}>
                 {date}
@@ -67,7 +67,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
           <SelectTrigger className="bg-white/5">
             <SelectValue placeholder="Month" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-popover/95 backdrop-blur-sm">
             {months.map((month, index) => (
               <SelectItem 
                 key={month} 
@@ -86,7 +86,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
           <SelectTrigger className="bg-white/5">
             <SelectValue placeholder="Year" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-popover/95 backdrop-blur-sm">
             {years.map((year) => (
               <SelectItem key={year} value={year}>
                 {year}

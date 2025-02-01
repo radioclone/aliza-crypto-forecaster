@@ -60,7 +60,7 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
       >
         <div className="flex items-center gap-2 mb-6">
           <Calendar className="w-6 h-6" />
-          <h2 className="text-xl font-semibold">Enter Your Birth Details</h2>
+          <h2 className="text-xl font-semibold">Input</h2>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
