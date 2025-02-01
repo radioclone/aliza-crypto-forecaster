@@ -6,7 +6,7 @@ export const BrandButton = () => {
   return (
     <Button
       variant="ghost"
-      className="fixed bottom-4 right-4 z-50 p-0 h-auto w-auto hover:bg-transparent"
+      className="fixed bottom-8 right-4 z-50 p-0 h-auto w-auto hover:bg-transparent"
       onClick={() => window.open('https://mode.network', '_blank')}
       onMouseEnter={() => soundManager.playSound('hover')}
     >
@@ -16,7 +16,6 @@ export const BrandButton = () => {
           alt="Mode Network Brand"
           className="w-32 h-auto opacity-70 hover:opacity-100 transition-opacity"
         />
-        <span className="absolute -bottom-4 text-xs text-white/70">Cutting Edge @ Crypto X AI</span>
       </div>
     </Button>
   );
