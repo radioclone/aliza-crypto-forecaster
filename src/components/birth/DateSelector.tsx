@@ -25,21 +25,33 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 100 }, (_, i) => String(currentYear - i));
 
+  const handleDateChange = (value: string) => {
+    console.log('Date selected:', value);
+    onDateChange(value);
+    soundManager.playSound('click');
+  };
+
+  const handleMonthChange = (value: string) => {
+    console.log('Month selected:', value);
+    onMonthChange(value);
+    soundManager.playSound('click');
+  };
+
+  const handleYearChange = (value: string) => {
+    console.log('Year selected:', value);
+    onYearChange(value);
+    soundManager.playSound('click');
+  };
+
   return (
     <div className="grid grid-cols-3 gap-4">
       <div>
         <Label>Date</Label>
-        <Select 
-          onValueChange={(value) => {
-            console.log('Date selected:', value);
-            onDateChange(value);
-          }}
-          onOpenChange={() => soundManager.playSound('click')}
-        >
+        <Select onValueChange={handleDateChange}>
           <SelectTrigger className="bg-white/5">
             <SelectValue placeholder="Date" />
           </SelectTrigger>
-          <SelectContent className="max-h-[200px] overflow-y-auto bg-background">
+          <SelectContent>
             {dates.map((date) => (
               <SelectItem key={date} value={date}>
                 {date}
@@ -51,17 +63,11 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
 
       <div>
         <Label>Month</Label>
-        <Select 
-          onValueChange={(value) => {
-            console.log('Month selected:', value);
-            onMonthChange(value);
-          }}
-          onOpenChange={() => soundManager.playSound('click')}
-        >
+        <Select onValueChange={handleMonthChange}>
           <SelectTrigger className="bg-white/5">
             <SelectValue placeholder="Month" />
           </SelectTrigger>
-          <SelectContent className="max-h-[200px] overflow-y-auto bg-background">
+          <SelectContent>
             {months.map((month, index) => (
               <SelectItem 
                 key={month} 
@@ -76,17 +82,11 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
 
       <div>
         <Label>Year</Label>
-        <Select 
-          onValueChange={(value) => {
-            console.log('Year selected:', value);
-            onYearChange(value);
-          }}
-          onOpenChange={() => soundManager.playSound('click')}
-        >
+        <Select onValueChange={handleYearChange}>
           <SelectTrigger className="bg-white/5">
             <SelectValue placeholder="Year" />
           </SelectTrigger>
-          <SelectContent className="max-h-[200px] overflow-y-auto bg-background">
+          <SelectContent>
             {years.map((year) => (
               <SelectItem key={year} value={year}>
                 {year}
