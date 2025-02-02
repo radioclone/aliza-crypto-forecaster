@@ -62,7 +62,7 @@ const jaJP = {
     aiPrompt4: 'NFTとは？',
     aiPrompt5: '暗号通貨投資を始めるには？',
     aiPrompt6: 'DeFiとは？',
-    aiPrompt7: '暗号通貨のAiFiとは？', // New AiFi prompt
+    aiPrompt7: '暗号通貨のAiFiとは？',
     aiPrompt8: 'Mode Networkとは？', // New prompt
   },
   tabs: {
@@ -423,7 +423,7 @@ const esES = {
   },
 };
 
-// Update i18n initialization to include Spanish
+// Update i18n initialization
 i18n
   .use(initReactI18next)
   .init({
@@ -437,7 +437,7 @@ i18n
       hi: { translation: hiIN },
       ur: { translation: urPK },
       zh: { translation: zhCN },
-      es: { translation: esES }, // Add Spanish
+      es: { translation: esES },
     },
     lng: 'en',
     fallbackLng: 'en',

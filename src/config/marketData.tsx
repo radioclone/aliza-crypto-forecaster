@@ -19,7 +19,7 @@ export const aiPrompts = [
   'common.aiPrompt4',
   'common.aiPrompt5',
   'common.aiPrompt6',
-  'common.aiPrompt8', // New Mode Network prompt
+  'common.aiPrompt8', // Mode Network prompt
   'common.aiPrompt7', // Keep AiFi as last
 ];
 
