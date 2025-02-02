@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Loader, Search } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { marketData as staticMarketData } from '@/config/marketData';
 import { FAQSection } from '@/components/FAQSection';
 import { NewsSection } from '@/components/NewsSection';
@@ -12,7 +10,6 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCryptoPrices, transformCryptoData } from '@/services/crypto/CryptoService';
 import { BrandButton } from '@/components/BrandButton';
 import { AlizaBranding } from '@/components/AlizaBranding';
-import { CryptoListItem } from '@/components/CryptoListItem';
 import { MarketHeader } from '@/components/header/MarketHeader';
 import { MarketStatus } from '@/components/market/MarketStatus';
 import { MarketSentimentLED } from '@/components/market/MarketSentimentLED';
@@ -20,13 +17,15 @@ import { ChatInterface } from '@/components/chat/ChatInterface';
 import { CryptoTicker } from '@/components/CryptoTicker';
 import { AudioPlayer } from '@/components/audio/AudioPlayer';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { SPACING } from '@/config/ui-constants';
+import { TabNavigation } from '@/components/navigation/TabNavigation';
+import { CryptoSearch } from '@/components/search/CryptoSearch';
+import { MarketContent } from '@/components/market/MarketContent';
 
 const Index = () => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { data: cryptoData, isLoading: isPricesLoading, error: pricesError } = useQuery({
+  const { data: cryptoData, isLoading: isPricesLoading } = useQuery({
     queryKey: ['cryptoPrices'],
     queryFn: fetchCryptoPrices,
     refetchInterval: 30000,
@@ -57,50 +56,19 @@ const Index = () => {
         <main className="container mx-auto px-4 pt-32 pb-32">
           <Tabs defaultValue="market" className="space-y-8" onValueChange={handleTabChange}>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <TabsList className="bg-white/5 border border-white/10">
-                <TabsTrigger value="market" className="data-[state=active]:bg-white/10">
-                  {t('tabs.market')}
-                </TabsTrigger>
-                <TabsTrigger value="education" className="data-[state=active]:bg-white/10">
-                  {t('tabs.education')}
-                </TabsTrigger>
-                <TabsTrigger value="news" className="data-[state=active]:bg-white/10">
-                  {t('tabs.news')}
-                </TabsTrigger>
-              </TabsList>
-
-              <div className="relative w-full sm:w-64 md:w-72">
-                <Input
-                  type="text"
-                  placeholder={t('common.searchCrypto')}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-white/40"
-                />
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
-              </div>
+              <TabNavigation />
+              <CryptoSearch 
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+              />
             </div>
 
-            <TabsContent value="market" className="space-y-6 animate-fade-in">
-              <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-white">{t('market.title')}</h2>
-              </div>
-              {isPricesLoading ? (
-                <div className="flex items-center justify-center py-12">
-                  <Loader className="h-8 w-8 animate-spin text-white/60" />
-                </div>
-              ) : (
-                <div className="grid gap-6">
-                  {displayData
-                    .filter(crypto => 
-                      crypto.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                      crypto.symbol.toLowerCase().includes(searchQuery.toLowerCase())
-                    )
-                    .map((crypto) => (
-                      <CryptoListItem key={crypto.symbol} data={crypto} />
-                    ))}
-                </div>
-              )}
+            <TabsContent value="market">
+              <MarketContent 
+                isLoading={isPricesLoading}
+                displayData={displayData}
+                searchQuery={searchQuery}
+              />
             </TabsContent>
 
             <TabsContent value="education" className="animate-fade-in">
@@ -116,15 +84,14 @@ const Index = () => {
               </div>
               <NewsSection />
             </TabsContent>
-
           </Tabs>
 
           <ChatInterface />
         </main>
+
         <BrandButton />
         <AlizaBranding />
         
-        {/* Attribution */}
         <div className="fixed bottom-4 right-4 text-xs text-white/60">
           <HoverCard>
             <HoverCardTrigger asChild>
