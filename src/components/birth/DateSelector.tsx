@@ -52,36 +52,6 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
     soundManager.playSound('click');
   };
 
-  const handleManualDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (/^\d{0,2}$/.test(value) && Number(value) <= 31) {
-      setManualDate(value);
-      if (value.length === 2) {
-        onDateChange(value.padStart(2, '0'));
-      }
-    }
-  };
-
-  const handleManualMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (/^\d{0,2}$/.test(value) && Number(value) <= 12) {
-      setManualMonth(value);
-      if (value.length === 2) {
-        onMonthChange(value.padStart(2, '0'));
-      }
-    }
-  };
-
-  const handleManualYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (/^\d{0,4}$/.test(value) && Number(value) <= currentYear) {
-      setManualYear(value);
-      if (value.length === 4) {
-        onYearChange(value);
-      }
-    }
-  };
-
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -170,7 +140,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
                   <SelectValue placeholder="Date" />
                 </SelectTrigger>
                 <SelectContent 
-                  className="bg-black/95 backdrop-blur-sm border border-white/10"
+                  className="bg-black/95 backdrop-blur-sm border border-white/10 z-[1000]"
                   position="popper"
                   sideOffset={4}
                 >
@@ -190,7 +160,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
                   <SelectValue placeholder="Month" />
                 </SelectTrigger>
                 <SelectContent 
-                  className="bg-black/95 backdrop-blur-sm border border-white/10"
+                  className="bg-black/95 backdrop-blur-sm border border-white/10 z-[1000]"
                   position="popper"
                   sideOffset={4}
                 >
@@ -213,7 +183,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
                   <SelectValue placeholder="Year" />
                 </SelectTrigger>
                 <SelectContent 
-                  className="bg-black/95 backdrop-blur-sm border border-white/10"
+                  className="bg-black/95 backdrop-blur-sm border border-white/10 z-[1000]"
                   position="popper"
                   sideOffset={4}
                 >
