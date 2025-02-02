@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Bot, Brain, ChartLineUp, Coins, Rocket } from "lucide-react";
+import { ArrowLeft, Bot, Brain, LineChart, Coins, Rocket } from "lucide-react";
 
 const Ecosystem = () => {
   const { t } = useTranslation();
@@ -11,7 +11,7 @@ const Ecosystem = () => {
     {
       title: "Market Analysis",
       description: "Advanced crypto market analysis with AI-powered insights",
-      icon: <ChartLineUp className="w-8 h-8" />,
+      icon: <LineChart className="w-8 h-8" />,
       status: "Live",
       link: "/"
     },
