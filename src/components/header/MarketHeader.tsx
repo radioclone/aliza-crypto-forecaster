@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, MessageSquarePlus } from "lucide-react";
+import { MessageSquarePlus, Wallet } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { soundManager } from "@/utils/sounds";
@@ -16,6 +15,14 @@ export const MarketHeader = () => {
     toast({
       title: t('toast.suggestions'),
       description: t('toast.suggestionsDescription'),
+    });
+  };
+
+  const handleConnectWallet = () => {
+    soundManager.playSound('click');
+    toast({
+      title: "Coming Soon",
+      description: "Wallet connection functionality will be available soon.",
     });
   };
 
@@ -44,15 +51,16 @@ export const MarketHeader = () => {
             <MessageSquarePlus className="h-4 w-4 mr-2" />
             <span className="hidden md:inline">{t('common.suggestions')}</span>
           </Button>
-          <div className="relative w-48 md:w-64">
-            <Input
-              type="text"
-              placeholder={t('common.search')}
-              className="pl-10 bg-white/5 border-white/10"
-              onClick={() => soundManager.playSound('click')}
-            />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
-          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-white border-white/20 hover:bg-white/10"
+            onClick={handleConnectWallet}
+            onMouseEnter={() => soundManager.playSound('hover')}
+          >
+            <Wallet className="h-4 w-4 mr-2" />
+            <span className="hidden md:inline">Connect Wallet</span>
+          </Button>
         </div>
       </div>
     </header>

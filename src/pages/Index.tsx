@@ -18,7 +18,6 @@ import { CryptoTicker } from '@/components/CryptoTicker';
 import { AudioPlayer } from '@/components/audio/AudioPlayer';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { TabNavigation } from '@/components/navigation/TabNavigation';
-import { CryptoSearch } from '@/components/search/CryptoSearch';
 import { MarketContent } from '@/components/market/MarketContent';
 
 const Index = () => {
@@ -55,13 +54,10 @@ const Index = () => {
 
         <main className="container mx-auto px-4 pt-32 pb-32">
           <Tabs defaultValue="market" className="space-y-8" onValueChange={handleTabChange}>
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <TabNavigation />
-              <CryptoSearch 
-                searchQuery={searchQuery}
-                onSearchChange={setSearchQuery}
-              />
-            </div>
+            <TabNavigation 
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+            />
 
             <TabsContent value="market">
               <MarketContent 
