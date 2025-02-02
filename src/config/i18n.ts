@@ -30,7 +30,7 @@ const enUS = {
   chat: {
     placeholder: 'Ask anything about crypto...',
     analyzing: 'Analyzing your question...',
-    disclaimer: 'Ask Aliza provides educational content about cryptocurrency. Not financial advice.',
+    disclaimer: 'Aliza provides educational content about cryptocurrency. Not financial advice.',
     suggestedQuestions: 'Suggested Questions',
     refresh: 'Refresh',
   },
@@ -234,8 +234,8 @@ const heIL = {
     aiPrompt4: 'מה זה NFT?',
     aiPrompt5: 'איך מתחילים להשקיע בקריפטו?',
     aiPrompt6: 'מה זה DeFi?',
-    aiPrompt7: 'מה זה AiFi בקריפטו?', // New AiFi prompt
-    aiPrompt8: 'מה זה Mode Network?', // New prompt
+    aiPrompt7: 'מה זה AiFi בקריפטו؟', // New AiFi prompt
+    aiPrompt8: 'מה זה Mode Network؟', // New prompt
   },
   tabs: {
     market: 'שוק',

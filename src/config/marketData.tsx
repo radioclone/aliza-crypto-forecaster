@@ -19,29 +19,9 @@ export const aiPrompts = [
   'common.aiPrompt4',
   'common.aiPrompt5',
   'common.aiPrompt6',
+  'common.aiPrompt7', // AiFi prompt
   'common.aiPrompt8', // Mode Network prompt
-  'common.aiPrompt7', // Keep AiFi as last
 ];
-
-// Custom Solana icon component with gradient
-const SolanaIcon = () => (
-  <div className="relative w-6 h-6 rounded-full overflow-hidden transform transition-transform duration-300 hover:scale-110">
-    <svg viewBox="0 0 397 311" className="w-full h-full">
-      <path
-        d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"
-        fill="#9945FF"
-      />
-      <path
-        d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"
-        fill="#8752F3"
-      />
-      <path
-        d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"
-        fill="#FC81FF"
-      />
-    </svg>
-  </div>
-);
 
 // Sample price history data
 export const priceHistoryData = [
@@ -80,7 +60,7 @@ export const marketData: CryptoData[] = [
     symbol: "MODE",
     name: "Mode Network",
     icon: (
-      <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-[#9b87f5] to-[#7E69AB] p-0.5 transition-transform duration-300 hover:scale-110">
+      <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-[#9b87f5] to-[#7E69AB] p-0.5 -ml-0.5 transition-transform duration-300 hover:scale-110">
         <img 
           src={modeIcon} 
           alt="MODE" 
