@@ -15,6 +15,7 @@ export class GoatService {
 
   async processUserRequest(prompt: string): Promise<string> {
     try {
+      console.log('Sending request to AI:', prompt);
       const { data, error } = await supabase.functions.invoke('process-ai-request', {
         body: { message: prompt }
       });
@@ -25,6 +26,7 @@ export class GoatService {
         throw error;
       }
 
+      console.log('AI response:', data);
       return data.response;
     } catch (error) {
       console.error('Error in processUserRequest:', error);
