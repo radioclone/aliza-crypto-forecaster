@@ -1,6 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MessageSquarePlus, Wallet } from "lucide-react";
+import { MessageSquarePlus } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { soundManager } from "@/utils/sounds";
@@ -54,12 +53,11 @@ export const MarketHeader = () => {
           <Button
             variant="outline"
             size="sm"
-            className="text-white border-white/20 hover:bg-white/10"
+            className="text-white border-white/20 hover:bg-white/10 rounded-full px-6"
             onClick={handleConnectWallet}
             onMouseEnter={() => soundManager.playSound('hover')}
           >
-            <Wallet className="h-4 w-4 mr-2" />
-            <span className="hidden md:inline">Connect Wallet</span>
+            Connect Wallet
           </Button>
         </div>
       </div>
