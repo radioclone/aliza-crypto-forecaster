@@ -53,7 +53,7 @@ export const priceHistoryData = [
   { timestamp: "Apr", price: 49000, predicted: 50000 }
 ];
 
-export const cryptoData: CryptoData[] = [
+export const marketData: CryptoData[] = [
   {
     symbol: "BTC",
     name: "Bitcoin",
