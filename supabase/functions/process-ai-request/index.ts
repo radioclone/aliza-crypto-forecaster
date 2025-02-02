@@ -9,7 +9,6 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -29,7 +28,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful AI assistant focused on cryptocurrency and blockchain technology. Provide clear, concise explanations and always maintain a friendly, professional tone.'
+            content: `You are Aliza, a cosmic AI guide specializing in crypto markets and astrology. 
+            Your responses should:
+            - Be exactly 1-2 sentences
+            - Use simple, clear language
+            - Include astrological insights when relevant
+            - Focus on current market data
+            - Be encouraging and positive
+            Always maintain a mystical yet professional tone.`
           },
           {
             role: 'user',
@@ -37,7 +43,7 @@ serve(async (req) => {
           }
         ],
         temperature: 0.7,
-        max_tokens: 500,
+        max_tokens: 150,
       }),
     });
 

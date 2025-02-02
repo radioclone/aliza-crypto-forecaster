@@ -8,8 +8,7 @@ import { AIPromptSuggestions } from '@/components/AIPromptSuggestions';
 import { soundManager } from "@/utils/sounds";
 import { GoatService } from '@/services/goat/GoatService';
 import { useToast } from "@/components/ui/use-toast";
-import { AIResponseCard } from '@/components/AIResponseCard';
-import { AIResponsePopup } from '@/components/AIResponsePopup';
+import { CenteredResponse } from './CenteredResponse';
 
 export const ChatInterface = () => {
   const { t } = useTranslation();
@@ -18,8 +17,7 @@ export const ChatInterface = () => {
   const [chatHistory, setChatHistory] = useState<Array<{ message: string; isUser: boolean }>>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
-  const [isResponseOpen, setIsResponseOpen] = useState(false);
-  const [isFullResponseOpen, setIsFullResponseOpen] = useState(false);
+  const [isResponseVisible, setIsResponseVisible] = useState(false);
   const goatService = GoatService.getInstance();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,7 +36,7 @@ export const ChatInterface = () => {
       if (response) {
         setChatHistory(prev => [...prev, { message: response, isUser: false }]);
         setResponseMessage(response);
-        setIsResponseOpen(true);
+        setIsResponseVisible(true);
         soundManager.playSound('receive');
       } else {
         throw new Error("No response received from GoatService");
@@ -58,12 +56,6 @@ export const ChatInterface = () => {
 
   const handlePromptSelect = (prompt: string) => {
     setMessage(prompt);
-    soundManager.playSound('click');
-  };
-
-  const handleViewFullResponse = () => {
-    setIsResponseOpen(false);
-    setIsFullResponseOpen(true);
     soundManager.playSound('click');
   };
 
@@ -120,17 +112,10 @@ export const ChatInterface = () => {
         </div>
       </div>
 
-      <AIResponsePopup
+      <CenteredResponse
         message={responseMessage}
-        isOpen={isResponseOpen}
-        onClose={() => setIsResponseOpen(false)}
-        onViewFull={handleViewFullResponse}
-      />
-
-      <AIResponseCard
-        message={responseMessage}
-        isOpen={isFullResponseOpen}
-        onClose={() => setIsFullResponseOpen(false)}
+        isVisible={isResponseVisible}
+        onClose={() => setIsResponseVisible(false)}
       />
     </div>
   );
