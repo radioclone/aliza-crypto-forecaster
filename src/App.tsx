@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Index from "./pages/Index";
+import Ecosystem from "./pages/Ecosystem";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -14,8 +15,8 @@ const App = () => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000, // Data is fresh for 1 minute
-            gcTime: 5 * 60 * 1000, // Cache is kept for 5 minutes (renamed from cacheTime)
+            staleTime: 60 * 1000,
+            gcTime: 5 * 60 * 1000,
             retry: 2,
             refetchOnWindowFocus: false,
             refetchOnMount: false,
@@ -32,6 +33,7 @@ const App = () => {
           <Sonner />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/ecosystem" element={<Ecosystem />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </TooltipProvider>
