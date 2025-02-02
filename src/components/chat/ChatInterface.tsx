@@ -9,6 +9,7 @@ import { soundManager } from "@/utils/sounds";
 import { GoatService } from '@/services/goat/GoatService';
 import { useToast } from "@/components/ui/use-toast";
 import { AIResponseCard } from '@/components/AIResponseCard';
+import { AIResponsePopup } from '@/components/AIResponsePopup';
 
 export const ChatInterface = () => {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ export const ChatInterface = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
   const [isResponseOpen, setIsResponseOpen] = useState(false);
+  const [isFullResponseOpen, setIsFullResponseOpen] = useState(false);
   const goatService = GoatService.getInstance();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,10 +51,6 @@ export const ChatInterface = () => {
         description: t('toast.errorDescription'),
         variant: "destructive"
       });
-      setChatHistory(prev => [...prev, { 
-        message: "I apologize, but I'm having trouble processing your request at the moment. Please try again.", 
-        isUser: false 
-      }]);
     } finally {
       setIsLoading(false);
     }
@@ -60,6 +58,12 @@ export const ChatInterface = () => {
 
   const handlePromptSelect = (prompt: string) => {
     setMessage(prompt);
+    soundManager.playSound('click');
+  };
+
+  const handleViewFullResponse = () => {
+    setIsResponseOpen(false);
+    setIsFullResponseOpen(true);
     soundManager.playSound('click');
   };
 
@@ -116,10 +120,17 @@ export const ChatInterface = () => {
         </div>
       </div>
 
-      <AIResponseCard
+      <AIResponsePopup
         message={responseMessage}
         isOpen={isResponseOpen}
         onClose={() => setIsResponseOpen(false)}
+        onViewFull={handleViewFullResponse}
+      />
+
+      <AIResponseCard
+        message={responseMessage}
+        isOpen={isFullResponseOpen}
+        onClose={() => setIsFullResponseOpen(false)}
       />
     </div>
   );
