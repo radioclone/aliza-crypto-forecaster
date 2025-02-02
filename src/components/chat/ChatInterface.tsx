@@ -8,6 +8,7 @@ import { AIPromptSuggestions } from '@/components/AIPromptSuggestions';
 import { soundManager } from "@/utils/sounds";
 import { GoatService } from '@/services/goat/GoatService';
 import { useToast } from "@/components/ui/use-toast";
+import { AIResponsePopup } from '@/components/AIResponsePopup';
 
 export const ChatInterface = () => {
   const { t } = useTranslation();
@@ -15,6 +16,8 @@ export const ChatInterface = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Array<{ message: string; isUser: boolean }>>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const goatService = GoatService.getInstance();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,11 +35,9 @@ export const ChatInterface = () => {
       
       if (response) {
         setChatHistory(prev => [...prev, { message: response, isUser: false }]);
+        setPopupMessage(response);
+        setIsPopupOpen(true);
         soundManager.playSound('receive');
-        toast({
-          title: t('toast.responseReceived'),
-          description: t('toast.responseDescription'),
-        });
       } else {
         throw new Error("No response received from GoatService");
       }
@@ -114,6 +115,12 @@ export const ChatInterface = () => {
           </p>
         </div>
       </div>
+
+      <AIResponsePopup
+        message={popupMessage}
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 };
