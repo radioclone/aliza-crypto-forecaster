@@ -20,6 +20,7 @@ const enUS = {
     aiPrompt5: 'How to start investing in crypto?',
     aiPrompt6: 'What is DeFi?',
     aiPrompt7: 'What is AiFi in crypto?', // New AiFi prompt
+    aiPrompt8: 'What is Mode Network?', // New Mode Network prompt
   },
   tabs: {
     market: 'Market',
@@ -62,6 +63,7 @@ const jaJP = {
     aiPrompt5: '暗号通貨投資を始めるには？',
     aiPrompt6: 'DeFiとは？',
     aiPrompt7: '暗号通貨のAiFiとは？', // New AiFi prompt
+    aiPrompt8: 'Mode Networkとは何ですか？', // New Mode Network prompt
   },
   tabs: {
     market: '市場',
@@ -104,6 +106,7 @@ const deDE = {
     aiPrompt5: 'Wie fängt man mit Krypto-Investment an?',
     aiPrompt6: 'Was ist DeFi?',
     aiPrompt7: 'Was ist AiFi in Krypto?', // New AiFi prompt
+    aiPrompt8: 'Was ist das Mode Network?', // New Mode Network prompt
   },
   tabs: {
     market: 'Markt',
@@ -146,6 +149,7 @@ const daDK = {
     aiPrompt5: 'Hvordan starter man med at investere i krypto?',
     aiPrompt6: 'Hvad er DeFi?',
     aiPrompt7: 'Hvad er AiFi i krypto?', // New AiFi prompt
+    aiPrompt8: 'Hvad er Mode Network?', // New Mode Network prompt
   },
   tabs: {
     market: 'Marked',
@@ -188,6 +192,7 @@ const arAR = {
     aiPrompt5: 'كيف أبدأ الاستثمار في العملات المشفرة؟',
     aiPrompt6: 'ما هو التمويل اللامركزي؟',
     aiPrompt7: 'ما هو AiFi في العملات المشفرة؟', // New AiFi prompt
+    aiPrompt8: 'ما هو Mode Network؟', // New Mode Network prompt
   },
   tabs: {
     market: 'السوق',
@@ -230,6 +235,7 @@ const heIL = {
     aiPrompt5: 'איך מתחילים להשקיע בקריפטו?',
     aiPrompt6: 'מה זה DeFi?',
     aiPrompt7: 'מה זה AiFi בקריפטו?', // New AiFi prompt
+    aiPrompt8: 'מה זה Mode Network?', // New Mode Network prompt
   },
   tabs: {
     market: 'שוק',
@@ -272,6 +278,7 @@ const hiIN = {
     aiPrompt5: 'क्रिप्टो में निवेश कैसे शुरू करें?',
     aiPrompt6: 'DeFi क्या है?',
     aiPrompt7: 'क्रिप्टो में AiFi क्या है?', // New AiFi prompt
+    aiPrompt8: 'Mode Network क्या है?', // New Mode Network prompt
   },
   tabs: {
     market: 'मार्केट',
@@ -314,6 +321,7 @@ const urPK = {
     aiPrompt5: 'کرپٹو میں سرمایہ کاری کیسے شروع کریں؟',
     aiPrompt6: 'DeFi کیا ہے؟',
     aiPrompt7: 'کرپٹو میں AiFi کیا ہے؟', // New AiFi prompt
+    aiPrompt8: 'Mode Network کیا ہے؟', // New Mode Network prompt
   },
   tabs: {
     market: 'مارکیٹ',
@@ -332,7 +340,7 @@ const urPK = {
     responseDescription: 'آپ کے لیے تازہ ترین کرپٹو بصیرت حاصل کی!',
     error: 'خرابی',
     errorDescription: 'جواب حاصل کرنے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔',
-    suggestions: 'تجاویز',
+    suggestions: 'اقتراحات',
     suggestionsDescription: 'ہمارے پلیٹ فارم کو بہتر بنانے کے لیے خیالات ہیں؟ ہم آپ کی رائے سننا چاہیں گے!',
   },
 };
@@ -356,6 +364,7 @@ const zhCN = {
     aiPrompt5: '如何开始加密货币投资？',
     aiPrompt6: '什么是DeFi？',
     aiPrompt7: '什么是加密货币中的AiFi？', // New AiFi prompt
+    aiPrompt8: 'Mode Network是什么？', // New Mode Network prompt
   },
   tabs: {
     market: '市场',
@@ -390,6 +399,7 @@ const esES = {
     aiPrompt5: '¿Cómo empezar a invertir en cripto?',
     aiPrompt6: '¿Qué es DeFi?',
     aiPrompt7: '¿Qué es AiFi en cripto?', // New AiFi prompt
+    aiPrompt8: '¿Qué es Mode Network?', // New Mode Network prompt
   },
   tabs: {
     market: 'Mercado',
@@ -437,4 +447,3 @@ i18n
   });
 
 export default i18n;
-
