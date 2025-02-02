@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Sparkles } from "lucide-react";
-import { aiPrompts } from "@/config/marketData";
+import { aiPrompts } from "@/config/market/marketData";
 import { useState } from "react";
 import { soundManager } from "@/utils/sounds";
 import { useTranslation } from "react-i18next";
