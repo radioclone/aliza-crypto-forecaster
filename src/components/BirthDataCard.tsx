@@ -61,9 +61,12 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-[100]" onClick={onClose}>
+    <div 
+      className="fixed inset-0 flex items-center justify-center z-[100] bg-black/40 backdrop-blur-sm" 
+      onClick={onClose}
+    >
       <div 
-        className="neo-blur p-6 rounded-lg w-full max-w-md mx-4"
+        className="neo-blur p-6 rounded-lg w-full max-w-md mx-4 bg-black/60 backdrop-blur-md border border-white/10"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 mb-6">

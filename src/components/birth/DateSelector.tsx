@@ -38,19 +38,16 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
   const years = Array.from({ length: 100 }, (_, i) => String(currentYear - i));
 
   const handleDateChange = (value: string) => {
-    console.log('Date selected:', value);
     onDateChange(value);
     soundManager.playSound('click');
   };
 
   const handleMonthChange = (value: string) => {
-    console.log('Month selected:', value);
     onMonthChange(value);
     soundManager.playSound('click');
   };
 
   const handleYearChange = (value: string) => {
-    console.log('Year selected:', value);
     onYearChange(value);
     soundManager.playSound('click');
   };
@@ -117,7 +114,13 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
               <Input
                 type="text"
                 value={manualDate}
-                onChange={handleManualDateChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d{0,2}$/.test(value) && Number(value) <= 31) {
+                    setManualDate(value);
+                    if (value.length === 2) onDateChange(value.padStart(2, '0'));
+                  }
+                }}
                 placeholder="DD"
                 className="bg-white/5"
                 maxLength={2}
@@ -128,7 +131,13 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
               <Input
                 type="text"
                 value={manualMonth}
-                onChange={handleManualMonthChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d{0,2}$/.test(value) && Number(value) <= 12) {
+                    setManualMonth(value);
+                    if (value.length === 2) onMonthChange(value.padStart(2, '0'));
+                  }
+                }}
                 placeholder="MM"
                 className="bg-white/5"
                 maxLength={2}
@@ -139,7 +148,13 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
               <Input
                 type="text"
                 value={manualYear}
-                onChange={handleManualYearChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d{0,4}$/.test(value) && Number(value) <= currentYear) {
+                    setManualYear(value);
+                    if (value.length === 4) onYearChange(value);
+                  }
+                }}
                 placeholder="YYYY"
                 className="bg-white/5"
                 maxLength={4}
@@ -155,7 +170,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
                   <SelectValue placeholder="Date" />
                 </SelectTrigger>
                 <SelectContent 
-                  className="bg-popover/95 backdrop-blur-sm max-h-[200px]"
+                  className="bg-black/95 backdrop-blur-sm border border-white/10"
                   position="popper"
                   sideOffset={4}
                 >
@@ -175,7 +190,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
                   <SelectValue placeholder="Month" />
                 </SelectTrigger>
                 <SelectContent 
-                  className="bg-popover/95 backdrop-blur-sm max-h-[200px]"
+                  className="bg-black/95 backdrop-blur-sm border border-white/10"
                   position="popper"
                   sideOffset={4}
                 >
@@ -198,7 +213,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
                   <SelectValue placeholder="Year" />
                 </SelectTrigger>
                 <SelectContent 
-                  className="bg-popover/95 backdrop-blur-sm max-h-[200px]"
+                  className="bg-black/95 backdrop-blur-sm border border-white/10"
                   position="popper"
                   sideOffset={4}
                 >
