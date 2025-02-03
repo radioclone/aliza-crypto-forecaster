@@ -1,13 +1,4 @@
 import React, { useState } from 'react';
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { soundManager } from "@/utils/sounds";
 import {
   Tooltip,
@@ -15,6 +6,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ManualDateInput } from './ManualDateInput';
+import { DropdownDateSelector } from './DropdownDateSelector';
 
 interface DateSelectorProps {
   onDateChange: (value: string) => void;
@@ -27,30 +20,7 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
   const [manualDate, setManualDate] = useState('');
   const [manualMonth, setManualMonth] = useState('');
   const [manualYear, setManualYear] = useState('');
-
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
-  const dates = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, '0'));
   const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 100 }, (_, i) => String(currentYear - i));
-
-  const handleDateChange = (value: string) => {
-    onDateChange(value);
-    soundManager.playSound('click');
-  };
-
-  const handleMonthChange = (value: string) => {
-    onMonthChange(value);
-    soundManager.playSound('click');
-  };
-
-  const handleYearChange = (value: string) => {
-    onYearChange(value);
-    soundManager.playSound('click');
-  };
 
   return (
     <div className="space-y-4">
@@ -78,124 +48,30 @@ export const DateSelector = ({ onDateChange, onMonthChange, onYearChange }: Date
 
       <div className="grid grid-cols-3 gap-4">
         {useManualInput ? (
-          <>
-            <div>
-              <Label>Date (1-31)</Label>
-              <Input
-                type="text"
-                value={manualDate}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (/^\d{0,2}$/.test(value) && Number(value) <= 31) {
-                    setManualDate(value);
-                    if (value.length === 2) onDateChange(value.padStart(2, '0'));
-                  }
-                }}
-                placeholder="DD"
-                className="bg-white/5"
-                maxLength={2}
-              />
-            </div>
-            <div>
-              <Label>Month (1-12)</Label>
-              <Input
-                type="text"
-                value={manualMonth}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (/^\d{0,2}$/.test(value) && Number(value) <= 12) {
-                    setManualMonth(value);
-                    if (value.length === 2) onMonthChange(value.padStart(2, '0'));
-                  }
-                }}
-                placeholder="MM"
-                className="bg-white/5"
-                maxLength={2}
-              />
-            </div>
-            <div>
-              <Label>Year</Label>
-              <Input
-                type="text"
-                value={manualYear}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (/^\d{0,4}$/.test(value) && Number(value) <= currentYear) {
-                    setManualYear(value);
-                    if (value.length === 4) onYearChange(value);
-                  }
-                }}
-                placeholder="YYYY"
-                className="bg-white/5"
-                maxLength={4}
-              />
-            </div>
-          </>
+          <ManualDateInput
+            date={manualDate}
+            month={manualMonth}
+            year={manualYear}
+            currentYear={currentYear}
+            onDateChange={(value) => {
+              setManualDate(value);
+              onDateChange(value);
+            }}
+            onMonthChange={(value) => {
+              setManualMonth(value);
+              onMonthChange(value);
+            }}
+            onYearChange={(value) => {
+              setManualYear(value);
+              onYearChange(value);
+            }}
+          />
         ) : (
-          <>
-            <div>
-              <Label>Date</Label>
-              <Select onValueChange={handleDateChange}>
-                <SelectTrigger className="bg-white/5">
-                  <SelectValue placeholder="Date" />
-                </SelectTrigger>
-                <SelectContent 
-                  className="bg-black/95 backdrop-blur-sm border border-white/10 z-[1000]"
-                  position="popper"
-                  sideOffset={4}
-                >
-                  {dates.map((date) => (
-                    <SelectItem key={date} value={date}>
-                      {date}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label>Month</Label>
-              <Select onValueChange={handleMonthChange}>
-                <SelectTrigger className="bg-white/5">
-                  <SelectValue placeholder="Month" />
-                </SelectTrigger>
-                <SelectContent 
-                  className="bg-black/95 backdrop-blur-sm border border-white/10 z-[1000]"
-                  position="popper"
-                  sideOffset={4}
-                >
-                  {months.map((month, index) => (
-                    <SelectItem 
-                      key={month} 
-                      value={String(index + 1).padStart(2, '0')}
-                    >
-                      {month}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label>Year</Label>
-              <Select onValueChange={handleYearChange}>
-                <SelectTrigger className="bg-white/5">
-                  <SelectValue placeholder="Year" />
-                </SelectTrigger>
-                <SelectContent 
-                  className="bg-black/95 backdrop-blur-sm border border-white/10 z-[1000]"
-                  position="popper"
-                  sideOffset={4}
-                >
-                  {years.map((year) => (
-                    <SelectItem key={year} value={year}>
-                      {year}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </>
+          <DropdownDateSelector
+            onDateChange={onDateChange}
+            onMonthChange={onMonthChange}
+            onYearChange={onYearChange}
+          />
         )}
       </div>
     </div>

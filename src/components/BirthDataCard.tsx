@@ -51,7 +51,7 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
       
       setPrediction(predictionResult);
       onSubmit(birthData);
-      soundManager.playSound('success');
+      soundManager.playSound('receive');
     } catch (error) {
       console.error('Error in prediction:', error);
       toast({
