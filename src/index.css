@@ -107,3 +107,8 @@
 .cursor {
   @apply w-1 h-8 bg-[#b4d7ff] ml-1;
 }
+
+/* Education and News section styles */
+.education-section, .news-section {
+  @apply bg-[#D3E4FD]/20 backdrop-blur-sm;
+}

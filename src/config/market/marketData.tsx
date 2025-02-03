@@ -37,6 +37,17 @@ export const marketData: CryptoData[] = [
     priceHistory: priceHistoryData
   },
   {
+    symbol: "AR",
+    name: "Arweave",
+    icon: icons.AR,
+    price: 12.85,
+    change: 2.35,
+    prediction: 14.00,
+    volume24h: 25600000,
+    marketCap: 420000000,
+    priceHistory: priceHistoryData
+  },
+  {
     symbol: "SOL",
     name: "Solana",
     icon: icons.SOL,
