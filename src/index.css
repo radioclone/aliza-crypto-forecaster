@@ -85,3 +85,27 @@
 .animate-marquee2 {
   animation: marquee2 40s linear infinite;
 }
+
+@keyframes typewriter {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0 }
+}
+
+.animate-typewriter {
+  animation: typewriter 2s steps(12, end) forwards;
+  width: 0;
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 4px rgba(180, 215, 255, 0.7),
+              0 0 8px rgba(180, 215, 255, 0.5);
+}

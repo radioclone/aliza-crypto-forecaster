@@ -4,6 +4,8 @@ import { initReactI18next } from 'react-i18next';
 // English translations
 const enUS = {
   common: {
+    retroverse: 'retroverse',
+    launchpad: 'Launchpad',
     search: 'Search cryptocurrencies...',
     suggestions: 'Suggestions',
     liveMarketData: 'Live Market Data',
@@ -20,7 +22,7 @@ const enUS = {
     aiPrompt5: 'How to start investing in crypto?',
     aiPrompt6: 'What is DeFi?',
     aiPrompt7: 'What is AiFi in crypto?',
-    aiPrompt8: 'What is Mode Network?', // New prompt
+    aiPrompt8: 'What is Mode Network?',
   },
   tabs: {
     market: 'Market',
@@ -47,6 +49,8 @@ const enUS = {
 // Japanese translations
 const jaJP = {
   common: {
+    retroverse: 'レトロバース',
+    launchpad: 'ランチパッド',
     search: '暗号通貨を検索...',
     suggestions: '提案',
     liveMarketData: 'リアルタイム市場データ',
@@ -63,7 +67,7 @@ const jaJP = {
     aiPrompt5: '暗号通貨投資を始めるには？',
     aiPrompt6: 'DeFiとは？',
     aiPrompt7: '暗号通貨のAiFiとは？',
-    aiPrompt8: 'Mode Networkとは？', // New prompt
+    aiPrompt8: 'Mode Networkとは？',
   },
   tabs: {
     market: '市場',
@@ -90,6 +94,8 @@ const jaJP = {
 // German translations
 const deDE = {
   common: {
+    retroverse: 'retroverse',
+    launchpad: 'Startrampe',
     search: 'Kryptowährungen suchen...',
     suggestions: 'Vorschläge',
     liveMarketData: 'Live-Marktdaten',
@@ -105,8 +111,8 @@ const deDE = {
     aiPrompt4: 'Was sind NFTs?',
     aiPrompt5: 'Wie fängt man mit Krypto-Investment an?',
     aiPrompt6: 'Was ist DeFi?',
-    aiPrompt7: 'Was ist AiFi in Krypto?', // New AiFi prompt
-    aiPrompt8: 'Was ist Mode Network?', // New prompt
+    aiPrompt7: 'Was ist AiFi in Krypto?',
+    aiPrompt8: 'Was ist Mode Network?',
   },
   tabs: {
     market: 'Markt',
@@ -133,6 +139,8 @@ const deDE = {
 // Danish translations
 const daDK = {
   common: {
+    retroverse: 'retroverse',
+    launchpad: 'Affyringsrampe',
     search: 'Søg kryptovalutaer...',
     suggestions: 'Forslag',
     liveMarketData: 'Live Markedsdata',
@@ -148,8 +156,8 @@ const daDK = {
     aiPrompt4: 'Hvad er NFTs?',
     aiPrompt5: 'Hvordan starter man med at investere i krypto?',
     aiPrompt6: 'Hvad er DeFi?',
-    aiPrompt7: 'Hvad er AiFi i krypto?', // New AiFi prompt
-    aiPrompt8: 'Hvad er Mode Network?', // New prompt
+    aiPrompt7: 'Hvad er AiFi i krypto?',
+    aiPrompt8: 'Hvad er Mode Network?',
   },
   tabs: {
     market: 'Marked',
@@ -176,6 +184,8 @@ const daDK = {
 // Arabic translations
 const arAR = {
   common: {
+    retroverse: 'ريتروفيرس',
+    launchpad: 'منصة الإطلاق',
     search: 'البحث عن العملات المشفرة...',
     suggestions: 'اقتراحات',
     liveMarketData: 'بيانات السوق المباشرة',
@@ -191,8 +201,8 @@ const arAR = {
     aiPrompt4: 'ما هي الرموز غير القابلة للاستبدال؟',
     aiPrompt5: 'كيف أبدأ الاستثمار في العملات المشفرة؟',
     aiPrompt6: 'ما هو التمويل اللامركزي؟',
-    aiPrompt7: 'ما هو AiFi في العملات المشفرة؟', // New AiFi prompt
-    aiPrompt8: 'ما هي شبكة Mode؟', // New prompt
+    aiPrompt7: 'ما هو AiFi في العملات المشفرة؟',
+    aiPrompt8: 'ما هي شبكة Mode؟',
   },
   tabs: {
     market: 'السوق',
@@ -219,6 +229,8 @@ const arAR = {
 // Hebrew translations
 const heIL = {
   common: {
+    retroverse: 'רטרוורס',
+    launchpad: 'משגר',
     search: 'חפש מטבעות קריפטו...',
     suggestions: 'הצעות',
     liveMarketData: 'נתוני שוק בזמן אמת',
@@ -234,8 +246,8 @@ const heIL = {
     aiPrompt4: 'מה זה NFT?',
     aiPrompt5: 'איך מתחילים להשקיע בקריפטו?',
     aiPrompt6: 'מה זה DeFi?',
-    aiPrompt7: 'מה זה AiFi בקריפטו؟', // New AiFi prompt
-    aiPrompt8: 'מה זה Mode Network؟', // New prompt
+    aiPrompt7: 'מה זה AiFi בקריפטו؟',
+    aiPrompt8: 'מה זה Mode Network؟',
   },
   tabs: {
     market: 'שוק',
@@ -262,6 +274,8 @@ const heIL = {
 // Hindi translations
 const hiIN = {
   common: {
+    retroverse: 'रेट्रोवर्स',
+    launchpad: 'लॉन्चपैड',
     search: 'क्रिप्टोकरेंसी खोजें...',
     suggestions: 'सुझाव',
     liveMarketData: 'लाइव मार्केट डेटा',
@@ -277,8 +291,8 @@ const hiIN = {
     aiPrompt4: 'NFT क्या हैं?',
     aiPrompt5: 'क्रिप्टो में निवेश कैसे शुरू करें?',
     aiPrompt6: 'DeFi क्या है?',
-    aiPrompt7: 'क्रिप्टो में AiFi क्या है?', // New AiFi prompt
-    aiPrompt8: 'Mode Network क्या है?', // New prompt
+    aiPrompt7: 'क्रिप्टो में AiFi क्या है?',
+    aiPrompt8: 'Mode Network क्या है?',
   },
   tabs: {
     market: 'मार्केट',
@@ -305,6 +319,8 @@ const hiIN = {
 // Urdu translations
 const urPK = {
   common: {
+    retroverse: 'ریٹروورس',
+    launchpad: 'لانچ پیڈ',
     search: 'کرپٹو کرنسی تلاش کریں...',
     suggestions: 'تجاویز',
     liveMarketData: 'لائیو مارکیٹ ڈیٹا',
@@ -320,8 +336,8 @@ const urPK = {
     aiPrompt4: 'NFTs کیا ہیں؟',
     aiPrompt5: 'کرپٹو میں سرمایہ کاری کیسے شروع کریں؟',
     aiPrompt6: 'DeFi کیا ہے؟',
-    aiPrompt7: 'کرپٹو میں AiFi کیا ہے؟', // New AiFi prompt
-    aiPrompt8: 'کرپٹو میں Mode Network کیا ہے؟', // New prompt
+    aiPrompt7: 'کرپٹو میں AiFi کیا ہے؟',
+    aiPrompt8: 'کرپٹو میں Mode Network کیا ہے؟',
   },
   tabs: {
     market: 'مارکیٹ',
@@ -348,6 +364,8 @@ const urPK = {
 // Mandarin translations
 const zhCN = {
   common: {
+    retroverse: '复古宇宙',
+    launchpad: '发射台',
     search: '搜索加密货币...',
     suggestions: '建议',
     liveMarketData: '实时市场数据',
@@ -363,8 +381,8 @@ const zhCN = {
     aiPrompt4: '什么是NFT？',
     aiPrompt5: '如何开始加密货币投资？',
     aiPrompt6: '什么是DeFi？',
-    aiPrompt7: '什么是加密货币中的AiFi？', // New AiFi prompt
-    aiPrompt8: '什么是Mode Network？', // New prompt
+    aiPrompt7: '什么是加密货币中的AiFi？',
+    aiPrompt8: '什么是Mode Network？',
   },
   tabs: {
     market: '市场',
@@ -378,11 +396,21 @@ const zhCN = {
     suggestedQuestions: '建议的问题',
     refresh: '刷新',
   },
+  toast: {
+    responseReceived: '回复已收到',
+    responseDescription: '为您提供最新的加密货币见解！',
+    error: '错误',
+    errorDescription: '获取回复失败。请再试一次。',
+    suggestions: '建议',
+    suggestionsDescription: '您有改善我们平台的想法吗？我们很想听听您的反馈！',
+  },
 };
 
 // Spanish translations
 const esES = {
   common: {
+    retroverse: 'retroverse',
+    launchpad: 'Plataforma',
     search: 'Buscar criptomonedas...',
     suggestions: 'Sugerencias',
     liveMarketData: 'Datos del Mercado en Vivo',
@@ -398,8 +426,8 @@ const esES = {
     aiPrompt4: '¿Qué son los NFTs?',
     aiPrompt5: '¿Cómo empezar a invertir en cripto?',
     aiPrompt6: '¿Qué es DeFi?',
-    aiPrompt7: '¿Qué es AiFi en cripto?', // New AiFi prompt
-    aiPrompt8: '¿Qué es Mode Network?', // New prompt
+    aiPrompt7: '¿Qué es AiFi en cripto?',
+    aiPrompt8: '¿Qué es Mode Network?',
   },
   tabs: {
     market: 'Mercado',
