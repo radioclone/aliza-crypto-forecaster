@@ -14,6 +14,7 @@ serve(async (req) => {
 
   try {
     const { birthData } = await req.json();
+    console.log('Received birth data:', birthData);
     
     // Create a detailed prompt for the AI
     const prompt = `As an astrological financial advisor, analyze the following birth data and provide market predictions:
@@ -21,12 +22,14 @@ serve(async (req) => {
     Time: ${birthData.time}
     Location: ${birthData.birthplace}
     
-    Please provide:
-    1. A market outlook based on planetary positions
-    2. Trading personality traits based on the birth chart
-    3. Optimal trading timing recommendations
-    
-    Format the response as JSON with these keys: marketOutlook, personalityTraits, timing`;
+    Please provide a detailed analysis with these exact sections:
+    1. Market Outlook: How the planetary positions affect market trends
+    2. Trading Personality: Key traits based on the birth chart
+    3. Timing: Best times for trading based on transits
+
+    Format the response as a JSON object with these exact keys: marketOutlook, personalityTraits, timing`;
+
+    console.log('Sending request to OpenAI with prompt:', prompt);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -48,20 +51,26 @@ serve(async (req) => {
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${await response.text()}`);
+      const errorText = await response.text();
+      console.error('OpenAI API error:', errorText);
+      throw new Error(`OpenAI API error: ${errorText}`);
     }
 
     const data = await response.json();
-    const prediction = JSON.parse(data.choices[0].message.content);
+    console.log('OpenAI response:', data);
 
-    console.log('Generated prediction:', prediction);
+    const prediction = JSON.parse(data.choices[0].message.content);
+    console.log('Parsed prediction:', prediction);
 
     return new Response(JSON.stringify(prediction), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.error('Error generating prediction:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ 
+      error: 'Failed to generate prediction',
+      details: error.message 
+    }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
