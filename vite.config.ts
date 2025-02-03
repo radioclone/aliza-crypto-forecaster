@@ -1,32 +1,27 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import path from 'path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
   server: {
-    port: 3000,
-    cors: {
-      origin: '*',
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
-    },
+    port: 8080,
+    cors: false, // Restrict CORS for security
   },
   build: {
-    sourcemap: true,
+    sourcemap: false, // Disable source maps in production
     rollupOptions: {
       output: {
         manualChunks: {
-          react: ['react', 'react-dom'],
-          tanstack: ['@tanstack/react-query'],
-          recharts: ['recharts'],
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-tabs'],
         },
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });

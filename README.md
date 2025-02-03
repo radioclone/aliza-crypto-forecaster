@@ -1,83 +1,89 @@
-# Mode Network Market Analysis & Prediction Platform 🚀
+# Mode Network Market Analysis Platform
 
-A sophisticated cryptocurrency market analysis and prediction platform built with React, TypeScript, and powered by advanced AI models. This platform combines real-time market data with predictive analytics to provide users with comprehensive insights into cryptocurrency markets.
+## Overview
+A sophisticated cryptocurrency market analysis platform focused on Mode Network and broader market trends. The platform combines technical analysis with advanced prediction algorithms to provide users with comprehensive market insights.
 
-## 🌟 Features
+## Features
+- Real-time cryptocurrency market data
+- Advanced market trend analysis
+- Personalized trading insights
+- Interactive market visualization
+- Multi-currency support
+- Secure user authentication
+- Responsive design for all devices
 
-- **Real-time Market Analysis**: Track live cryptocurrency prices, market caps, and trading volumes
-- **AI-Powered Predictions**: Advanced machine learning models for market trend analysis
-- **Interactive Charts**: Visual representation of historical data and predicted trends
-- **Multi-language Support**: Global accessibility with support for 10+ languages
-- **Personalized Insights**: Custom analysis based on user preferences
-- **Secure Architecture**: Enterprise-grade security with row-level policies
-- **Responsive Design**: Seamless experience across all devices
+## Technology Stack
+- React 18 with TypeScript
+- Vite for build optimization
+- TailwindCSS for styling
+- Supabase for backend services
+- Recharts for data visualization
+- Tanstack Query for data management
+- Framer Motion for animations
 
-## 🛠 Technology Stack
-
-- **Frontend**: React 18, TypeScript, Tailwind CSS
-- **State Management**: TanStack Query
-- **UI Components**: Shadcn/UI
-- **Charts**: Recharts
-- **Backend**: Supabase
-- **AI Integration**: Custom ML models
-- **Authentication**: Supabase Auth
-- **Database**: PostgreSQL
-- **API**: RESTful + Edge Functions
-
-## 🚀 Getting Started
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/mode-network-market.git
-   cd mode-network-market
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   Create a `.env` file in the root directory:
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-## 🔒 Security Features
-
-- Row Level Security (RLS) policies
+## Security Features
+- Row Level Security (RLS) with Supabase
 - API rate limiting
-- Regular security audits
 - Encrypted data transmission
 - Secure authentication flow
-- Input validation and sanitization
-- XSS protection
-- CORS policies
+- Regular security audits
+- Protected API endpoints
+- Content Security Policy implementation
 
-## 🌐 Deployment
+## Getting Started
 
-The application is deployed using Vercel/Netlify for optimal performance and reliability. Automatic deployments are triggered on main branch updates.
+### Prerequisites
+- Node.js 18+
+- npm or yarn package manager
 
-## 📝 Contributing
+### Installation
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/mode-network-market
+```
 
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Set up environment variables
+```bash
+cp .env.example .env
+```
+
+4. Start the development server
+```bash
+npm run dev
+```
+
+## Environment Setup
+Create a `.env` file with the following variables:
+```
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+## Security Best Practices
+- Regularly rotate API keys
+- Keep dependencies updated
+- Enable rate limiting on APIs
+- Implement proper CORS policies
+- Use environment variables for sensitive data
+- Regular security audits
+- Monitor application logs
+
+## Contributing
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
 5. Open a Pull Request
 
-## 📄 License
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Acknowledgments
-
+## Acknowledgments
 - Mode Network for inspiration
-- The cryptocurrency community
-- Open source contributors
+- The crypto community for continuous support
+- All contributors who helped shape this project
