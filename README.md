@@ -1,97 +1,117 @@
 # Aliza Crypto Forecaster
 
-## Architecture Overview
+A sophisticated cryptocurrency forecasting application that combines astrological insights with market analysis to provide unique trading predictions.
 
-### Core Technologies
-- **Frontend Framework**: React 18 with Vite
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS with shadcn/ui components
-- **State Management**: React Query for server state
-- **Internationalization**: i18next for multi-language support
-- **Voice Integration**: ElevenLabs API for text-to-speech
+## What This App Does
+
+Aliza Crypto Forecaster is an innovative platform that:
+- Provides real-time cryptocurrency market data and analysis
+- Generates personalized trading predictions based on birth data and astrological alignments
+- Offers an AI-powered chat interface for market insights and education
+- Features multi-language support for global accessibility
+- Delivers fortune cookie-style predictions for an engaging user experience
+
+## How to Use
+
+1. **Market Analysis**
+   - View real-time cryptocurrency prices and trends
+   - Track market sentiment indicators
+   - Analyze historical price data
+
+2. **Personal Predictions**
+   - Enter your birth details (date, time, and location)
+   - Receive personalized market predictions
+   - Get astrologically-aligned trading insights
+
+3. **AI Chat Interface**
+   - Chat with Aliza, our AI assistant
+   - Ask questions about crypto markets
+   - Get educational content and guidance
+   - Receive voice-enabled responses
+
+## Technologies Used
+
+### Frontend
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- Shadcn/ui for component library
+- Tanstack Query for data management
+- Framer Motion for animations
 
 ### AI Integration
-- **Model**: Custom Eliza-based AI service
-- **Features**: 
-  - Natural language processing for crypto queries
-  - Real-time response generation
-  - Voice synthesis for spoken responses
-  - Multi-language support
+- OpenAI GPT-4 for intelligent responses
+- ElevenLabs for voice synthesis
+- Custom prompt engineering for accurate predictions
 
-### Blockchain Integration
-- **Market Data**: Real-time cryptocurrency price tracking
-- **Price Predictions**: AI-powered market analysis
-- **Educational Content**: Comprehensive blockchain and crypto education
+### Backend (Supabase)
+- PostgreSQL database
+- Edge Functions for AI processing
+- Row Level Security for data protection
+- Real-time subscriptions
 
-### User Interface
-- **Responsive Design**: Mobile-first approach
-- **Dark Theme**: Optimized for reduced eye strain
-- **Interactive Elements**: 
-  - Live market data ticker
-  - Price charts and predictions
-  - AI chat interface
-  - Voice interaction capabilities
-
-### Key Features
-1. **Real-time Market Analysis**
-   - Live cryptocurrency price updates
-   - Market cap and volume tracking
-   - Historical price charts
-
-2. **AI Assistant (Aliza)**
-   - Natural language chat interface
-   - Voice-enabled interactions
-   - Educational content delivery
-   - Multi-language support (10 languages)
-
-3. **Educational Resources**
-   - Blockchain technology explanations
-   - Cryptocurrency investment guides
-   - DeFi and NFT education
-   - Smart contract tutorials
-
-### User Interaction Flow
-1. **Initial Engagement**
-   - Users are greeted with live market data
-   - Can select their preferred language
-   - Access to quick navigation tabs
-
-2. **Market Analysis**
-   - View real-time crypto prices
-   - Analyze historical data
-   - Access price predictions
-
-3. **AI Interaction**
-   - Chat with Aliza via text
-   - Receive voice responses
-   - Get educational content
-   - Access suggested questions
-
-4. **Learning Journey**
-   - Browse educational resources
-   - Understand blockchain basics
-   - Learn about crypto investment
-   - Explore DeFi concepts
-
-### Security Features
-- Secure API key management
-- Client-side data encryption
-- Protected voice synthesis integration
+### APIs
+- Cryptocurrency price feeds
+- Astrological calculations
+- Text-to-speech synthesis
 
 ## Getting Started
 
 1. Clone the repository
-2. Install dependencies: `npm install`
-3. Set up environment variables:
-   ```
-   ELEVEN_LABS_API_KEY=your_key_here
-   ```
-4. Start development server: `npm run dev`
+```bash
+git clone [repository-url]
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Set up environment variables
+```bash
+OPENAI_API_KEY=your_key
+ELEVEN_LABS_API_KEY=your_key
+```
+
+4. Start the development server
+```bash
+npm run dev
+```
+
+## Features
+
+### Market Analysis
+- Real-time price updates
+- Market sentiment indicators
+- Historical price charts
+- Multi-currency support
+
+### AI Assistant
+- Natural language processing
+- Educational content delivery
+- Market analysis
+- Voice-enabled interactions
+
+### Prediction System
+- Birth data analysis
+- Astrological correlations
+- Fortune cookie-style predictions
+- Personalized insights
+
+### User Experience
+- Responsive design
+- Dark mode
+- Multi-language support
+- Intuitive interface
 
 ## Contributing
 
-Please read our contributing guidelines before submitting pull requests.
+We welcome contributions! Please read our contributing guidelines before submitting pull requests.
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support, please open an issue in the repository or contact our support team.
