@@ -13,9 +13,9 @@ export const MarketHeader = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src="/lovable-uploads/eec3796c-9458-4edb-a83c-5ff4ae7fd72d.png" 
+              src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
               alt="Logo" 
-              className="h-8 w-8"
+              className="h-8 w-8 rounded-full object-cover"
             />
             <h1 className="text-xl font-bold text-white">
               {t('common.appName')}
