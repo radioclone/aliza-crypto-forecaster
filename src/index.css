@@ -60,32 +60,6 @@
   @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes marquee2 {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 40s linear infinite;
-}
-
-.animate-marquee2 {
-  animation: marquee2 40s linear infinite;
-}
-
 @keyframes typewriter {
   from { width: 0 }
   to { width: 100% }
@@ -103,9 +77,4 @@
 
 .animate-blink {
   animation: blink 1s infinite;
-}
-
-.shadow-glow {
-  box-shadow: 0 0 4px rgba(180, 215, 255, 0.7),
-              0 0 8px rgba(180, 215, 255, 0.5);
 }

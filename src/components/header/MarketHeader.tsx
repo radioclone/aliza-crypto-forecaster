@@ -17,13 +17,13 @@ export const MarketHeader = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <LanguageSelector />
             <Link to="/ecosystem">
               <Button variant="ghost" className="text-white/80 hover:text-white">
                 <Rocket className="mr-2 h-4 w-4" />
                 {t('common.launchpad')}
               </Button>
             </Link>
+            <LanguageSelector />
           </div>
         </div>
       </div>
