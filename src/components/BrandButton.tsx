@@ -14,7 +14,7 @@ export const BrandButton = () => {
   return (
     <Button
       variant="ghost"
-      className="fixed bottom-8 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
+      className="fixed bottom-16 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
       onClick={handleClick}
       asChild
     >
