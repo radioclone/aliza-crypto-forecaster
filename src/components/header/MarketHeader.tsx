@@ -23,9 +23,6 @@ export const MarketHeader = () => {
                 }}
               />
             </div>
-            <h1 className="text-xl font-bold text-white">
-              {t('common.appName')}
-            </h1>
           </Link>
           
           <div className="flex items-center gap-4">
