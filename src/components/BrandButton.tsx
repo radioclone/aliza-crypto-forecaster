@@ -23,10 +23,13 @@ export const BrandButton = () => {
         href="https://www.mode.network/"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 text-sm text-white/60 hover:text-white/80 transition-colors"
+        className="flex items-center gap-2"
       >
-        Powered by Mode Network
-        <ExternalLink className="h-4 w-4" />
+        <img 
+          src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand/mode.png"
+          alt="Mode Network"
+          className="h-8 w-auto"
+        />
       </a>
     </Button>
   );
