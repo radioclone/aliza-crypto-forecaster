@@ -14,11 +14,11 @@ export const MarketHeader = () => {
           <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 relative overflow-hidden rounded-lg">
               <img 
-                src="/lovable-uploads/eec3796c-9458-4edb-a83c-5ff4ae7fd72d.png"
-                alt="Logo"
+                src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Retroverse%20Logo%20Animation.gif"
+                alt="Retroverse Logo"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  // Fallback to a default tech-related image if the logo fails to load
+                  // Fallback to a default tech-related image if the GIF fails to load
                   e.currentTarget.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=32&h=32";
                 }}
               />
