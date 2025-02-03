@@ -26,7 +26,7 @@ export const BrandButton = () => {
         className="flex items-center gap-2"
       >
         <img 
-          src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand/mode.png"
+          src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand/Mode%20wordmark%20primary.png"
           alt="Mode Network"
           className="h-8 w-auto"
         />
