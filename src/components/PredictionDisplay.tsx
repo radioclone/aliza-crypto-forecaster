@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ChartBar, Brain, Clock } from "lucide-react";
+import { ChartBar, Brain, Clock, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface PredictionDisplayProps {
   prediction: {
@@ -8,12 +9,22 @@ interface PredictionDisplayProps {
     personalityTraits: string;
     timing: string;
   };
+  onClose: () => void;
 }
 
-export const PredictionDisplay = ({ prediction }: PredictionDisplayProps) => {
+export const PredictionDisplay = ({ prediction, onClose }: PredictionDisplayProps) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black/50 backdrop-blur-sm">
-      <Card className="neo-blur p-6 w-full max-w-2xl mx-4 animate-fade-in">
+      <Card className="neo-blur p-6 w-full max-w-2xl mx-4 animate-fade-in relative">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute right-4 top-4"
+          onClick={onClose}
+        >
+          <X className="h-4 w-4" />
+        </Button>
+        
         <h2 className="text-2xl font-bold mb-6 text-gradient">Your Astrological Market Prediction</h2>
         
         <ScrollArea className="h-[60vh] pr-4">

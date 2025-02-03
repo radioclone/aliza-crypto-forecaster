@@ -43,9 +43,14 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
     setIsLoading(true);
     try {
       const predictionResult = await PredictionService.generatePrediction(birthData);
+      console.log('Prediction result:', predictionResult); // Add this line for debugging
+      if (predictionResult.error) {
+        throw new Error(predictionResult.error);
+      }
       setPrediction(predictionResult);
       onSubmit(birthData);
     } catch (error) {
+      console.error('Error in prediction:', error);
       toast({
         title: "Error Generating Prediction",
         description: "There was an error processing your birth data. Please try again.",
@@ -57,7 +62,7 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
   };
 
   if (prediction) {
-    return <PredictionDisplay prediction={prediction} />;
+    return <PredictionDisplay prediction={prediction} onClose={onClose} />;
   }
 
   return (
