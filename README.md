@@ -64,7 +64,7 @@ A sophisticated cryptocurrency market analysis platform that uniquely combines t
 ### Installation
 1. Clone the repository
 ```bash
-git clone https://github.com/radioclone/aliza-crypto-forecaster
+git clone https://github.com/mode-network/market-analysis-platform
 ```
 
 2. Install dependencies
