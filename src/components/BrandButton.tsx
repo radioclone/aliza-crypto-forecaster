@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { ExternalLink } from "lucide-react";
 
 export const BrandButton = () => {
   const { toast } = useToast();
@@ -15,7 +14,7 @@ export const BrandButton = () => {
   return (
     <Button
       variant="ghost"
-      className="fixed bottom-8 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
+      className="fixed top-[15%] left-[5%] z-[200] p-0 h-auto w-auto hover:bg-transparent"
       onClick={handleClick}
       asChild
     >
