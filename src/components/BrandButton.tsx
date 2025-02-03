@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from "@/components/ui/button";
 import { soundManager } from "@/utils/sounds";
 
@@ -6,15 +5,18 @@ export const BrandButton = () => {
   return (
     <Button
       variant="ghost"
-      className="fixed bottom-24 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
-      onClick={() => window.open('https://mode.network/', '_blank')}
+      className="fixed bottom-8 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
+      onClick={() => {
+        window.open('https://www.modefi.io/', '_blank');
+        soundManager.playSound('click');
+      }}
       onMouseEnter={() => soundManager.playSound('hover')}
     >
       <div className="relative flex flex-col items-center">
         <img 
-          src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Mode%20wordmark%20primary.png"
+          src="/mode-logo.png"
           alt="Mode Network"
-          className="w-32 h-auto opacity-70 hover:opacity-100 transition-opacity"
+          className="w-32 h-auto opacity-90 hover:opacity-100 transition-opacity"
         />
       </div>
     </Button>
