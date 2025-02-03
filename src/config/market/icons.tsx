@@ -23,6 +23,15 @@ export const icons = {
       />
     </div>
   ),
+  AR: (
+    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-yellow-500 to-orange-500 p-0.5 transition-transform duration-300 hover:scale-110">
+      <img 
+        src="https://cryptologos.cc/logos/arweave-ar-logo.png"
+        alt="AR"
+        className="w-full h-full object-contain rounded-full"
+      />
+    </div>
+  ),
   SOL: (
     <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-purple-500 to-pink-500 p-0.5 transition-transform duration-300 hover:scale-110">
       <img 
