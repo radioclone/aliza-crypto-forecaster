@@ -1,4 +1,4 @@
-import { Bitcoin, Ethereum, DollarSign } from "lucide-react";
+import { Bitcoin, DollarSign } from "lucide-react";
 
 export const icons = {
   BTC: (
@@ -8,7 +8,7 @@ export const icons = {
   ),
   ETH: (
     <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-500 p-0.5 transition-transform duration-300 hover:scale-110">
-      <Ethereum className="w-full h-full text-white" />
+      <DollarSign className="w-full h-full text-white" />
     </div>
   ),
   MODE: (
