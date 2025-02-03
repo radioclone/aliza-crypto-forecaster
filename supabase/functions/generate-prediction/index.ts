@@ -35,7 +35,7 @@ serve(async (req) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'gpt-3.5-turbo',
         messages: [
           { 
             role: 'system', 
@@ -53,6 +53,8 @@ serve(async (req) => {
 
     const data = await response.json();
     const prediction = JSON.parse(data.choices[0].message.content);
+
+    console.log('Generated prediction:', prediction);
 
     return new Response(JSON.stringify(prediction), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
