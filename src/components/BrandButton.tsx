@@ -7,19 +7,19 @@ export const BrandButton = () => {
   const handleClick = () => {
     toast({
       title: "Redirecting to Mode Network",
-      description: "Opening Mode Network documentation in a new tab.",
+      description: "Opening Mode AI Terminal in a new tab.",
     });
   };
 
   return (
     <Button
       variant="ghost"
-      className="fixed top-[15%] left-[5%] z-[200] p-0 h-auto w-auto hover:bg-transparent"
+      className="fixed bottom-8 right-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
       onClick={handleClick}
       asChild
     >
       <a
-        href="https://www.mode.network/"
+        href="https://app.mode.network/ai-terminal/chat/"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2"
