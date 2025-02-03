@@ -18,7 +18,6 @@ export const MarketHeader = () => {
                 alt="Retroverse Logo"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  // Fallback to a default tech-related image if the GIF fails to load
                   e.currentTarget.src = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=32&h=32";
                 }}
               />
