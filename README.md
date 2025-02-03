@@ -1,16 +1,41 @@
 # Mode Network Market Analysis Platform
 
 ## Overview
-A sophisticated cryptocurrency market analysis platform focused on Mode Network and broader market trends. The platform combines technical analysis with advanced prediction algorithms to provide users with comprehensive market insights.
+A sophisticated cryptocurrency market analysis platform that uniquely combines technical analysis, astrological insights, and educational resources. The platform leverages advanced prediction algorithms alongside cosmic patterns to provide users with comprehensive market insights and learning opportunities.
 
-## Features
+## Key Features
+
+### Market Analysis & Predictions
 - Real-time cryptocurrency market data
 - Advanced market trend analysis
-- Personalized trading insights
+- AI-powered price predictions
+- Astrological market indicators
 - Interactive market visualization
 - Multi-currency support
+
+### Educational Resources
+- Comprehensive crypto learning paths
+- Interactive tutorials and guides
+- Market terminology explanations
+- Trading strategy fundamentals
+- Regular market updates and insights
+- Community-driven learning resources
+
+### Astrological Integration
+- Birth chart analysis for trading
+- Cosmic market timing indicators
+- Planetary alignment insights
+- Personal trading compatibility
+- Astrological market forecasts
+- Custom trading recommendations
+
+### Technical Features
 - Secure user authentication
 - Responsive design for all devices
+- Real-time data updates
+- Advanced charting tools
+- Portfolio tracking
+- Custom alerts and notifications
 
 ## Technology Stack
 - React 18 with TypeScript
@@ -39,7 +64,7 @@ A sophisticated cryptocurrency market analysis platform focused on Mode Network 
 ### Installation
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/mode-network-market
+git clone https://github.com/radioclone/aliza-crypto-forecaster
 ```
 
 2. Install dependencies
