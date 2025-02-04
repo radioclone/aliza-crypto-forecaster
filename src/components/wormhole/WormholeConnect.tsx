@@ -1,4 +1,4 @@
-import { WormholeConnect } from "@wormhole-foundation/wormhole-connect";
+import WormholeConnect from "@wormhole-foundation/wormhole-connect";
 import { Card } from "@/components/ui/card";
 
 export const WormholeConnectWrapper = () => {
