@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card";
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
     network: "Mainnet",
-    env: "mainnet",
     theme: {
       mode: "dark",
       customTheme: {
