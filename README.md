@@ -46,15 +46,6 @@ A sophisticated cryptocurrency market analysis platform that uniquely combines t
 - Tanstack Query for data management
 - Framer Motion for animations
 
-## Security Features
-- Row Level Security (RLS) with Supabase
-- API rate limiting
-- Encrypted data transmission
-- Secure authentication flow
-- Regular security audits
-- Protected API endpoints
-- Content Security Policy implementation
-
 ## Getting Started
 
 ### Prerequisites
@@ -73,24 +64,14 @@ npm install
 ```
 
 3. Set up environment variables
-```bash
-cp .env.example .env
-```
+Create a `.env` file with the required configuration. Contact the project administrator for the necessary credentials and API keys.
 
 4. Start the development server
 ```bash
 npm run dev
 ```
 
-## Environment Setup
-Create a `.env` file with the following variables:
-```
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
 ## Security Best Practices
-- Regularly rotate API keys
 - Keep dependencies updated
 - Enable rate limiting on APIs
 - Implement proper CORS policies
