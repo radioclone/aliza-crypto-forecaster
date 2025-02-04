@@ -1,7 +1,7 @@
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CryptoSearch } from "@/components/search/CryptoSearch";
 import { useTranslation } from "react-i18next";
-import { BarChart3, BookOpen, Newspaper, ArrowLeftRight } from "lucide-react";
+import { BarChart3, BookOpen, Newspaper } from "lucide-react";
 
 interface TabNavigationProps {
   searchQuery: string;
@@ -17,10 +17,6 @@ export const TabNavigation = ({ searchQuery, onSearchChange }: TabNavigationProp
         <TabsTrigger value="market" className="data-[state=active]:bg-white/10">
           <BarChart3 className="h-4 w-4 mr-2" />
           {t('tabs.market')}
-        </TabsTrigger>
-        <TabsTrigger value="bridge" className="data-[state=active]:bg-white/10">
-          <ArrowLeftRight className="h-4 w-4 mr-2" />
-          {t('tabs.bridge', 'Bridge')}
         </TabsTrigger>
         <TabsTrigger value="education" className="data-[state=active]:bg-white/10">
           <BookOpen className="h-4 w-4 mr-2" />
