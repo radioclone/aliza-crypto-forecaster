@@ -5,41 +5,32 @@ import { Card } from "@/components/ui/card";
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
     network: "Mainnet",
-    theme: {
-      mode: "dark",
-      customTheme: {
+    customTheme: {
+      colors: {
+        background: "rgba(13, 14, 25, 0.45)", // Keeping transparent background
+        foreground: "hsl(var(--foreground))",
         primary: {
-          500: "hsl(var(--primary))",
-          600: "hsl(var(--primary-foreground))",
+          base: "hsl(var(--primary))",
+          hover: "hsl(var(--primary-foreground))"
         },
         secondary: {
-          500: "hsl(var(--secondary))",
-          600: "hsl(var(--secondary-foreground))",
+          base: "hsl(var(--secondary))",
+          hover: "hsl(var(--secondary-foreground))"
         },
-        background: {
-          900: "rgba(13, 14, 25, 0.45)", // More transparent background
+        error: {
+          base: "hsl(var(--destructive))",
+          hover: "hsl(var(--destructive-foreground))"
         },
-        text: {
-          400: "hsl(var(--foreground))",
-          500: "hsl(var(--foreground))",
-        },
-        border: {
-          500: "rgba(255, 255, 255, 0.1)",
-        },
+        border: "rgba(255, 255, 255, 0.1)"
       },
-      components: {
-        button: {
-          borderRadius: "9999px", // Pill shape
-        },
-        text: {
-          fontFamily: "Inter, sans-serif",
-        },
-        modal: {
-          background: "rgba(13, 14, 25, 0.75)",
-          borderRadius: "32px",
-        },
+      typography: {
+        family: "Inter, sans-serif"
       },
-    },
+      radii: {
+        medium: "9999px", // Pill shape
+        large: "32px"
+      }
+    }
   };
 
   return (
