@@ -60,7 +60,7 @@ const Index = () => {
               onSearchChange={setSearchQuery}
             />
 
-            <TabsContent value="market">
+            <TabsContent value="market" className="mt-6">
               <MarketContent 
                 isLoading={isPricesLoading}
                 displayData={displayData}
@@ -68,21 +68,21 @@ const Index = () => {
               />
             </TabsContent>
 
-            <TabsContent value="bridge" className="animate-fade-in">
+            <TabsContent value="bridge" className="mt-6 animate-fade-in">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-white">{t('bridge.title', 'Cross-Chain Bridge')}</h2>
               </div>
               <WormholeConnectWrapper />
             </TabsContent>
 
-            <TabsContent value="education" className="animate-fade-in">
+            <TabsContent value="education" className="mt-6 animate-fade-in">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-white">{t('education.title')}</h2>
               </div>
               <FAQSection />
             </TabsContent>
 
-            <TabsContent value="news" className="animate-fade-in">
+            <TabsContent value="news" className="mt-6 animate-fade-in">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-white">{t('news.title')}</h2>
               </div>
