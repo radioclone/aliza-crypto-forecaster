@@ -4,10 +4,10 @@ import { Card } from "@/components/ui/card";
 
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
-    env: "mainnet",
+    network: "MAINNET",
     networks: ["ethereum", "solana", "polygon", "avalanche", "fantom", "celo", "moonbeam", "sui", "aptos"],
     tokens: ["ETH", "WETH", "USDC", "USDT", "WBTC", "DAI"],
-    customTheme: {
+    theme: {
       palette: {
         background: {
           default: "rgba(13, 14, 25, 0.45)",
