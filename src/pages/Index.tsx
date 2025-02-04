@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import { marketData as staticMarketData } from '@/config/marketData';
+import { marketData as staticMarketData } from '@/config/market/marketData';
 import { FAQSection } from '@/components/FAQSection';
 import { NewsSection } from '@/components/NewsSection';
 import { soundManager } from "@/utils/sounds";
