@@ -5,11 +5,6 @@ import { Card } from "@/components/ui/card";
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
     network: "Mainnet",
-    bridgeDefaults: {
-      fromNetwork: "ethereum",
-      toNetwork: "solana",
-      token: "USDC",
-    },
     mode: "dark",
     customStyles: {
       button: {
