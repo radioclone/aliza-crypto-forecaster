@@ -76,6 +76,25 @@ export const marketData: CryptoData[] = [
     priceHistory: priceHistoryData
   },
   {
+    symbol: "AR",
+    name: "Arweave",
+    icon: (
+      <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-yellow-500 to-orange-500 p-0.5 transition-transform duration-300 hover:scale-110">
+        <img 
+          src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Arweave_2.png"
+          alt="AR"
+          className="w-full h-full object-contain rounded-full transform transition-all duration-300 hover:brightness-110"
+        />
+      </div>
+    ),
+    price: 12.85,
+    change: 2.35,
+    prediction: 14.00,
+    volume24h: 25600000,
+    marketCap: 420000000,
+    priceHistory: priceHistoryData
+  },
+  {
     symbol: "SOL",
     name: "Solana",
     icon: (
