@@ -4,10 +4,9 @@ import { Card } from "@/components/ui/card";
 
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
-    network: "Testnet",
-    defaultFromNetwork: "mode",
-    defaultToNetwork: "goerli",
-    defaultToken: "MODE",
+    env: "testnet",
+    networks: ["mode", "goerli"],
+    tokens: ["MODE"],
     theme: {
       palette: {
         background: {
