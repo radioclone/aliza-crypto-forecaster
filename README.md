@@ -1,32 +1,29 @@
 # Mode Network Market Analysis Platform
 
 ## Overview
-A sophisticated cryptocurrency market analysis platform that uniquely combines technical analysis, astrological insights, and educational resources. The platform leverages advanced prediction algorithms alongside cosmic patterns to provide users with comprehensive market insights and learning opportunities.
+A sophisticated cryptocurrency market analysis platform uniquely combining technical analysis with astrological insights, built for the Mode Network hackathon. This platform leverages advanced prediction algorithms alongside cosmic patterns to provide users with comprehensive market insights and learning opportunities.
 
 ## Key Features
 
 ### Market Analysis & Predictions
-- Real-time cryptocurrency market data
-- Advanced market trend analysis
-- AI-powered price predictions
-- Astrological market indicators
-- Interactive market visualization
-- Multi-currency support
+- Real-time cryptocurrency market data integration with Mode Network
+- Advanced market trend analysis using AI algorithms
+- Technical analysis tools optimized for Mode Network trading
+- Interactive price charts and market visualization
+- Multi-currency support with focus on Mode Network tokens
 
 ### Educational Resources
 - Comprehensive crypto learning paths
-- Interactive tutorials and guides
+- Interactive tutorials about Mode Network ecosystem
 - Market terminology explanations
 - Trading strategy fundamentals
 - Regular market updates and insights
-- Community-driven learning resources
 
 ### Astrological Integration
-- Birth chart analysis for trading
+- Birth chart analysis for trading decisions
 - Cosmic market timing indicators
-- Planetary alignment insights
-- Personal trading compatibility
-- Astrological market forecasts
+- Planetary alignment insights for market trends
+- Personal trading compatibility analysis
 - Custom trading recommendations
 
 ### Technical Features
@@ -48,48 +45,19 @@ A sophisticated cryptocurrency market analysis platform that uniquely combines t
 
 ## Getting Started
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn package manager
-
-### Installation
-1. Clone the repository
 ```bash
-git clone https://github.com/mode-network/market-analysis-platform
-```
-
-2. Install dependencies
-```bash
+git clone [repository-url]
 npm install
-```
-
-3. Set up environment variables
-Create a `.env` file with the required configuration. Contact the project administrator for the necessary credentials and API keys.
-
-4. Start the development server
-```bash
 npm run dev
 ```
 
-## Security Best Practices
-- Keep dependencies updated
-- Enable rate limiting on APIs
-- Implement proper CORS policies
-- Use environment variables for sensitive data
-- Regular security audits
-- Monitor application logs
-
 ## Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+We welcome contributions! Please feel free to submit a Pull Request.
 
 ## Acknowledgments
-- Mode Network for inspiration
-- The crypto community for continuous support
+- Mode Network for providing the platform and inspiration
+- The crypto community for valuable feedback
 - All contributors who helped shape this project
+
+## Hackathon Submission
+This project was created for the Mode Network hackathon, aiming to provide innovative solutions for cryptocurrency market analysis while leveraging the unique features of the Mode Network ecosystem.
