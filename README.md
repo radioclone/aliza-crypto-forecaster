@@ -1,7 +1,7 @@
 # Mode Network Market Analysis Platform
 
 ## Overview
-A sophisticated cryptocurrency market analysis platform uniquely combining technical analysis with astrological insights, built for the Mode Network hackathon. This platform leverages advanced prediction algorithms alongside cosmic patterns to provide users with comprehensive market insights and learning opportunities.
+A  cryptocurrency market analysis interface  combining technical analysis with astrological insights, built for the Mode Network hackathon. This platform leverages advanced prediction algorithms alongside cosmic patterns to provide users with comprehensive market insights and learning opportunities.
 
 ## Key Features
 
