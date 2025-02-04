@@ -5,46 +5,37 @@ import { Card } from "@/components/ui/card";
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
     network: "Mainnet",
-    theme: {
-      mode: "dark",
-      customTheme: {
+    customTheme: {
+      colors: {
+        background: "rgba(13, 14, 25, 0.85)",
+        foreground: "#FFFFFF",
         primary: {
-          500: "hsl(var(--primary))",
-          600: "hsl(var(--primary))",
+          base: "hsl(var(--primary))",
+          hover: "hsl(var(--primary-foreground))"
         },
         secondary: {
-          500: "hsl(var(--secondary))",
-          600: "hsl(var(--secondary))",
+          base: "hsl(var(--secondary))",
+          hover: "hsl(var(--secondary-foreground))"
         },
-        background: {
-          900: "hsl(var(--background))",
-        },
-        text: {
-          400: "hsl(var(--foreground))",
-          500: "hsl(var(--foreground))",
-        },
-        border: {
-          500: "hsl(var(--border))",
-        },
+        error: {
+          base: "hsl(var(--destructive))",
+          hover: "hsl(var(--destructive-foreground))"
+        }
       },
-      components: {
-        button: {
-          borderRadius: "var(--radius)",
-        },
-        text: {
-          fontFamily: "var(--font-sans)",
-        },
-        modal: {
-          background: "hsl(var(--background))",
-          borderRadius: "var(--radius)",
-        },
+      typography: {
+        family: "Inter, sans-serif"
       },
-    },
+      radii: {
+        medium: "9999px", // Pill shape
+        large: "9999px"
+      }
+    }
   };
 
   return (
     <div className="space-y-4">
-      <Card className="p-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-border/50">
+      <Card className="p-6 relative overflow-hidden backdrop-blur-xl bg-background/40 border border-white/10 rounded-[32px] shadow-[0_0_25px_rgba(255,255,255,0.1)]">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-background/5 pointer-events-none" />
         <WormholeConnectWidget config={config} />
       </Card>
     </div>
