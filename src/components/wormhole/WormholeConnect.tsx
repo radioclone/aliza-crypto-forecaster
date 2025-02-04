@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
-    network: "MAINNET",
+    network: "Mainnet",
     bridgeDefaults: {
       fromNetwork: "ethereum",
       toNetwork: "solana",
