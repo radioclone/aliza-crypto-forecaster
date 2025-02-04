@@ -15,7 +15,6 @@ export class GoatService {
 
   async processUserRequest(prompt: string): Promise<string> {
     try {
-      console.log('Sending request to AI:', prompt);
       const { data, error } = await supabase.functions.invoke('process-ai-request', {
         body: { message: prompt }
       });
@@ -26,7 +25,6 @@ export class GoatService {
         throw error;
       }
 
-      console.log('AI response:', data);
       return data.response;
     } catch (error) {
       console.error('Error in processUserRequest:', error);
@@ -34,4 +32,26 @@ export class GoatService {
       throw error;
     }
   }
+
+  async generateMarketPrediction(birthData: any): Promise<string> {
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-prediction', {
+        body: { birthData }
+      });
+
+      if (error) {
+        console.error('Error generating prediction:', error);
+        soundManager.playSound('error');
+        throw error;
+      }
+
+      return data.prediction;
+    } catch (error) {
+      console.error('Error in generateMarketPrediction:', error);
+      soundManager.playSound('error');
+      throw error;
+    }
+  }
 }
+
+export const goatService = GoatService.getInstance();
