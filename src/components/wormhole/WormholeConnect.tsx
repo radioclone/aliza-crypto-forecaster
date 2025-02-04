@@ -4,32 +4,30 @@ import { Card } from "@/components/ui/card";
 
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
-    network: "Mainnet",
-    customTheme: {
-      colors: {
-        background: "rgba(13, 14, 25, 0.45)", // Keeping transparent background
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          base: "hsl(var(--primary))",
-          hover: "hsl(var(--primary-foreground))"
-        },
-        secondary: {
-          base: "hsl(var(--secondary))",
-          hover: "hsl(var(--secondary-foreground))"
-        },
-        error: {
-          base: "hsl(var(--destructive))",
-          hover: "hsl(var(--destructive-foreground))"
-        },
-        border: "rgba(255, 255, 255, 0.1)"
+    env: "mainnet",
+    bridgeDefaults: {
+      fromNetwork: "ethereum",
+      toNetwork: "solana",
+      token: "USDC",
+    },
+    mode: "dark",
+    customStyles: {
+      button: {
+        borderRadius: "9999px",
       },
-      typography: {
-        family: "Inter, sans-serif"
+      modal: {
+        background: "rgba(13, 14, 25, 0.45)",
+        borderRadius: "32px",
+        backdropFilter: "blur(12px)",
       },
-      radii: {
-        medium: "9999px", // Pill shape
-        large: "32px"
-      }
+      text: {
+        color: "hsl(var(--foreground))",
+        fontFamily: "Inter, sans-serif",
+      },
+      backgroundColor: "rgba(13, 14, 25, 0.45)",
+      secondaryButtonBg: "hsl(var(--secondary))",
+      primaryButtonBg: "hsl(var(--primary))",
+      borderRadius: "32px",
     }
   };
 
@@ -37,7 +35,7 @@ export const WormholeConnectWrapper = () => {
     <div className="space-y-4">
       <Card className="p-6 relative overflow-hidden backdrop-blur-2xl bg-background/20 border border-white/10 rounded-[32px] shadow-[0_0_35px_rgba(255,255,255,0.05)]">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-background/5 pointer-events-none" />
-        <div className="relative z-10"> {/* Wrapper to ensure content stays above gradient */}
+        <div className="relative z-10">
           <WormholeConnectWidget config={config} />
         </div>
       </Card>
