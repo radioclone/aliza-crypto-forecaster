@@ -4,9 +4,15 @@ import { Card } from "@/components/ui/card";
 
 export const WormholeConnectWrapper = () => {
   const config: WormholeConnectConfig = {
-    network: "Mainnet",
-    networks: ["ethereum", "solana", "polygon", "avalanche", "fantom", "celo", "moonbeam", "sui", "aptos"],
-    tokens: ["ETH", "WETH", "USDC", "USDT", "WBTC", "DAI"],
+    network: "Testnet",
+    env: {
+      network: "TESTNET"
+    },
+    bridgeDefaults: {
+      fromNetwork: "goerli",
+      toNetwork: "mumbai",
+      token: "WETH"
+    },
     theme: {
       palette: {
         background: {
@@ -37,9 +43,9 @@ export const WormholeConnectWrapper = () => {
       <Card className="p-6 relative overflow-hidden backdrop-blur-2xl bg-background/20 border border-white/10 rounded-[32px] shadow-[0_0_35px_rgba(255,255,255,0.05)]">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-background/5 pointer-events-none" />
         <div className="relative z-10">
-          <h2 className="text-2xl font-bold mb-6 gradient-text">Cross-Chain Bridge</h2>
+          <h2 className="text-2xl font-bold mb-6 gradient-text">Test Network Bridge</h2>
           <p className="text-sm text-muted-foreground mb-8">
-            Securely transfer your assets across different blockchain networks with our intuitive bridge interface.
+            Practice cross-chain transfers safely using test networks. Perfect for learning without risking real assets.
           </p>
           <WormholeConnectWidget config={config} />
         </div>
@@ -47,23 +53,23 @@ export const WormholeConnectWrapper = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         <Card className="p-4 neo-blur hover:bg-white/5 transition-all">
-          <h3 className="font-semibold mb-2">Security First</h3>
+          <h3 className="font-semibold mb-2">Educational Environment</h3>
           <p className="text-sm text-muted-foreground">
-            Built on Wormhole's battle-tested infrastructure for secure cross-chain transfers.
+            Learn and practice cross-chain transfers using test networks with no real financial risk.
           </p>
         </Card>
         
         <Card className="p-4 neo-blur hover:bg-white/5 transition-all">
-          <h3 className="font-semibold mb-2">Multi-Chain Support</h3>
+          <h3 className="font-semibold mb-2">Test Networks</h3>
           <p className="text-sm text-muted-foreground">
-            Bridge assets across major networks including Ethereum, Solana, and more.
+            Uses Goerli (Ethereum) and Mumbai (Polygon) test networks for safe experimentation.
           </p>
         </Card>
         
         <Card className="p-4 neo-blur hover:bg-white/5 transition-all">
-          <h3 className="font-semibold mb-2">User-Friendly</h3>
+          <h3 className="font-semibold mb-2">Getting Test Tokens</h3>
           <p className="text-sm text-muted-foreground">
-            Simple interface designed for both beginners and experienced users.
+            Use network faucets to get test tokens for practicing transfers and transactions.
           </p>
         </Card>
       </div>
