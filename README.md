@@ -43,6 +43,27 @@ A sophisticated cryptocurrency market analysis platform uniquely combining techn
 - Tanstack Query for data management
 - Framer Motion for animations
 
+## GoatService SDK
+Our platform utilizes a custom GoatService SDK that serves as a bridge between the frontend components and AI processing capabilities. Key features include:
+
+### Core Functionality
+- Singleton pattern implementation for consistent state management
+- Integrated AI processing through Supabase Edge Functions
+- Real-time response handling with error management
+- Sound feedback system for user interactions
+
+### Integration Points
+- Chat interface processing
+- Dynamic FAQ generation
+- Market updates and news generation
+- Birth chart analysis and predictions
+
+### Usage Example
+```typescript
+const goatService = GoatService.getInstance();
+const response = await goatService.processUserRequest(prompt);
+```
+
 ## Getting Started
 
 ```bash
