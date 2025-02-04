@@ -19,6 +19,7 @@ import { AudioPlayer } from '@/components/audio/AudioPlayer';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { TabNavigation } from '@/components/navigation/TabNavigation';
 import { MarketContent } from '@/components/market/MarketContent';
+import { WormholeConnectWrapper } from '@/components/wormhole/WormholeConnect';
 
 const Index = () => {
   const { t } = useTranslation();
@@ -65,6 +66,13 @@ const Index = () => {
                 displayData={displayData}
                 searchQuery={searchQuery}
               />
+            </TabsContent>
+
+            <TabsContent value="bridge" className="animate-fade-in">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold text-white">{t('bridge.title', 'Cross-Chain Bridge')}</h2>
+              </div>
+              <WormholeConnectWrapper />
             </TabsContent>
 
             <TabsContent value="education" className="animate-fade-in">
