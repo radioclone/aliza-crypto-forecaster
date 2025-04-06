@@ -14,7 +14,8 @@ export const MarketSentimentLED = ({ marketData }: MarketSentimentLEDProps) => {
   const isPortrait = useIsPortrait();
   
   const getPositionClasses = () => {
-    if (isTablet && isPortrait) return 'bottom-12 left-4';
+    if (isTablet && isPortrait) return 'bottom-20 left-4';
+    if (isMobile) return 'bottom-4 left-4';
     return 'bottom-4 left-4';
   };
 

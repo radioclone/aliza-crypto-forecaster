@@ -10,7 +10,7 @@ export const Attribution = () => {
   
   const getPositionClasses = () => {
     if (isMobile) return 'left-4 right-4 text-center';
-    if (isTablet && isPortrait) return 'right-4 bottom-8';
+    if (isTablet && isPortrait) return 'right-4 bottom-16';
     return 'right-4';
   };
   

@@ -11,7 +11,7 @@ export const BrandButton = () => {
   
   const getPositionClasses = () => {
     if (isMobile) return 'bottom-8 right-2';
-    if (isTablet && isPortrait) return 'bottom-28 right-4';
+    if (isTablet && isPortrait) return 'bottom-36 right-4';
     return 'bottom-16 right-4';
   };
 

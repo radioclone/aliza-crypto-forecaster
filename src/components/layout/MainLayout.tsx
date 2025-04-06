@@ -21,6 +21,12 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
   const isTablet = useIsTablet();
   const isPortrait = useIsPortrait();
 
+  const getSpacerHeight = () => {
+    if (isMobile) return 'pb-16';
+    if (isTablet && isPortrait) return 'pb-40';
+    return 'pb-24';
+  };
+
   return (
     <BackgroundProvider type="space">
       <div className="min-h-screen font-sans flex flex-col">
@@ -37,7 +43,7 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
           {children}
         </main>
 
-        <div className={`${isMobile ? 'pb-16' : (isTablet && isPortrait ? 'pb-32' : 'pb-24')} pt-4 safe-area-inset-bottom`}>
+        <div className={`${getSpacerHeight()} pt-4 safe-area-inset-bottom`}>
           {/* Spacer to ensure content isn't hidden behind branding elements */}
         </div>
         

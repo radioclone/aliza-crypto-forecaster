@@ -16,7 +16,7 @@ export const AlizaBranding = () => {
   
   const getPositionClasses = () => {
     if (isMobile) return 'bottom-2 left-2';
-    if (isTablet && isPortrait) return 'bottom-20 left-4';
+    if (isTablet && isPortrait) return 'bottom-28 left-4';
     return 'bottom-8 left-4';
   };
 
