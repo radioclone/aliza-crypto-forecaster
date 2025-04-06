@@ -35,6 +35,10 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
           {children}
         </main>
 
+        <div className={`${isMobile ? 'pb-16' : 'pb-24'} pt-4 safe-area-inset-bottom`}>
+          {/* Spacer to ensure content isn't hidden behind branding elements */}
+        </div>
+        
         <BrandButton />
         <AlizaBranding />
         <Attribution />

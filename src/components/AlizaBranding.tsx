@@ -1,13 +1,16 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { soundManager } from "@/utils/sounds";
 import { BirthDataCard } from './BirthDataCard';
 import { useToast } from "@/components/ui/use-toast";
 import { BirthData } from '@/types/birth';
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const AlizaBranding = () => {
   const [showBirthCard, setShowBirthCard] = useState(false);
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   const handleBirthDataSubmit = (data: BirthData) => {
     console.log('Birth data submitted:', data);
@@ -22,7 +25,7 @@ export const AlizaBranding = () => {
     <>
       <Button
         variant="ghost"
-        className="fixed bottom-8 left-4 z-[200] p-0 h-auto w-auto hover:bg-transparent"
+        className={`fixed ${isMobile ? 'bottom-2' : 'bottom-8'} ${isMobile ? 'left-2' : 'left-4'} z-[200] p-0 h-auto w-auto hover:bg-transparent`}
         onClick={() => {
           setShowBirthCard(true);
           soundManager.playSound('click');
@@ -33,7 +36,7 @@ export const AlizaBranding = () => {
           <img 
             src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand//Ask%20Aliza%20Branding..gif"
             alt="Ask Aliza Branding"
-            className="w-32 h-auto opacity-90 hover:opacity-100 transition-opacity"
+            className={`${isMobile ? 'w-24' : 'w-32'} h-auto opacity-90 hover:opacity-100 transition-opacity`}
           />
         </div>
       </Button>
