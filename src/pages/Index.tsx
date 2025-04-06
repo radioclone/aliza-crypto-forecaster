@@ -50,7 +50,7 @@ const Index = () => {
           searchQuery={searchQuery}
         />
       </Tabs>
-      <div className={`mt-12 md:mt-16 lg:mt-20 pb-safe`}>
+      <div className={`mt-16 md:mt-20 lg:mt-24 pb-safe`}>
         <ChatInterface />
       </div>
     </MainLayout>

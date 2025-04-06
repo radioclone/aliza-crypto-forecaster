@@ -20,9 +20,9 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
   const isPortrait = useIsPortrait();
 
   const getSpacerHeight = () => {
-    if (isMobile) return 'pb-16';
-    if (isTablet && isPortrait) return 'pb-24';
-    return 'pb-20';
+    if (isMobile) return 'pb-28';
+    if (isTablet && isPortrait) return 'pb-32';
+    return 'pb-24';
   };
 
   return (
@@ -42,7 +42,7 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
         </main>
 
         <div className={`${getSpacerHeight()} pt-4 safe-area-inset-bottom`}>
-          {/* Footer spacing */}
+          {/* Extra spacing to prevent content from being hidden behind fixed elements */}
         </div>
         
         <Attribution />

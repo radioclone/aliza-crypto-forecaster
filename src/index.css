@@ -61,7 +61,7 @@
 /* Add safe area insets for modern iOS devices */
 @supports (padding: max(0px)) {
   .safe-area-inset-bottom {
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
   .safe-area-inset-top {
     padding-top: max(1rem, env(safe-area-inset-top));
@@ -140,7 +140,7 @@
 
 /* Education and News section styles */
 .education-section, .news-section {
-  @apply bg-[#D3E4FD]/20 backdrop-blur-sm;
+  @apply bg-[#D3E4FD]/10 backdrop-blur-sm rounded-xl border border-white/10;
 }
 
 /* Mobile-specific optimization */
@@ -190,9 +190,38 @@
 
 /* Custom utilities for iOS/iPadOS safe areas */
 .pb-safe {
-  padding-bottom: env(safe-area-inset-bottom, 1rem);
+  padding-bottom: env(safe-area-inset-bottom, 1.5rem);
 }
 
 .pt-safe {
   padding-top: env(safe-area-inset-top, 1rem);
+}
+
+/* Z-index utilities for proper layering */
+.z-header {
+  z-index: 50;
+}
+
+.z-ticker {
+  z-index: 40;
+}
+
+.z-content {
+  z-index: 10;
+}
+
+.z-chat {
+  z-index: 50;
+}
+
+.z-indicator {
+  z-index: 20;
+}
+
+/* Neo-blur effect for components */
+.neo-blur {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }

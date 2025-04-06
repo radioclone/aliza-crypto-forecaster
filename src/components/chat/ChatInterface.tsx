@@ -64,7 +64,7 @@ export const ChatInterface = () => {
 
   return (
     <div className="relative z-10">
-      <div className="space-y-4 mb-8">
+      <div className="space-y-4 mb-12 md:mb-16">
         {chatHistory.map((chat, index) => (
           <ChatMessage key={index} message={chat.message} isUser={chat.isUser} />
         ))}
