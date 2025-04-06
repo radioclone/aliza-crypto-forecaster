@@ -8,7 +8,7 @@ import { ChatMessage } from '@/components/ChatMessage';
 import { AIPromptSuggestions } from '@/components/AIPromptSuggestions';
 import { soundManager } from "@/utils/sounds";
 import { GoatService } from '@/services/goat/GoatService';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { CenteredResponse } from './CenteredResponse';
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -63,14 +63,14 @@ export const ChatInterface = () => {
   };
 
   return (
-    <div className="relative z-10">
-      <div className="space-y-4 mb-12 md:mb-16">
+    <div className="relative z-chat">
+      <div className="space-y-4 mb-16 md:mb-20">
         {chatHistory.map((chat, index) => (
           <ChatMessage key={index} message={chat.message} isUser={chat.isUser} />
         ))}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-white/5 rounded-lg p-4 animate-pulse flex items-center gap-2">
+            <div className="neo-blur rounded-lg p-4 animate-pulse flex items-center gap-2">
               <Loader className="h-4 w-4 animate-spin" />
               <span className="text-white/60">{t('chat.analyzing')}</span>
             </div>
@@ -78,7 +78,7 @@ export const ChatInterface = () => {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10 safe-area-inset-bottom z-50">
+      <div className="fixed bottom-0 left-0 right-0 p-4 neo-blur border-t border-white/10 safe-area-inset-bottom z-chat">
         <div className="container mx-auto max-w-4xl space-y-4">
           <AIPromptSuggestions 
             onPromptSelect={handlePromptSelect} 

@@ -20,28 +20,28 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
   const isPortrait = useIsPortrait();
 
   const getSpacerHeight = () => {
-    if (isMobile) return 'pb-28';
-    if (isTablet && isPortrait) return 'pb-32';
-    return 'pb-24';
+    if (isMobile) return 'pb-32';
+    if (isTablet && isPortrait) return 'pb-36';
+    return 'pb-28';
   };
 
   return (
     <BackgroundProvider type="space">
       <div className="min-h-screen font-sans flex flex-col">
-        <div className="notch-area-padding">
+        <div className="notch-area-padding z-header">
           <MarketHeader />
         </div>
-        <div className="container mx-auto px-4 max-w-full md:max-w-[90%] lg:max-w-[1280px]">
+        <div className="container mx-auto px-4 max-w-full md:max-w-[90%] lg:max-w-[1280px] z-content">
           <MarketStatus isLoading={isLoading} marketData={marketData} />
         </div>
         {!isMobile && <CryptoTicker marketData={marketData} />}
         <MarketSentimentLED marketData={marketData} />
 
-        <main className="container mx-auto px-4 pt-24 md:pt-28 lg:pt-32 pb-24 md:pb-28 lg:pb-32 max-w-full md:max-w-[90%] lg:max-w-[1280px] flex-grow">
+        <main className="container mx-auto px-4 pt-24 md:pt-28 lg:pt-32 pb-24 md:pb-28 lg:pb-32 max-w-full md:max-w-[90%] lg:max-w-[1280px] flex-grow z-content">
           {children}
         </main>
 
-        <div className={`${getSpacerHeight()} pt-4 safe-area-inset-bottom`}>
+        <div className={`${getSpacerHeight()} pt-6 safe-area-inset-bottom`}>
           {/* Extra spacing to prevent content from being hidden behind fixed elements */}
         </div>
         

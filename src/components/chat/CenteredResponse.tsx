@@ -1,3 +1,4 @@
+
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { X } from "lucide-react";
@@ -13,12 +14,12 @@ export const CenteredResponse = ({ message, isVisible, onClose }: CenteredRespon
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-[100]">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
           />
           <motion.div
@@ -27,16 +28,16 @@ export const CenteredResponse = ({ message, isVisible, onClose }: CenteredRespon
             exit={{ scale: 0.9, opacity: 0 }}
             className="relative z-10 w-full max-w-2xl mx-4"
           >
-            <Card className="neo-blur p-6 relative">
+            <Card className="neo-blur p-6 md:p-8 relative">
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute right-4 top-4"
+                className="absolute right-4 top-4 text-white/60 hover:text-white hover:bg-white/10"
                 onClick={onClose}
               >
                 <X className="h-4 w-4" />
               </Button>
-              <p className="text-xl text-center text-white/90 leading-relaxed">
+              <p className="text-xl text-center text-white/90 leading-relaxed pt-4">
                 {message}
               </p>
             </Card>

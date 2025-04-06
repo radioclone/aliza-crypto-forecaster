@@ -17,17 +17,17 @@ export const TabNavigation = ({ searchQuery, onSearchChange }: TabNavigationProp
   const isPortrait = useIsPortrait();
 
   return (
-    <div className={`flex ${isTablet && isPortrait ? 'flex-col' : 'flex-col sm:flex-row'} justify-between items-start sm:items-center gap-4`}>
+    <div className={`flex ${isTablet || isMobile ? 'flex-col' : 'flex-row'} justify-between items-start sm:items-center gap-4 md:gap-6`}>
       <TabsList className="bg-white/5 border border-white/10 w-full sm:w-auto rounded-xl overflow-hidden">
-        <TabsTrigger value="market" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-11 sm:h-10">
+        <TabsTrigger value="market" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-12 sm:h-11">
           <BarChart3 className="h-4 w-4 mr-2" />
           {isMobile ? "" : t('tabs.market')}
         </TabsTrigger>
-        <TabsTrigger value="education" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-11 sm:h-10">
+        <TabsTrigger value="education" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-12 sm:h-11">
           <BookOpen className="h-4 w-4 mr-2" />
           {isMobile ? "" : t('tabs.education')}
         </TabsTrigger>
-        <TabsTrigger value="news" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-11 sm:h-10">
+        <TabsTrigger value="news" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-12 sm:h-11">
           <Newspaper className="h-4 w-4 mr-2" />
           {isMobile ? "" : t('tabs.news')}
         </TabsTrigger>

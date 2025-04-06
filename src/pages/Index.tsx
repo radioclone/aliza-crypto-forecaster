@@ -39,7 +39,7 @@ const Index = () => {
 
   return (
     <MainLayout isLoading={isPricesLoading} marketData={displayData}>
-      <Tabs defaultValue="market" className="space-y-4 md:space-y-6 lg:space-y-8" onValueChange={handleTabChange}>
+      <Tabs defaultValue="market" className="space-y-6 md:space-y-8 lg:space-y-10" onValueChange={handleTabChange}>
         <TabNavigation 
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -50,7 +50,7 @@ const Index = () => {
           searchQuery={searchQuery}
         />
       </Tabs>
-      <div className={`mt-16 md:mt-20 lg:mt-24 pb-safe`}>
+      <div className={`mt-20 md:mt-24 lg:mt-28 pb-safe`}>
         <ChatInterface />
       </div>
     </MainLayout>
