@@ -17,11 +17,11 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    sourcemap: false, // Disable source maps in production
+    sourcemap: mode === 'development',
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: mode === 'production',
       },
     },
     rollupOptions: {
