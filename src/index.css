@@ -44,6 +44,11 @@
     @apply bg-background text-foreground;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: none;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  html {
+    height: -webkit-fill-available;
   }
   /* Add iOS momentum scrolling for iOS devices */
   @supports (-webkit-touch-callout: none) {
@@ -53,13 +58,19 @@
   }
 }
 
-/* Add safe area insets for iOS */
+/* Add safe area insets for modern iOS devices */
 @supports (padding: max(0px)) {
   .safe-area-inset-bottom {
-    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
   .safe-area-inset-top {
-    padding-top: max(0.5rem, env(safe-area-inset-top));
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  .safe-area-inset-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  .safe-area-inset-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
   }
 }
 
@@ -146,4 +157,42 @@
     width: 0px;
     background: transparent;
   }
+}
+
+/* iPad-specific optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .typing-text {
+    @apply text-2xl;
+  }
+  
+  .cursor {
+    @apply h-7;
+  }
+}
+
+/* Fix bottom spacing for devices with home indicator */
+.chat-interface-container {
+  @apply pb-safe;
+}
+
+/* Fix notch/dynamic island area on newer iPhones */
+.notch-area-padding {
+  @apply pt-safe;
+}
+
+/* Add iOS native feel when tapping buttons */
+@media (hover: none) {
+  button:active, a:active {
+    transition: transform 0.1s;
+    transform: scale(0.96);
+  }
+}
+
+/* Custom utilities for iOS/iPadOS safe areas */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 1rem);
 }

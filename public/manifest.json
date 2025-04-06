@@ -21,6 +21,30 @@
   ],
   "start_url": ".",
   "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#000000",
-  "background_color": "#000000"
+  "background_color": "#000000",
+  "description": "Cryptocurrency market analysis platform with astrological insights",
+  "categories": ["finance", "cryptocurrency"],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Market View",
+      "url": "/?tab=market",
+      "icons": [
+        {
+          "src": "market-icon.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
 }

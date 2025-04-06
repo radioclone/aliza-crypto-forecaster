@@ -21,15 +21,17 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
 
   return (
     <BackgroundProvider type="space">
-      <div className="min-h-screen font-sans">
-        <MarketHeader />
+      <div className="min-h-screen font-sans flex flex-col">
+        <div className="notch-area-padding">
+          <MarketHeader />
+        </div>
         <div className="container mx-auto px-4 max-w-full md:max-w-[90%] lg:max-w-[1280px]">
           <MarketStatus isLoading={isLoading} marketData={marketData} />
         </div>
         {!isMobile && <CryptoTicker marketData={marketData} />}
         <MarketSentimentLED marketData={marketData} />
 
-        <main className="container mx-auto px-4 pt-24 md:pt-32 pb-24 md:pb-32 max-w-full md:max-w-[90%] lg:max-w-[1280px]">
+        <main className="container mx-auto px-4 pt-24 md:pt-28 lg:pt-32 pb-24 md:pb-28 lg:pb-32 max-w-full md:max-w-[90%] lg:max-w-[1280px] flex-grow">
           {children}
         </main>
 

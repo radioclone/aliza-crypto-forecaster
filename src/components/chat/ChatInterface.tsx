@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,10 +10,12 @@ import { soundManager } from "@/utils/sounds";
 import { GoatService } from '@/services/goat/GoatService';
 import { useToast } from "@/components/ui/use-toast";
 import { CenteredResponse } from './CenteredResponse';
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const ChatInterface = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
+  const isMobile = useIsMobile();
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Array<{ message: string; isUser: boolean }>>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +78,7 @@ export const ChatInterface = () => {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10 safe-area-inset-bottom">
         <div className="container mx-auto max-w-4xl space-y-4">
           <AIPromptSuggestions 
             onPromptSelect={handlePromptSelect} 
@@ -87,14 +90,14 @@ export const ChatInterface = () => {
               placeholder={t('chat.placeholder')}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="pr-12 bg-white/5 border-white/10 text-white placeholder:text-white/40"
+              className={`pr-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 ${isMobile ? 'h-12' : ''}`}
               disabled={isLoading}
               onClick={() => soundManager.playSound('click')}
             />
             <Button 
               type="submit"
               className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/10"
-              size="icon"
+              size={isMobile ? "sm" : "icon"}
               variant="ghost"
               disabled={isLoading}
               onMouseEnter={() => soundManager.playSound('click')}
