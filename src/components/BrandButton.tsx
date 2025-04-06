@@ -10,9 +10,9 @@ export const BrandButton = () => {
   const isPortrait = useIsPortrait();
   
   const getPositionClasses = () => {
-    if (isMobile) return 'bottom-8 right-2';
-    if (isTablet && isPortrait) return 'bottom-36 right-4';
-    return 'bottom-16 right-4';
+    if (isMobile) return 'bottom-2 right-2';
+    if (isTablet && isPortrait) return 'bottom-2 right-3';
+    return 'bottom-3 right-3';
   };
 
   const handleClick = () => {
@@ -25,7 +25,7 @@ export const BrandButton = () => {
   return (
     <Button
       variant="ghost"
-      className={`fixed ${getPositionClasses()} z-[200] p-0 h-auto w-auto hover:bg-transparent`}
+      className={`fixed ${getPositionClasses()} z-[60] p-0 h-auto w-auto hover:bg-transparent`}
       onClick={handleClick}
       asChild
     >
@@ -38,7 +38,7 @@ export const BrandButton = () => {
         <img 
           src="https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/assets_brand/Mode%20wordmark%20primary.png"
           alt="Mode Network"
-          className={`${isMobile ? 'h-6' : (isTablet && isPortrait ? 'h-7' : 'h-8')} w-auto opacity-80 hover:opacity-100 transition-opacity`}
+          className={`${isMobile ? 'h-5' : 'h-6'} w-auto opacity-70 hover:opacity-100 transition-opacity`}
         />
       </a>
     </Button>

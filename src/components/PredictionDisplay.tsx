@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { X } from "lucide-react";
@@ -13,16 +14,16 @@ interface PredictionDisplayProps {
 }
 
 export const PredictionDisplay = ({ prediction, onClose }: PredictionDisplayProps) => {
-  // Create a simple fortune cookie style message from the prediction
-  const fortuneMessage = `${prediction.marketOutlook.split('.')[0]}.`;
+  // Create a complete fortune message from all prediction parts
+  const fortuneMessage = `${prediction.marketOutlook} ${prediction.personalityTraits} ${prediction.timing}`;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black/50 backdrop-blur-sm">
-      <Card className="neo-blur p-6 w-full max-w-lg mx-4 animate-fade-in relative">
+      <Card className="neo-blur p-6 w-full max-w-lg mx-4 animate-fade-in relative shadow-xl">
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-4 top-4"
+          className="absolute right-4 top-4 text-white/60 hover:text-white hover:bg-white/10"
           onClick={onClose}
         >
           <X className="h-4 w-4" />
