@@ -8,7 +8,7 @@ import { BrandButton } from '@/components/BrandButton';
 import { AlizaBranding } from '@/components/AlizaBranding';
 import { Attribution } from '@/components/layout/Attribution';
 import { CryptoData } from '@/types/crypto';
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile, useIsTablet, useIsPortrait } from "@/hooks/use-mobile";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -18,6 +18,8 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps) => {
   const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
+  const isPortrait = useIsPortrait();
 
   return (
     <BackgroundProvider type="space">
@@ -35,7 +37,7 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
           {children}
         </main>
 
-        <div className={`${isMobile ? 'pb-16' : 'pb-24'} pt-4 safe-area-inset-bottom`}>
+        <div className={`${isMobile ? 'pb-16' : (isTablet && isPortrait ? 'pb-32' : 'pb-24')} pt-4 safe-area-inset-bottom`}>
           {/* Spacer to ensure content isn't hidden behind branding elements */}
         </div>
         

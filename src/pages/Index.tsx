@@ -10,12 +10,14 @@ import { ChatInterface } from '@/components/chat/ChatInterface';
 import { TabNavigation } from '@/components/navigation/TabNavigation';
 import { TabContent } from '@/components/tabs/TabContent';
 import { MainLayout } from '@/components/layout/MainLayout';
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile, useIsTablet, useIsPortrait } from "@/hooks/use-mobile";
 
 const Index = () => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
+  const isPortrait = useIsPortrait();
 
   const { data: cryptoData, isLoading: isPricesLoading } = useQuery({
     queryKey: ['cryptoPrices'],
@@ -48,7 +50,7 @@ const Index = () => {
           searchQuery={searchQuery}
         />
       </Tabs>
-      <div className={`${isMobile ? "mt-6 md:mt-8" : ""} pb-safe`}>
+      <div className={`${(isMobile || (isTablet && isPortrait)) ? "mt-6 md:mt-8" : ""} pb-safe`}>
         <ChatInterface />
       </div>
     </MainLayout>

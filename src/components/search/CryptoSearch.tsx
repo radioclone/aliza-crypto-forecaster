@@ -1,7 +1,7 @@
 
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile, useIsTablet, useIsPortrait } from "@/hooks/use-mobile";
 
 interface CryptoSearchProps {
   searchQuery: string;
@@ -10,9 +10,17 @@ interface CryptoSearchProps {
 
 export const CryptoSearch = ({ searchQuery, onSearchChange }: CryptoSearchProps) => {
   const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
+  const isPortrait = useIsPortrait();
+  
+  const getWidthClass = () => {
+    if (isMobile) return 'w-full';
+    if (isTablet && isPortrait) return 'w-full';
+    return 'w-full sm:w-64 md:w-72';
+  };
   
   return (
-    <div className={`relative ${isMobile ? 'w-full' : 'w-full sm:w-64 md:w-72'}`}>
+    <div className={`relative ${getWidthClass()}`}>
       <Input
         type="text"
         placeholder={isMobile ? "Search..." : "Search cryptocurrencies..."}

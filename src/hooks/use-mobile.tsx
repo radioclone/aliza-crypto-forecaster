@@ -46,6 +46,27 @@ export function useIsTablet() {
   return !!isTablet
 }
 
+export function useIsPortrait() {
+  const [isPortrait, setIsPortrait] = React.useState<boolean>(false)
+
+  React.useEffect(() => {
+    const checkOrientation = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth)
+    }
+    
+    // Initial check
+    checkOrientation()
+    
+    // Add event listener for resize
+    window.addEventListener("resize", checkOrientation)
+    
+    // Cleanup
+    return () => window.removeEventListener("resize", checkOrientation)
+  }, [])
+
+  return isPortrait
+}
+
 export function useIsIOSDevice() {
   const [isIOS, setIsIOS] = React.useState(false)
 
