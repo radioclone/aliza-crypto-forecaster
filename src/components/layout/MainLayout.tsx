@@ -4,8 +4,6 @@ import { MarketHeader } from '@/components/header/MarketHeader';
 import { MarketStatus } from '@/components/market/MarketStatus';
 import { MarketSentimentLED } from '@/components/market/MarketSentimentLED';
 import { CryptoTicker } from '@/components/CryptoTicker';
-import { BrandButton } from '@/components/BrandButton';
-import { AlizaBranding } from '@/components/AlizaBranding';
 import { Attribution } from '@/components/layout/Attribution';
 import { CryptoData } from '@/types/crypto';
 import { useIsMobile, useIsTablet, useIsPortrait } from "@/hooks/use-mobile";
@@ -23,8 +21,8 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
 
   const getSpacerHeight = () => {
     if (isMobile) return 'pb-16';
-    if (isTablet && isPortrait) return 'pb-40';
-    return 'pb-24';
+    if (isTablet && isPortrait) return 'pb-24';
+    return 'pb-20';
   };
 
   return (
@@ -44,11 +42,9 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
         </main>
 
         <div className={`${getSpacerHeight()} pt-4 safe-area-inset-bottom`}>
-          {/* Spacer to ensure content isn't hidden behind branding elements */}
+          {/* Spacer to ensure content isn't hidden behind other elements */}
         </div>
         
-        <BrandButton />
-        <AlizaBranding />
         <Attribution />
       </div>
     </BackgroundProvider>
