@@ -6,9 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   plugins: [
-    react({
-      plugins: [['@swc/plugin-emotion', {}]],
-    }),
+    react(),
     mode === 'development' && componentTagger(),
   ].filter(Boolean),
   server: {

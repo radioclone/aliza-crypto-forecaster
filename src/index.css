@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,6 +42,24 @@
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+  /* Add iOS momentum scrolling for iOS devices */
+  @supports (-webkit-touch-callout: none) {
+    body {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+/* Add safe area insets for iOS */
+@supports (padding: max(0px)) {
+  .safe-area-inset-bottom {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+  .safe-area-inset-top {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
   }
 }
 
@@ -111,4 +130,20 @@
 /* Education and News section styles */
 .education-section, .news-section {
   @apply bg-[#D3E4FD]/20 backdrop-blur-sm;
+}
+
+/* Mobile-specific optimization */
+@media (max-width: 640px) {
+  .typing-text {
+    @apply text-xl;
+  }
+  
+  .cursor {
+    @apply h-6;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 }

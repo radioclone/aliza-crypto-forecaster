@@ -1,9 +1,13 @@
+
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { soundManager } from "@/utils/sounds";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Attribution = () => {
+  const isMobile = useIsMobile();
+  
   return (
-    <div className="fixed bottom-4 right-4 text-xs text-white/60">
+    <div className={`fixed bottom-4 ${isMobile ? 'left-4 right-4 text-center' : 'right-4'} text-xs text-white/60`}>
       <HoverCard>
         <HoverCardTrigger asChild>
           <a 
@@ -13,7 +17,7 @@ export const Attribution = () => {
             className="hover:text-white/80 transition-colors"
             onClick={() => soundManager.playSound('click')}
           >
-            * Attribution: Inspired by the open-source project Eliza OS
+            * {isMobile ? "Eliza OS Attribution" : "Attribution: Inspired by the open-source project Eliza OS"}
           </a>
         </HoverCardTrigger>
         <HoverCardContent className="w-80 bg-black/90 border-white/10 text-white p-4">
