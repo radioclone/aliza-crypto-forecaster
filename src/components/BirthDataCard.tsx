@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -65,77 +66,77 @@ export const BirthDataCard = ({ onClose, onSubmit }: BirthDataCardProps) => {
     }
   };
 
-  if (prediction) {
-    return <PredictionDisplay prediction={prediction} onClose={onClose} />;
-  }
-
   return (
     <div 
       className="fixed inset-0 flex items-center justify-center z-[100] bg-black/40 backdrop-blur-sm" 
       onClick={onClose}
     >
-      <div 
-        className="neo-blur p-6 rounded-lg w-full max-w-md mx-4 bg-black/60 backdrop-blur-md border border-white/10"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center gap-2 mb-6">
-          <Calendar className="w-6 h-6" />
-          <h2 className="text-xl font-semibold">Input Birth Details</h2>
+      {prediction ? (
+        <PredictionDisplay prediction={prediction} onClose={onClose} />
+      ) : (
+        <div 
+          className="neo-blur p-6 rounded-lg w-full max-w-md mx-4 bg-black/60 backdrop-blur-md border border-white/10"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center gap-2 mb-6">
+            <Calendar className="w-6 h-6" />
+            <h2 className="text-xl font-semibold">Input Birth Details</h2>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <DateSelector 
+              onDateChange={(value) => setBirthData({ ...birthData, date: value })}
+              onMonthChange={(value) => setBirthData({ ...birthData, month: value })}
+              onYearChange={(value) => setBirthData({ ...birthData, year: value })}
+            />
+
+            <div>
+              <Label>Time of Birth (24h format)</Label>
+              <Input
+                type="time"
+                value={birthData.time}
+                onChange={(e) => setBirthData({ ...birthData, time: e.target.value })}
+                className="bg-white/5"
+              />
+            </div>
+
+            <div>
+              <Label>Birthplace</Label>
+              <Input
+                type="text"
+                placeholder="City, Country"
+                value={birthData.birthplace}
+                onChange={(e) => setBirthData({ ...birthData, birthplace: e.target.value })}
+                className="bg-white/5"
+              />
+            </div>
+
+            <div className="flex justify-end gap-2 pt-4">
+              <Button 
+                type="button" 
+                variant="ghost"
+                onClick={onClose}
+                onMouseEnter={() => soundManager.playSound('hover')}
+              >
+                Cancel
+              </Button>
+              <Button 
+                type="submit"
+                disabled={isLoading}
+                onMouseEnter={() => soundManager.playSound('hover')}
+              >
+                {isLoading ? "Generating..." : "Get Prediction"}
+              </Button>
+            </div>
+
+            <p className="text-[10px] text-white/40 text-center mt-4 italic">
+              * Disclaimer: The predictions provided are for entertainment purposes only. 
+              Not financial or life advice. Any decisions made based on these predictions 
+              are solely your responsibility.
+            </p>
+          </form>
         </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <DateSelector 
-            onDateChange={(value) => setBirthData({ ...birthData, date: value })}
-            onMonthChange={(value) => setBirthData({ ...birthData, month: value })}
-            onYearChange={(value) => setBirthData({ ...birthData, year: value })}
-          />
-
-          <div>
-            <Label>Time of Birth (24h format)</Label>
-            <Input
-              type="time"
-              value={birthData.time}
-              onChange={(e) => setBirthData({ ...birthData, time: e.target.value })}
-              className="bg-white/5"
-            />
-          </div>
-
-          <div>
-            <Label>Birthplace</Label>
-            <Input
-              type="text"
-              placeholder="City, Country"
-              value={birthData.birthplace}
-              onChange={(e) => setBirthData({ ...birthData, birthplace: e.target.value })}
-              className="bg-white/5"
-            />
-          </div>
-
-          <div className="flex justify-end gap-2 pt-4">
-            <Button 
-              type="button" 
-              variant="ghost"
-              onClick={onClose}
-              onMouseEnter={() => soundManager.playSound('hover')}
-            >
-              Cancel
-            </Button>
-            <Button 
-              type="submit"
-              disabled={isLoading}
-              onMouseEnter={() => soundManager.playSound('hover')}
-            >
-              {isLoading ? "Generating..." : "Get Prediction"}
-            </Button>
-          </div>
-
-          <p className="text-[10px] text-white/40 text-center mt-4 italic">
-            * Disclaimer: The predictions provided are for entertainment purposes only. 
-            Not financial or life advice. Any decisions made based on these predictions 
-            are solely your responsibility.
-          </p>
-        </form>
-      </div>
+      )}
     </div>
   );
 };

@@ -1,21 +1,13 @@
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { soundManager } from "@/utils/sounds";
-import { useIsMobile, useIsTablet, useIsPortrait } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Attribution = () => {
   const isMobile = useIsMobile();
-  const isTablet = useIsTablet();
-  const isPortrait = useIsPortrait();
-  
-  const getPositionClasses = () => {
-    if (isMobile) return 'left-0 right-0 text-center bottom-10';
-    if (isTablet && isPortrait) return 'right-4 bottom-10';
-    return 'right-4 bottom-4';
-  };
   
   return (
-    <div className={`fixed ${getPositionClasses()} text-[10px] text-white/50 z-[40]`}>
+    <div className="fixed left-0 right-0 text-center bottom-10 text-[10px] text-white/30 z-[40]">
       <HoverCard>
         <HoverCardTrigger asChild>
           <a 

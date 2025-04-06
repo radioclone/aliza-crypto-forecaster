@@ -18,26 +18,24 @@ export const PredictionDisplay = ({ prediction, onClose }: PredictionDisplayProp
   const fortuneMessage = `${prediction.marketOutlook} ${prediction.personalityTraits} ${prediction.timing}`;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black/50 backdrop-blur-sm">
-      <Card className="neo-blur p-6 w-full max-w-lg mx-4 animate-fade-in relative shadow-xl">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute right-4 top-4 text-white/60 hover:text-white hover:bg-white/10"
-          onClick={onClose}
-        >
-          <X className="h-4 w-4" />
-        </Button>
-        
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold mb-6 text-gradient">Your Market Fortune</h2>
-          <ScrollArea className="h-auto max-h-[40vh]">
-            <p className="text-xl text-white/90 leading-relaxed italic">
-              "{fortuneMessage}"
-            </p>
-          </ScrollArea>
-        </div>
-      </Card>
-    </div>
+    <Card className="neo-blur p-6 w-full max-w-lg mx-4 animate-fade-in relative shadow-xl">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute right-4 top-4 text-white/60 hover:text-white hover:bg-white/10"
+        onClick={onClose}
+      >
+        <X className="h-4 w-4" />
+      </Button>
+      
+      <div className="text-center space-y-4">
+        <h2 className="text-2xl font-bold mb-6 text-gradient">Your Market Fortune</h2>
+        <ScrollArea className="h-auto max-h-[40vh]">
+          <p className="text-xl text-white/90 leading-relaxed italic">
+            "{fortuneMessage}"
+          </p>
+        </ScrollArea>
+      </div>
+    </Card>
   );
 };

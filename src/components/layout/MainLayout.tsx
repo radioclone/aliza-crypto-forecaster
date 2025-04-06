@@ -20,9 +20,9 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
   const isPortrait = useIsPortrait();
 
   const getSpacerHeight = () => {
-    if (isMobile) return 'pb-20';
-    if (isTablet && isPortrait) return 'pb-24';
-    return 'pb-20';
+    if (isMobile) return 'pb-24';
+    if (isTablet && isPortrait) return 'pb-28';
+    return 'pb-24';
   };
 
   return (
