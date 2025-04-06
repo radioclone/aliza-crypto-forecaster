@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -211,11 +210,11 @@
 }
 
 .z-chat {
-  z-index: 50;
+  z-index: 60;
 }
 
 .z-indicator {
-  z-index: 20;
+  z-index: 45;
 }
 
 /* Neo-blur effect for components */

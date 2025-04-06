@@ -27,11 +27,11 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
 
   return (
     <BackgroundProvider type="space">
-      <div className="min-h-screen font-sans flex flex-col">
+      <div className="min-h-screen font-sans flex flex-col relative">
         <div className="notch-area-padding z-header">
           <MarketHeader />
         </div>
-        <div className="container mx-auto px-4 max-w-full md:max-w-[90%] lg:max-w-[1280px] z-content">
+        <div className="container mx-auto px-4 max-w-full md:max-w-[90%] lg:max-w-[1280px] z-content pt-2">
           <MarketStatus isLoading={isLoading} marketData={marketData} />
         </div>
         {!isMobile && <CryptoTicker marketData={marketData} />}

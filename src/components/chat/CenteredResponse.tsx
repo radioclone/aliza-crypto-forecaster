@@ -19,16 +19,16 @@ export const CenteredResponse = ({ message, isVisible, onClose }: CenteredRespon
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={onClose}
           />
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="relative z-10 w-full max-w-2xl mx-4"
+            className="relative z-10 w-full max-w-2xl mx-4 my-4"
           >
-            <Card className="neo-blur p-6 md:p-8 relative">
+            <Card className="neo-blur p-6 md:p-8 relative shadow-xl">
               <Button
                 variant="ghost"
                 size="icon"
