@@ -63,7 +63,7 @@ export const ChatInterface = () => {
   };
 
   return (
-    <div className="mt-8">
+    <div className="relative z-10">
       <div className="space-y-4 mb-8">
         {chatHistory.map((chat, index) => (
           <ChatMessage key={index} message={chat.message} isUser={chat.isUser} />
@@ -78,7 +78,7 @@ export const ChatInterface = () => {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10 safe-area-inset-bottom">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t border-white/10 safe-area-inset-bottom z-50">
         <div className="container mx-auto max-w-4xl space-y-4">
           <AIPromptSuggestions 
             onPromptSelect={handlePromptSelect} 

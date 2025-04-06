@@ -42,7 +42,7 @@ export const MainLayout = ({ children, isLoading, marketData }: MainLayoutProps)
         </main>
 
         <div className={`${getSpacerHeight()} pt-4 safe-area-inset-bottom`}>
-          {/* Spacer to ensure content isn't hidden behind other elements */}
+          {/* Footer spacing */}
         </div>
         
         <Attribution />

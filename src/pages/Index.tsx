@@ -50,7 +50,7 @@ const Index = () => {
           searchQuery={searchQuery}
         />
       </Tabs>
-      <div className={`${(isMobile || (isTablet && isPortrait)) ? "mt-6 md:mt-8" : ""} pb-safe`}>
+      <div className={`mt-12 md:mt-16 lg:mt-20 pb-safe`}>
         <ChatInterface />
       </div>
     </MainLayout>
