@@ -1,6 +1,5 @@
 export const daDK = {
   common: {
-    retroverse: 'RetroVerse',
     search: 'Søg kryptovalutaer...',
     suggestions: 'Forslag',
     liveMarketData: 'Live Markedsdata',
@@ -18,8 +17,6 @@ export const daDK = {
     aiPrompt6: 'Hvad er DeFi?',
     aiPrompt7: 'Hvad er AiFi i krypto?',
     aiPrompt8: 'Hvad er Mode Network?',
-    launchpad: 'Launchpad',
-    marketSentiment: 'Markedsstemning',
   },
   tabs: {
     market: 'Marked',

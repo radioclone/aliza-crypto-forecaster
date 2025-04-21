@@ -1,6 +1,5 @@
 export const heIL = {
   common: {
-    retroverse: 'רטרוורס',
     search: 'חפש מטבעות קריפטו...',
     suggestions: 'הצעות',
     liveMarketData: 'נתוני שוק בזמן אמת',
@@ -18,8 +17,6 @@ export const heIL = {
     aiPrompt6: 'מה זה DeFi?',
     aiPrompt7: 'מה זה AiFi בקריפטו?',
     aiPrompt8: 'מה זה Mode Network?',
-    launchpad: 'משגר',
-    marketSentiment: 'תחושת השוק',
   },
   tabs: {
     market: 'שוק',

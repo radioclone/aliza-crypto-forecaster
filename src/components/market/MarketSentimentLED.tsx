@@ -1,32 +1,25 @@
 
+import { Circle } from "lucide-react";
 import { CryptoData } from "@/types/crypto";
-import { useTranslation } from "react-i18next";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface MarketSentimentLEDProps {
   marketData: CryptoData[];
 }
 
 export const MarketSentimentLED = ({ marketData }: MarketSentimentLEDProps) => {
-  const { t } = useTranslation();
-  
-  const isBullish = marketData.reduce((acc, crypto) => acc + crypto.change, 0) / marketData.length > 0;
+  const isMarketBullish = marketData.reduce((acc, crypto) => acc + crypto.change, 0) / marketData.length > 0;
+  const isMobile = useIsMobile();
   
   return (
-    <div 
-      className="flex items-center gap-2 text-xs text-white/80 bg-black/80 backdrop-blur-md p-2 rounded-full border border-white/10 z-40"
-      style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        transition: 'all 0.3s ease'
-      }}
-    >
-      <div 
-        className={`w-2 h-2 rounded-full animate-pulse ${
-          isBullish ? 'bg-green-500' : 'bg-red-500'
-        }`}
+    <div className="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-[45] flex items-center gap-2 px-2 py-1 neo-blur rounded-full shadow-md">
+      <Circle
+        fill={isMarketBullish ? "#3B82F6" : "#EF4444"}
+        className={`h-2 w-2 ${isMarketBullish ? "text-blue-500" : "text-red-500"} animate-pulse`}
       />
-      <span>{t('common.marketSentiment')}</span>
+      <span className="text-[10px] font-medium text-white">
+        Market Sentiment
+      </span>
     </div>
   );
 };

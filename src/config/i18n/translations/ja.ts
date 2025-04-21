@@ -1,6 +1,5 @@
 export const jaJP = {
   common: {
-    retroverse: 'レトロバース',
     search: '暗号通貨を検索...',
     suggestions: '提案',
     liveMarketData: 'リアルタイム市場データ',
@@ -18,8 +17,6 @@ export const jaJP = {
     aiPrompt6: 'DeFiとは？',
     aiPrompt7: '暗号通貨のAiFiとは？',
     aiPrompt8: 'Mode Networkとは？',
-    launchpad: 'ランチパッド',
-    marketSentiment: '市場感情',
   },
   tabs: {
     market: '市場',

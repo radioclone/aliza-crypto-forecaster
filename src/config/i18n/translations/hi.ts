@@ -1,6 +1,5 @@
 export const hiIN = {
   common: {
-    retroverse: 'रेट्रोवर्स',
     search: 'क्रिप्टोकरेंसी खोजें...',
     suggestions: 'सुझाव',
     liveMarketData: 'लाइव मार्केट डेटा',
@@ -18,8 +17,6 @@ export const hiIN = {
     aiPrompt6: 'DeFi क्या है?',
     aiPrompt7: 'क्रिप्टो में AiFi क्या है?',
     aiPrompt8: 'Mode Network क्या है?',
-    launchpad: 'लॉन्चपैड',
-    marketSentiment: 'बाजार भावना',
   },
   tabs: {
     market: 'मार्केट',

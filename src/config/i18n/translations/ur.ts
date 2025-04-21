@@ -1,6 +1,5 @@
 export const urPK = {
   common: {
-    retroverse: 'ریٹرو ورس',
     search: 'کرپٹو کرنسی تلاش کریں...',
     suggestions: 'تجاویز',
     liveMarketData: 'لائیو مارکیٹ ڈیٹا',
@@ -18,8 +17,6 @@ export const urPK = {
     aiPrompt6: 'DeFi کیا ہے؟',
     aiPrompt7: 'کرپٹو میں AiFi کیا ہے؟',
     aiPrompt8: 'کرپٹو میں Mode Network کیا ہے؟',
-    launchpad: 'لانچ پیڈ',
-    marketSentiment: 'مارکیٹ کا رجحان',
   },
   tabs: {
     market: 'مارکیٹ',
