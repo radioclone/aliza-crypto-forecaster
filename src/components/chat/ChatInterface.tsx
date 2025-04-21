@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ export const ChatInterface = () => {
 
     try {
       const response = await goatService.processUserRequest(userMessage);
+      
       if (response) {
         setChatHistory(prev => [...prev, { message: response, isUser: false }]);
         setResponseMessage(response);
@@ -55,6 +57,11 @@ export const ChatInterface = () => {
     }
   };
 
+  const handlePromptSelect = (prompt: string) => {
+    setMessage(prompt);
+    soundManager.playSound('click');
+  };
+
   return (
     <div className="relative z-chat">
       <div className="space-y-4 mb-16 md:mb-20">
@@ -74,6 +81,7 @@ export const ChatInterface = () => {
       <div className="fixed bottom-0 left-0 right-0 p-4 neo-blur border-t border-white/10 safe-area-inset-bottom z-chat">
         <div className="container mx-auto max-w-4xl space-y-4">
           <AIPromptSuggestions 
+            onPromptSelect={handlePromptSelect} 
             setChatHistory={setChatHistory}
           />
           <form onSubmit={handleSubmit} className="relative">

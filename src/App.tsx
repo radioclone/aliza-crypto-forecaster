@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,9 +8,6 @@ import { useState } from "react";
 import Index from "./pages/Index";
 import Ecosystem from "./pages/Ecosystem";
 import NotFound from "./pages/NotFound";
-
-// Disable logo components by setting a flag
-const SHOW_LOGOS = false;
 
 const App = () => {
   const [queryClient] = useState(
