@@ -6,8 +6,7 @@ import { marketData as staticMarketData } from '@/config/market/marketData';
 import { soundManager } from "@/utils/sounds";
 import { useQuery } from '@tanstack/react-query';
 import { fetchCryptoPrices, transformCryptoData } from '@/services/crypto/CryptoService';
-// Removed import { ChatInterface } from '@/components/chat/ChatInterface';
-// Removed import { MainLayout } from '@/components/layout/MainLayout';
+import { ChatInterface } from '@/components/chat/ChatInterface';
 
 import { TabNavigation } from '@/components/navigation/TabNavigation';
 import { TabContent } from '@/components/tabs/TabContent';
@@ -52,7 +51,9 @@ const Index = () => {
           searchQuery={searchQuery}
         />
       </Tabs>
-      {/* Removed ChatInterface and any extra birth/prediction features */}
+      <div className={`mt-20 md:mt-24 lg:mt-28 pb-safe`}>
+        <ChatInterface />
+      </div>
     </MainLayout>
   );
 };
