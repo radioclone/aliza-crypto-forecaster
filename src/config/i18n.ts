@@ -13,7 +13,7 @@ import { zhCN } from './i18n/translations/zh';
 import { esES } from './i18n/translations/es';
 
 // Get saved language from localStorage or use browser default
-const savedLanguage = localStorage.getItem('i18nextLng') || navigator.language.split('-')[0] || 'en';
+const savedLanguage = localStorage.getItem('i18nextLng') || navigator.language.split('-')[0] || 'ja';
 
 i18n
   .use(initReactI18next)
