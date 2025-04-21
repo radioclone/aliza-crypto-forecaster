@@ -1,5 +1,6 @@
 export const deDE = {
   common: {
+    retroverse: 'RetroVerse',
     search: 'Kryptowährungen suchen...',
     suggestions: 'Vorschläge',
     liveMarketData: 'Live-Marktdaten',
@@ -17,6 +18,7 @@ export const deDE = {
     aiPrompt6: 'Was ist DeFi?',
     aiPrompt7: 'Was ist AiFi in Krypto?',
     aiPrompt8: 'Was ist Mode Network?',
+    launchpad: 'Startrampe',
   },
   tabs: {
     market: 'Markt',

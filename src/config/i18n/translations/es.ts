@@ -1,5 +1,6 @@
 export const esES = {
   common: {
+    retroverse: 'RetroVerso',
     search: 'Buscar criptomonedas...',
     suggestions: 'Sugerencias',
     liveMarketData: 'Datos del Mercado en Vivo',
@@ -17,6 +18,7 @@ export const esES = {
     aiPrompt6: '¿Qué es DeFi?',
     aiPrompt7: '¿Qué es AiFi en cripto?',
     aiPrompt8: '¿Qué es Mode Network?',
+    launchpad: 'Plataforma de Lanzamiento',
   },
   tabs: {
     market: 'Mercado',

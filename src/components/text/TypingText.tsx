@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 interface TypingTextProps {
@@ -8,12 +8,31 @@ interface TypingTextProps {
 }
 
 export const TypingText = ({ text, className }: TypingTextProps) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  useEffect(() => {
+    setDisplayedText('');
+    setCurrentIndex(0);
+    
+    const typingInterval = setInterval(() => {
+      if (currentIndex < text.length) {
+        setDisplayedText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 100);
+    
+    return () => clearInterval(typingInterval);
+  }, [text]);
+  
   return (
     <div className="flex items-center">
-      <div className={cn("typing-text animate-typewriter", className)}>
-        {text}
+      <div className={cn("typing-text", className)}>
+        {displayedText}
       </div>
-      <div className="cursor animate-blink" />
+      <div className={cn("cursor animate-blink", currentIndex >= text.length ? "opacity-0" : "opacity-100")} />
     </div>
   );
 };

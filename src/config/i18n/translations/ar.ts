@@ -1,5 +1,6 @@
 export const arAR = {
   common: {
+    retroverse: 'ريترو فيرس',
     search: 'البحث عن العملات المشفرة...',
     suggestions: 'اقتراحات',
     liveMarketData: 'بيانات السوق المباشرة',
@@ -17,6 +18,7 @@ export const arAR = {
     aiPrompt6: 'ما هو التمويل اللامركزي؟',
     aiPrompt7: 'ما هو AiFi في العملات المشفرة؟',
     aiPrompt8: 'ما هي شبكة Mode؟',
+    launchpad: 'منصة الإطلاق',
   },
   tabs: {
     market: 'السوق',

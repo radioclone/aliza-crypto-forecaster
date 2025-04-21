@@ -1,5 +1,6 @@
 export const enUS = {
   common: {
+    retroverse: 'RetroVerse',
     search: 'Search cryptocurrencies...',
     suggestions: 'Suggestions',
     liveMarketData: 'Live Market Data',
@@ -17,6 +18,7 @@ export const enUS = {
     aiPrompt6: 'What is DeFi?',
     aiPrompt7: 'What is AiFi in crypto?',
     aiPrompt8: 'What is Mode Network?',
+    launchpad: 'Launchpad',
   },
   tabs: {
     market: 'Market',

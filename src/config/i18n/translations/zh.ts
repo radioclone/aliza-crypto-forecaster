@@ -1,5 +1,6 @@
 export const zhCN = {
   common: {
+    retroverse: '复古宇宙',
     search: '搜索加密货币...',
     suggestions: '建议',
     liveMarketData: '实时市场数据',
@@ -17,6 +18,7 @@ export const zhCN = {
     aiPrompt6: '什么是DeFi？',
     aiPrompt7: '什么是加密货币中的AiFi？',
     aiPrompt8: '什么是Mode Network？',
+    launchpad: '发射台',
   },
   tabs: {
     market: '市场',
