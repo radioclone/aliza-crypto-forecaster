@@ -19,6 +19,7 @@ export const urPK = {
     aiPrompt7: 'کرپٹو میں AiFi کیا ہے؟',
     aiPrompt8: 'کرپٹو میں Mode Network کیا ہے؟',
     launchpad: 'لانچ پیڈ',
+    marketSentiment: 'مارکیٹ کا رجحان',
   },
   tabs: {
     market: 'مارکیٹ',

@@ -19,6 +19,7 @@ export const jaJP = {
     aiPrompt7: '暗号通貨のAiFiとは？',
     aiPrompt8: 'Mode Networkとは？',
     launchpad: 'ランチパッド',
+    marketSentiment: '市場感情',
   },
   tabs: {
     market: '市場',

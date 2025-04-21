@@ -19,6 +19,7 @@ export const deDE = {
     aiPrompt7: 'Was ist AiFi in Krypto?',
     aiPrompt8: 'Was ist Mode Network?',
     launchpad: 'Startrampe',
+    marketSentiment: 'Marktstimmung',
   },
   tabs: {
     market: 'Markt',

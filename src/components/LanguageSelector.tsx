@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
@@ -27,7 +28,15 @@ export const LanguageSelector = () => {
 
   const handleLanguageChange = (languageCode: string) => {
     soundManager.playSound('click');
+    
+    // Save language preference to localStorage
+    localStorage.setItem('i18nextLng', languageCode);
+    
+    // Change language in i18n
     i18n.changeLanguage(languageCode);
+    
+    // Force a re-render of components with translations
+    window.dispatchEvent(new Event('languageChanged'));
   };
 
   return (
@@ -47,7 +56,9 @@ export const LanguageSelector = () => {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
-            className="text-white hover:bg-white/10 cursor-pointer"
+            className={`text-white hover:bg-white/10 cursor-pointer ${
+              i18n.language === lang.code ? 'bg-white/20' : ''
+            }`}
           >
             {lang.name}
           </DropdownMenuItem>

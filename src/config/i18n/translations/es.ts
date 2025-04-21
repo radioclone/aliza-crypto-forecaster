@@ -19,6 +19,7 @@ export const esES = {
     aiPrompt7: '¿Qué es AiFi en cripto?',
     aiPrompt8: '¿Qué es Mode Network?',
     launchpad: 'Plataforma de Lanzamiento',
+    marketSentiment: 'Sentimiento del Mercado',
   },
   tabs: {
     market: 'Mercado',

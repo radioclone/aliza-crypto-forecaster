@@ -19,6 +19,7 @@ export const zhCN = {
     aiPrompt7: '什么是加密货币中的AiFi？',
     aiPrompt8: '什么是Mode Network？',
     launchpad: '发射台',
+    marketSentiment: '市场情绪',
   },
   tabs: {
     market: '市场',

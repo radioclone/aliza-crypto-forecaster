@@ -19,6 +19,7 @@ export const hiIN = {
     aiPrompt7: 'क्रिप्टो में AiFi क्या है?',
     aiPrompt8: 'Mode Network क्या है?',
     launchpad: 'लॉन्चपैड',
+    marketSentiment: 'बाजार भावना',
   },
   tabs: {
     market: 'मार्केट',

@@ -6,12 +6,34 @@ import { Link } from "react-router-dom";
 import { Rocket } from "lucide-react";
 import { TypingText } from "@/components/text/TypingText";
 import { useIsMobile, useIsTablet, useIsPortrait } from "@/hooks/use-mobile";
+import { useEffect, useState } from "react";
 
 export const MarketHeader = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
   const isPortrait = useIsPortrait();
+  
+  // Add a key state to force re-render of TypingText when language changes
+  const [languageKey, setLanguageKey] = useState(0);
+  
+  // Listen for language changes
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setLanguageKey(prev => prev + 1);
+    };
+    
+    // Listen for language changes from i18n
+    i18n.on('languageChanged', handleLanguageChange);
+    
+    // Listen for custom event
+    window.addEventListener('languageChanged', handleLanguageChange);
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+      window.removeEventListener('languageChanged', handleLanguageChange);
+    };
+  }, [i18n]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-header bg-black/80 backdrop-blur-sm border-b border-white/10 safe-area-inset-top">
@@ -19,8 +41,8 @@ export const MarketHeader = () => {
         <div className={`flex items-center justify-between ${isMobile ? 'h-16' : (isTablet && isPortrait ? 'h-16' : 'h-18')}`}>
           <div className="flex items-center">
             <TypingText 
+              key={`retroverse-${i18n.language}-${languageKey}`}
               text={t('common.retroverse')} 
-              key={t('common.retroverse')} 
               className={isMobile || (isTablet && isPortrait) ? "text-lg" : ""}
             />
           </div>

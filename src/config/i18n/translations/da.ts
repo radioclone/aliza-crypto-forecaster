@@ -19,6 +19,7 @@ export const daDK = {
     aiPrompt7: 'Hvad er AiFi i krypto?',
     aiPrompt8: 'Hvad er Mode Network?',
     launchpad: 'Launchpad',
+    marketSentiment: 'Markedsstemning',
   },
   tabs: {
     market: 'Marked',

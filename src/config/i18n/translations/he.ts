@@ -19,6 +19,7 @@ export const heIL = {
     aiPrompt7: 'מה זה AiFi בקריפטו?',
     aiPrompt8: 'מה זה Mode Network?',
     launchpad: 'משגר',
+    marketSentiment: 'תחושת השוק',
   },
   tabs: {
     market: 'שוק',

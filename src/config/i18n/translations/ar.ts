@@ -17,8 +17,9 @@ export const arAR = {
     aiPrompt5: 'كيف أبدأ الاستثمار في العملات المشفرة؟',
     aiPrompt6: 'ما هو التمويل اللامركزي؟',
     aiPrompt7: 'ما هو AiFi في العملات المشفرة؟',
-    aiPrompt8: 'ما هي شبكة Mode؟',
+    aiPrompt8: 'ما هي شبكة Mode？',
     launchpad: 'منصة الإطلاق',
+    marketSentiment: 'مزاج السوق',
   },
   tabs: {
     market: 'السوق',
