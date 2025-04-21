@@ -34,9 +34,6 @@ export const LanguageSelector = () => {
     
     // Change language in i18n
     i18n.changeLanguage(languageCode);
-    
-    // Force a re-render of components with translations
-    window.dispatchEvent(new Event('languageChanged'));
   };
 
   return (
