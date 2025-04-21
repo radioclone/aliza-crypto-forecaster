@@ -1,15 +1,16 @@
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { enUS } from './translations/en';
-import { jaJP } from './translations/ja';
-import { deDE } from './translations/de';
-import { daDK } from './translations/da';
-import { arAR } from './translations/ar';
-import { heIL } from './translations/he';
-import { hiIN } from './translations/hi';
-import { urPK } from './translations/ur';
-import { zhCN } from './translations/zh';
-import { esES } from './translations/es';
+import { enUS } from './i18n/translations/en';
+import { jaJP } from './i18n/translations/ja';
+import { deDE } from './i18n/translations/de';
+import { daDK } from './i18n/translations/da';
+import { arAR } from './i18n/translations/ar';
+import { heIL } from './i18n/translations/he';
+import { hiIN } from './i18n/translations/hi';
+import { urPK } from './i18n/translations/ur';
+import { zhCN } from './i18n/translations/zh';
+import { esES } from './i18n/translations/es';
 
 i18n
   .use(initReactI18next)

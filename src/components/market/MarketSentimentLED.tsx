@@ -1,7 +1,6 @@
 
 import { Circle } from "lucide-react";
 import { CryptoData } from "@/types/crypto";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 interface MarketSentimentLEDProps {
   marketData: CryptoData[];
@@ -13,7 +12,11 @@ export const MarketSentimentLED = ({ marketData }: MarketSentimentLEDProps) => {
   return (
     <div
       className="fixed bottom-6 right-6 z-[45] flex items-center gap-2 px-2 py-1 neo-blur rounded-full shadow-md"
-      // bottom-6 right-6 ensures bottom right placement for all screen sizes
+      style={{ 
+        bottom: '1.5rem', 
+        right: '1.5rem',
+        position: 'fixed'
+      }}
     >
       <Circle
         fill={isMarketBullish ? "#3B82F6" : "#EF4444"}
