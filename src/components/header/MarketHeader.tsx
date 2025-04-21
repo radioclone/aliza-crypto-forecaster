@@ -26,7 +26,7 @@ export const MarketHeader = () => {
         <div className={`flex items-center justify-between ${isMobile ? 'h-16' : (isTablet && isPortrait ? 'h-16' : 'h-18')}`}>
           <div className="flex items-center gap-2">
             <TypingText 
-              key={`retroverse-${i18n.language}-${location.pathname}`} // Ensure re-render for language/route changes
+              key={`retroverse-${i18n.language}-${logoText}`} // Ensure re-render for language/app changes
               text={logoText}
               className={isMobile || (isTablet && isPortrait) ? "text-lg" : ""}
             />

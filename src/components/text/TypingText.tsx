@@ -10,15 +10,11 @@ interface TypingTextProps {
 export const TypingText = ({ text, className }: TypingTextProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
   
   useEffect(() => {
     // Reset state when text changes
     setDisplayedText('');
     setCurrentIndex(0);
-    setIsTyping(true);
-    
-    if (!text) return; // Guard against empty text
     
     const typingInterval = setInterval(() => {
       if (currentIndex < text.length) {
@@ -26,13 +22,10 @@ export const TypingText = ({ text, className }: TypingTextProps) => {
         setCurrentIndex(prev => prev + 1);
       } else {
         clearInterval(typingInterval);
-        setIsTyping(false);
       }
     }, 100);
     
-    return () => {
-      clearInterval(typingInterval);
-    };
+    return () => clearInterval(typingInterval);
   }, [text]); // Only depend on text changes
   
   return (
@@ -40,12 +33,7 @@ export const TypingText = ({ text, className }: TypingTextProps) => {
       <div className={cn("typing-text", className)}>
         {displayedText}
       </div>
-      <div 
-        className={cn(
-          "cursor animate-blink ml-0.5 w-1 h-4 bg-white",
-          isTyping ? "opacity-100" : "opacity-0"
-        )} 
-      />
+      <div className={cn("cursor animate-blink", currentIndex >= text.length ? "opacity-0" : "opacity-100")} />
     </div>
   );
 };
