@@ -12,7 +12,7 @@ import { urPK } from './i18n/translations/ur';
 import { zhCN } from './i18n/translations/zh';
 import { esES } from './i18n/translations/es';
 
-// Get saved language from localStorage or use browser default
+// Get saved language from localStorage or use browser default, fallback to English
 const savedLanguage = localStorage.getItem('i18nextLng') || navigator.language.split('-')[0] || 'en';
 
 i18n
