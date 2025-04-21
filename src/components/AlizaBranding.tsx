@@ -25,7 +25,7 @@ export const AlizaBranding = () => {
     <>
       <Button
         variant="ghost"
-        className="fixed bottom-2 left-2 z-[60] p-0 h-auto w-auto hover:bg-transparent opacity-60 hover:opacity-100 transition-opacity"
+        className="fixed bottom-20 left-2 z-[40] p-0 h-auto w-auto hover:bg-transparent opacity-60 hover:opacity-100 transition-opacity"
         onClick={() => {
           setShowBirthCard(true);
           soundManager.playSound('click');
