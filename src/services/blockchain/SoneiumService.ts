@@ -83,14 +83,16 @@ export class SoneiumService {
       const signer = privateKeyToAccount(privateKey as Hex);
       const scsContext = { calculateGasLimits: true, policyId: "sudo" };
 
+      const smartAccount = await toStartaleSmartAccount({
+        signer,
+        chain: soneiumMinato,
+        transport: http(),
+      });
+
       this.smartAccountClient = createSmartAccountClient({
-        account: await toStartaleSmartAccount({
-          signer: signer as any,
-          chain: soneiumMinato as any,
-          transport: http() as any,
-        }),
-        transport: http(this.config.bundlerUrl) as any,
-        client: this.publicClient as any,
+        account: smartAccount,
+        transport: http(this.config.bundlerUrl),
+        client: this.publicClient,
         paymaster: {
           async getPaymasterData(pmDataParams: GetPaymasterDataParameters) {
             pmDataParams.paymasterPostOpGasLimit = BigInt(100000);
