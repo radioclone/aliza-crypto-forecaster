@@ -1,7 +1,9 @@
+
 import { TabsContent } from "@/components/ui/tabs";
 import { MarketContent } from '@/components/market/MarketContent';
 import { FAQSection } from '@/components/FAQSection';
 import { NewsSection } from '@/components/NewsSection';
+import { BlockchainContent } from '@/components/tabs/BlockchainContent';
 import { useTranslation } from 'react-i18next';
 import { CryptoData } from "@/types/crypto";
 
@@ -22,6 +24,10 @@ export const TabContent = ({ isLoading, displayData, searchQuery }: TabContentPr
           displayData={displayData}
           searchQuery={searchQuery}
         />
+      </TabsContent>
+
+      <TabsContent value="blockchain" className="mt-6">
+        <BlockchainContent />
       </TabsContent>
 
       <TabsContent value="education" className="mt-6 animate-fade-in">

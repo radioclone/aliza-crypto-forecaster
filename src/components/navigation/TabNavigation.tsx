@@ -2,7 +2,7 @@
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CryptoSearch } from "@/components/search/CryptoSearch";
 import { useTranslation } from "react-i18next";
-import { BarChart3, BookOpen, Newspaper } from "lucide-react";
+import { BarChart3, BookOpen, Newspaper, Network } from "lucide-react";
 import { useIsMobile, useIsTablet, useIsPortrait } from "@/hooks/use-mobile";
 
 interface TabNavigationProps {
@@ -22,6 +22,10 @@ export const TabNavigation = ({ searchQuery, onSearchChange }: TabNavigationProp
         <TabsTrigger value="market" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-12 sm:h-11">
           <BarChart3 className="h-4 w-4 mr-2" />
           {isMobile ? "" : t('tabs.market')}
+        </TabsTrigger>
+        <TabsTrigger value="blockchain" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-12 sm:h-11">
+          <Network className="h-4 w-4 mr-2" />
+          {isMobile ? "" : "Soneium"}
         </TabsTrigger>
         <TabsTrigger value="education" className="data-[state=active]:bg-white/10 flex-1 sm:flex-initial h-12 sm:h-11">
           <BookOpen className="h-4 w-4 mr-2" />
