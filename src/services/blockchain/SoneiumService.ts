@@ -4,16 +4,19 @@ import {
   type Hex,
   createPublicClient,
   parseEther,
+  type PublicClient,
 } from "viem";
 import {
   type GetPaymasterDataParameters,
   createPaymasterClient,
+  type PaymasterClient,
 } from "viem/account-abstraction";
-import { privateKeyToAccount } from "viem/accounts";
+import { privateKeyToAccount, type PrivateKeyAccount } from "viem/accounts";
 import { soneiumMinato } from "viem/chains";
 import {
   createSmartAccountClient,
   toStartaleSmartAccount,
+  type StartaleSmartAccount,
 } from "startale-aa-sdk";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -35,7 +38,7 @@ export class SoneiumService {
   private static instance: SoneiumService;
   private config: SoneiumConfig | null = null;
   private smartAccountClient: any = null;
-  private publicClient: any = null;
+  private publicClient: PublicClient | null = null;
 
   private constructor() {}
 
@@ -71,19 +74,19 @@ export class SoneiumService {
   }
 
   async createSmartAccount(privateKey: string): Promise<string> {
-    if (!this.config) {
+    if (!this.config || !this.publicClient) {
       throw new Error('Soneium service not initialized');
     }
 
     try {
-      const paymasterClient = createPaymasterClient({
+      const paymasterClient: PaymasterClient = createPaymasterClient({
         transport: http(this.config.paymasterUrl),
       });
 
-      const signer = privateKeyToAccount(privateKey as Hex);
+      const signer: PrivateKeyAccount = privateKeyToAccount(privateKey as Hex);
       const scsContext = { calculateGasLimits: true, policyId: "sudo" };
 
-      const smartAccount = await toStartaleSmartAccount({
+      const smartAccount: StartaleSmartAccount = await toStartaleSmartAccount({
         signer,
         chain: soneiumMinato,
         transport: http(),
