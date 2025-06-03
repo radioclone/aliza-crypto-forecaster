@@ -16,6 +16,7 @@ import { soneiumMinato } from "viem/chains";
 import {
   createSmartAccountClient,
   toStartaleSmartAccount,
+  type StartaleSmartAccount,
 } from "startale-aa-sdk";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -54,7 +55,6 @@ export class SoneiumService {
       const { data, error } = await supabase.functions.invoke('get-soneium-config');
       
       if (error) {
-        console.error('Supabase function error:', error);
         throw new Error('Failed to get Soneium configuration');
       }
 
@@ -84,8 +84,9 @@ export class SoneiumService {
       });
 
       const signer: PrivateKeyAccount = privateKeyToAccount(privateKey as Hex);
+      const scsContext = { calculateGasLimits: true, policyId: "sudo" };
 
-      const smartAccount = await toStartaleSmartAccount({
+      const smartAccount: StartaleSmartAccount = await toStartaleSmartAccount({
         signer,
         chain: soneiumMinato,
         transport: http(),
@@ -94,7 +95,7 @@ export class SoneiumService {
       this.smartAccountClient = createSmartAccountClient({
         account: smartAccount,
         transport: http(this.config.bundlerUrl),
-        chain: soneiumMinato,
+        client: this.publicClient,
         paymaster: {
           async getPaymasterData(pmDataParams: GetPaymasterDataParameters) {
             pmDataParams.paymasterPostOpGasLimit = BigInt(100000);
@@ -108,7 +109,7 @@ export class SoneiumService {
             return paymasterStubResponse;
           },
         },
-        paymasterContext: { calculateGasLimits: true, policyId: "sudo" },
+        paymasterContext: scsContext,
         userOperation: {
           estimateFeesPerGas: async () => {
             return {
