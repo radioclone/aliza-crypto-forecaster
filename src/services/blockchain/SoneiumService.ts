@@ -4,19 +4,16 @@ import {
   type Hex,
   createPublicClient,
   parseEther,
-  type PublicClient,
 } from "viem";
 import {
   type GetPaymasterDataParameters,
   createPaymasterClient,
-  type PaymasterClient,
 } from "viem/account-abstraction";
-import { privateKeyToAccount, type PrivateKeyAccount } from "viem/accounts";
+import { privateKeyToAccount } from "viem/accounts";
 import { soneiumMinato } from "viem/chains";
 import {
   createSmartAccountClient,
   toStartaleSmartAccount,
-  type StartaleSmartAccount,
 } from "startale-aa-sdk";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -38,7 +35,7 @@ export class SoneiumService {
   private static instance: SoneiumService;
   private config: SoneiumConfig | null = null;
   private smartAccountClient: any = null;
-  private publicClient: PublicClient | null = null;
+  private publicClient: any = null;
 
   private constructor() {}
 
@@ -74,28 +71,26 @@ export class SoneiumService {
   }
 
   async createSmartAccount(privateKey: string): Promise<string> {
-    if (!this.config || !this.publicClient) {
+    if (!this.config) {
       throw new Error('Soneium service not initialized');
     }
 
     try {
-      const paymasterClient: PaymasterClient = createPaymasterClient({
+      const paymasterClient = createPaymasterClient({
         transport: http(this.config.paymasterUrl),
       });
 
-      const signer: PrivateKeyAccount = privateKeyToAccount(privateKey as Hex);
+      const signer = privateKeyToAccount(privateKey as Hex);
       const scsContext = { calculateGasLimits: true, policyId: "sudo" };
 
-      const smartAccount: StartaleSmartAccount = await toStartaleSmartAccount({
-        signer,
-        chain: soneiumMinato,
-        transport: http(),
-      });
-
       this.smartAccountClient = createSmartAccountClient({
-        account: smartAccount,
-        transport: http(this.config.bundlerUrl),
-        client: this.publicClient,
+        account: await toStartaleSmartAccount({
+          signer: signer as any,
+          chain: soneiumMinato as any,
+          transport: http() as any,
+        }),
+        transport: http(this.config.bundlerUrl) as any,
+        client: this.publicClient as any,
         paymaster: {
           async getPaymasterData(pmDataParams: GetPaymasterDataParameters) {
             pmDataParams.paymasterPostOpGasLimit = BigInt(100000);
