@@ -138,23 +138,19 @@ export class SoneiumService {
       
       const signer = privateKeyToAccount(options.privateKey as Hex);
       
-      // Context configuration based on your script
-      const scsContext = { 
-        calculateGasLimits: options.calculateGasLimits ?? true, 
-        policyId: options.policyId ?? "sudo" 
-      };
+      // Create smart account using simplified approach
+      const smartAccount = await toStartaleSmartAccount({
+        signer,
+        chain: soneiumMinato,
+        transport: http(),
+      });
 
+      // Create smart account client with simplified configuration
       this.smartAccountClient = createSmartAccountClient({
-        account: await toStartaleSmartAccount({
-          signer: signer as any,
-          chain: soneiumMinato as any,
-          transport: http() as any,
-        }),
-        transport: http(this.config.bundlerUrl) as any,
-        client: this.publicClient as any,
+        account: smartAccount,
+        transport: http(this.config.bundlerUrl),
         paymaster: {
           async getPaymasterData(pmDataParams: GetPaymasterDataParameters) {
-            // Gas limit configuration from your script
             pmDataParams.paymasterPostOpGasLimit = BigInt(100000);
             pmDataParams.paymasterVerificationGasLimit = BigInt(200000);
             pmDataParams.verificationGasLimit = BigInt(500000);
@@ -167,7 +163,10 @@ export class SoneiumService {
             return paymasterStubResponse;
           },
         },
-        paymasterContext: scsContext,
+        paymasterContext: { 
+          calculateGasLimits: options.calculateGasLimits ?? true, 
+          policyId: options.policyId ?? "sudo" 
+        },
         userOperation: {
           estimateFeesPerGas: async () => {
             return {

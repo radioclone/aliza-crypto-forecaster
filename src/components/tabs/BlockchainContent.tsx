@@ -1,5 +1,6 @@
 
 import { SoneiumWallet } from '@/components/blockchain/SoneiumWallet';
+import { ErrorBoundary } from '@/components/blockchain/ErrorBoundary';
 import { useTranslation } from 'react-i18next';
 
 export const BlockchainContent = () => {
@@ -11,7 +12,9 @@ export const BlockchainContent = () => {
         <h2 className="text-xl font-semibold text-white">Soneium Blockchain</h2>
       </div>
       <div className="grid gap-6">
-        <SoneiumWallet />
+        <ErrorBoundary>
+          <SoneiumWallet />
+        </ErrorBoundary>
         <div className="p-6 neo-blur rounded-lg">
           <h3 className="text-lg font-medium text-white mb-4">About Soneium</h3>
           <p className="text-white/70 text-sm leading-relaxed">
