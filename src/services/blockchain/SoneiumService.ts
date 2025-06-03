@@ -4,35 +4,40 @@ import {
   type Hex,
   createPublicClient,
   parseEther,
+  type PublicClient,
 } from "viem";
 import {
   type GetPaymasterDataParameters,
   createPaymasterClient,
+  type PaymasterClient,
 } from "viem/account-abstraction";
-import { privateKeyToAccount } from "viem/accounts";
+import { privateKeyToAccount, type PrivateKeyAccount } from "viem/accounts";
 import { soneiumMinato } from "viem/chains";
 import {
   createSmartAccountClient,
   toStartaleSmartAccount,
 } from "startale-aa-sdk";
 import { supabase } from "@/integrations/supabase/client";
-import type { 
-  SoneiumConfig, 
-  TransactionResult, 
-  SoneiumConnectionState, 
-  SmartAccountOptions 
-} from "@/types/soneium";
+
+export interface SoneiumConfig {
+  bundlerUrl: string;
+  paymasterUrl: string;
+  rpcUrl: string;
+  apiKey: string;
+}
+
+export interface TransactionResult {
+  hash: string;
+  receipt?: any;
+  success: boolean;
+  error?: string;
+}
 
 export class SoneiumService {
   private static instance: SoneiumService;
   private config: SoneiumConfig | null = null;
   private smartAccountClient: any = null;
-  private publicClient: any = null;
-  private paymasterClient: any = null;
-  private connectionState: SoneiumConnectionState = {
-    isInitialized: false,
-    isConnected: false,
-  };
+  private publicClient: PublicClient | null = null;
 
   private constructor() {}
 
@@ -45,128 +50,65 @@ export class SoneiumService {
 
   async initialize(): Promise<void> {
     try {
-      console.log('🔄 Initializing Soneium service...');
-      
       // Get configuration from Supabase secrets
       const { data, error } = await supabase.functions.invoke('get-soneium-config');
       
       if (error) {
-        throw new Error(`Failed to get Soneium configuration: ${error.message}`);
-      }
-
-      if (!data?.config) {
-        throw new Error('Invalid configuration received from Supabase');
+        console.error('Supabase function error:', error);
+        throw new Error('Failed to get Soneium configuration');
       }
 
       this.config = data.config;
       
-      // Validate required configuration
-      this.validateConfig();
-      
-      // Initialize public client with RPC endpoint
+      // Initialize public client
       this.publicClient = createPublicClient({
         transport: http(this.config.rpcUrl),
         chain: soneiumMinato,
       });
 
-      // Initialize paymaster client
-      this.paymasterClient = createPaymasterClient({
-        transport: http(this.config.paymasterUrl),
-      });
-
-      // Test connection
-      await this.testConnection();
-      
-      this.connectionState = {
-        isInitialized: true,
-        isConnected: true,
-      };
-
-      console.log('✅ Soneium service initialized successfully');
+      console.log('Soneium service initialized successfully');
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      console.error('❌ Failed to initialize Soneium service:', errorMessage);
-      
-      this.connectionState = {
-        isInitialized: false,
-        isConnected: false,
-        error: errorMessage,
-      };
-      
+      console.error('Failed to initialize Soneium service:', error);
       throw error;
     }
   }
 
-  private validateConfig(): void {
-    if (!this.config) {
-      throw new Error('Configuration not loaded');
-    }
-
-    const required = ['bundlerUrl', 'paymasterUrl', 'rpcUrl', 'apiKey'];
-    const missing = required.filter(key => !this.config![key as keyof SoneiumConfig]);
-    
-    if (missing.length > 0) {
-      throw new Error(`Missing required configuration: ${missing.join(', ')}`);
-    }
-  }
-
-  private async testConnection(): Promise<void> {
-    try {
-      // Test public client connection
-      const chainId = await this.publicClient.getChainId();
-      console.log(`🌐 Connected to chain ID: ${chainId}`);
-      
-      if (chainId !== soneiumMinato.id) {
-        throw new Error(`Unexpected chain ID: ${chainId}, expected: ${soneiumMinato.id}`);
-      }
-    } catch (error) {
-      throw new Error(`Connection test failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  }
-
-  async createSmartAccount(options: SmartAccountOptions): Promise<string> {
-    if (!this.config) {
+  async createSmartAccount(privateKey: string): Promise<string> {
+    if (!this.config || !this.publicClient) {
       throw new Error('Soneium service not initialized');
     }
 
-    if (!this.connectionState.isConnected) {
-      throw new Error('Soneium service not connected');
-    }
-
     try {
-      console.log('🔑 Creating smart account...');
-      
-      const signer = privateKeyToAccount(options.privateKey as Hex);
-      
-      // Create smart account using simplified approach
+      const paymasterClient: PaymasterClient = createPaymasterClient({
+        transport: http(this.config.paymasterUrl),
+      });
+
+      const signer: PrivateKeyAccount = privateKeyToAccount(privateKey as Hex);
+
       const smartAccount = await toStartaleSmartAccount({
         signer,
         chain: soneiumMinato,
         transport: http(),
       });
 
-      // Create smart account client with simplified configuration
       this.smartAccountClient = createSmartAccountClient({
         account: smartAccount,
         transport: http(this.config.bundlerUrl),
+        chain: soneiumMinato,
         paymaster: {
           async getPaymasterData(pmDataParams: GetPaymasterDataParameters) {
             pmDataParams.paymasterPostOpGasLimit = BigInt(100000);
             pmDataParams.paymasterVerificationGasLimit = BigInt(200000);
             pmDataParams.verificationGasLimit = BigInt(500000);
-            
-            const paymasterResponse = await this.paymasterClient.getPaymasterData(pmDataParams);
+            const paymasterResponse = await paymasterClient.getPaymasterData(pmDataParams);
             return paymasterResponse;
           },
           async getPaymasterStubData(pmStubDataParams: GetPaymasterDataParameters) {
-            const paymasterStubResponse = await this.paymasterClient.getPaymasterStubData(pmStubDataParams);
+            const paymasterStubResponse = await paymasterClient.getPaymasterStubData(pmStubDataParams);
             return paymasterStubResponse;
           },
         },
-        paymasterContext: { 
-          calculateGasLimits: options.calculateGasLimits ?? true, 
-          policyId: options.policyId ?? "sudo" 
-        },
+        paymasterContext: { calculateGasLimits: true, policyId: "sudo" },
         userOperation: {
           estimateFeesPerGas: async () => {
             return {
@@ -177,17 +119,10 @@ export class SoneiumService {
         },
       });
 
-      const smartAccountAddress = this.smartAccountClient.account.address;
-      this.connectionState.smartAccountAddress = smartAccountAddress;
-      
-      console.log('✅ Smart account created:', smartAccountAddress);
-      console.log('👤 Signer address:', signer.address);
-      
-      return smartAccountAddress;
+      return this.smartAccountClient.account.address;
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      console.error('❌ Failed to create smart account:', errorMessage);
-      throw new Error(`Smart account creation failed: ${errorMessage}`);
+      console.error('Failed to create smart account:', error);
+      throw error;
     }
   }
 
@@ -197,8 +132,6 @@ export class SoneiumService {
     }
 
     try {
-      console.log(`💸 Sending transaction to ${to} with value ${value} ETH...`);
-      
       const hash = await this.smartAccountClient.sendUserOperation({
         account: this.smartAccountClient.account,
         calls: [
@@ -209,13 +142,9 @@ export class SoneiumService {
         ],
       });
 
-      console.log('📝 Transaction hash:', hash);
-
       const receipt = await this.smartAccountClient.waitForUserOperationReceipt({
         hash,
       });
-
-      console.log('✅ Transaction confirmed:', receipt);
 
       return {
         hash,
@@ -223,42 +152,21 @@ export class SoneiumService {
         success: true,
       };
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      console.error('❌ Transaction failed:', errorMessage);
+      console.error('Transaction failed:', error);
       return {
         hash: '',
         success: false,
-        error: errorMessage,
+        error: (error as Error).message,
       };
     }
   }
 
   getSmartAccountAddress(): string | null {
-    return this.connectionState.smartAccountAddress || null;
-  }
-
-  getConnectionState(): SoneiumConnectionState {
-    return { ...this.connectionState };
+    return this.smartAccountClient?.account?.address || null;
   }
 
   isInitialized(): boolean {
-    return this.connectionState.isInitialized;
-  }
-
-  isConnected(): boolean {
-    return this.connectionState.isConnected;
-  }
-
-  // Reset the service state (useful for testing or reconnection)
-  reset(): void {
-    this.config = null;
-    this.smartAccountClient = null;
-    this.publicClient = null;
-    this.paymasterClient = null;
-    this.connectionState = {
-      isInitialized: false,
-      isConnected: false,
-    };
+    return this.config !== null;
   }
 }
 

@@ -13,8 +13,6 @@ Deno.serve(async (req) => {
   }
 
   try {
-    console.log('🔄 Fetching Soneium configuration...');
-    
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     
@@ -24,21 +22,11 @@ Deno.serve(async (req) => {
     const { data: secrets, error } = await supabase
       .from('vault.decrypted_secrets')
       .select('name, decrypted_secret')
-      .in('name', [
-        'SONEIUM_RPC_URL', 
-        'SONEIUM_API_KEY', 
-        'SONEIUM_BUNDLER_URL', 
-        'SONEIUM_PAYMASTER_URL'
-      ])
+      .in('name', ['SONEIUM_RPC_URL', 'SONEIUM_API_KEY', 'SONEIUM_BUNDLER_URL', 'SONEIUM_PAYMASTER_URL'])
 
     if (error) {
-      console.error('❌ Error fetching secrets:', error)
-      throw new Error('Failed to fetch configuration from vault')
-    }
-
-    if (!secrets || secrets.length === 0) {
-      console.error('❌ No secrets found in vault')
-      throw new Error('No Soneium configuration found in vault')
+      console.error('Error fetching secrets:', error)
+      throw new Error('Failed to fetch configuration')
     }
 
     const configMap = secrets.reduce((acc: any, secret: any) => {
@@ -46,27 +34,12 @@ Deno.serve(async (req) => {
       return acc
     }, {})
 
-    // Validate that we have all required secrets
-    const requiredSecrets = ['SONEIUM_RPC_URL', 'SONEIUM_API_KEY', 'SONEIUM_BUNDLER_URL', 'SONEIUM_PAYMASTER_URL'];
-    const missingSecrets = requiredSecrets.filter(key => !configMap[key]);
-    
-    if (missingSecrets.length > 0) {
-      console.error('❌ Missing required secrets:', missingSecrets);
-      throw new Error(`Missing required secrets: ${missingSecrets.join(', ')}`);
-    }
-
     const config = {
-      rpcUrl: configMap.SONEIUM_RPC_URL,
-      apiKey: configMap.SONEIUM_API_KEY,
-      bundlerUrl: configMap.SONEIUM_BUNDLER_URL,
-      paymasterUrl: configMap.SONEIUM_PAYMASTER_URL,
+      rpcUrl: configMap.SONEIUM_RPC_URL || 'https://soneium-minato.rpc.scs.startale.com?apikey=butho5zMVTb5oOGAQaaHIGKdR6Z2q4yr',
+      apiKey: configMap.SONEIUM_API_KEY || 'butho5zMVTb5oOGAQaaHIGKdR6Z2q4yr',
+      bundlerUrl: configMap.SONEIUM_BUNDLER_URL || 'https://soneium-minato.bundler.scs.startale.com',
+      paymasterUrl: configMap.SONEIUM_PAYMASTER_URL || 'https://soneium-minato.paymaster.scs.startale.com',
     }
-
-    console.log('✅ Soneium configuration loaded successfully');
-    console.log('🌐 RPC URL:', config.rpcUrl ? 'configured' : 'missing');
-    console.log('🔑 API Key:', config.apiKey ? 'configured' : 'missing');
-    console.log('📦 Bundler URL:', config.bundlerUrl ? 'configured' : 'missing');
-    console.log('💳 Paymaster URL:', config.paymasterUrl ? 'configured' : 'missing');
 
     return new Response(
       JSON.stringify({ config }),
@@ -78,12 +51,9 @@ Deno.serve(async (req) => {
       }
     )
   } catch (error) {
-    console.error('❌ Error in get-soneium-config function:', error)
+    console.error('Error in get-soneium-config function:', error)
     return new Response(
-      JSON.stringify({ 
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error'
-      }),
+      JSON.stringify({ error: 'Internal server error' }),
       { 
         status: 500,
         headers: { 

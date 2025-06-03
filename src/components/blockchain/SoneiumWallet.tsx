@@ -5,16 +5,12 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Wallet, Send, Loader, CheckCircle, AlertCircle, Wifi, WifiOff } from 'lucide-react';
-import { soneiumService } from '@/services/blockchain/SoneiumService';
-import type { TransactionResult, SoneiumConnectionState } from '@/types/soneium';
+import { Wallet, Send, Loader } from 'lucide-react';
+import { soneiumService, TransactionResult } from '@/services/blockchain/SoneiumService';
 
 export const SoneiumWallet = () => {
-  const [connectionState, setConnectionState] = useState<SoneiumConnectionState>({
-    isInitialized: false,
-    isConnected: false,
-  });
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [smartAccountAddress, setSmartAccountAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [privateKey, setPrivateKey] = useState('');
   const [recipient, setRecipient] = useState('');
@@ -29,19 +25,16 @@ export const SoneiumWallet = () => {
     try {
       setIsLoading(true);
       await soneiumService.initialize();
-      setConnectionState(soneiumService.getConnectionState());
-      
+      setIsInitialized(true);
       toast({
-        title: "🎉 Soneium Connected",
+        title: "Soneium Service Initialized",
         description: "Ready to create smart accounts and send transactions.",
       });
     } catch (error) {
       console.error('Failed to initialize Soneium service:', error);
-      setConnectionState(soneiumService.getConnectionState());
-      
       toast({
-        title: "Connection Failed",
-        description: error instanceof Error ? error.message : "Could not connect to Soneium network.",
+        title: "Initialization Failed",
+        description: "Could not connect to Soneium network.",
         variant: "destructive",
       });
     } finally {
@@ -61,23 +54,17 @@ export const SoneiumWallet = () => {
 
     try {
       setIsLoading(true);
-      const address = await soneiumService.createSmartAccount({ 
-        privateKey,
-        calculateGasLimits: true,
-        policyId: "sudo"
-      });
-      
-      setConnectionState(soneiumService.getConnectionState());
-      
+      const address = await soneiumService.createSmartAccount(privateKey);
+      setSmartAccountAddress(address);
       toast({
-        title: "🎉 Smart Account Created",
+        title: "Smart Account Created",
         description: `Account address: ${address}`,
       });
     } catch (error) {
       console.error('Failed to create smart account:', error);
       toast({
         title: "Account Creation Failed",
-        description: error instanceof Error ? error.message : "Could not create smart account.",
+        description: "Could not create smart account.",
         variant: "destructive",
       });
     } finally {
@@ -86,7 +73,7 @@ export const SoneiumWallet = () => {
   };
 
   const sendTransaction = async () => {
-    if (!recipient || !connectionState.smartAccountAddress) {
+    if (!recipient || !smartAccountAddress) {
       toast({
         title: "Missing Information",
         description: "Please ensure you have a smart account and recipient address.",
@@ -101,7 +88,7 @@ export const SoneiumWallet = () => {
       
       if (result.success) {
         toast({
-          title: "🎉 Transaction Successful",
+          title: "Transaction Successful",
           description: `Transaction hash: ${result.hash}`,
         });
         setRecipient('');
@@ -117,7 +104,7 @@ export const SoneiumWallet = () => {
       console.error('Transaction failed:', error);
       toast({
         title: "Transaction Error",
-        description: error instanceof Error ? error.message : "Could not send transaction.",
+        description: "Could not send transaction.",
         variant: "destructive",
       });
     } finally {
@@ -125,61 +112,21 @@ export const SoneiumWallet = () => {
     }
   };
 
-  const ConnectionStatus = () => {
-    if (!connectionState.isInitialized) {
-      return (
-        <Alert className="mb-4">
-          <WifiOff className="h-4 w-4" />
-          <AlertDescription className="flex items-center gap-2">
-            <span>Initializing Soneium service...</span>
-            <Loader className="h-4 w-4 animate-spin" />
-          </AlertDescription>
-        </Alert>
-      );
-    }
-
-    if (connectionState.error) {
-      return (
-        <Alert variant="destructive" className="mb-4">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>
-            Connection Error: {connectionState.error}
-          </AlertDescription>
-        </Alert>
-      );
-    }
-
-    if (connectionState.isConnected) {
-      return (
-        <Alert className="mb-4 border-green-500/20 bg-green-500/10">
-          <CheckCircle className="h-4 w-4 text-green-400" />
-          <AlertDescription className="text-green-400">
-            Connected to Soneium Minato network
-          </AlertDescription>
-        </Alert>
-      );
-    }
-
-    return null;
-  };
-
   return (
     <Card className="p-6 neo-blur">
       <div className="flex items-center gap-2 mb-6">
         <Wallet className="h-5 w-5 text-blue-400" />
         <h3 className="text-lg font-semibold text-white">Soneium Wallet</h3>
-        {connectionState.isConnected ? (
-          <Wifi className="h-4 w-4 text-green-400 ml-auto" />
-        ) : (
-          <WifiOff className="h-4 w-4 text-red-400 ml-auto" />
-        )}
       </div>
 
-      <ConnectionStatus />
-
-      {connectionState.isInitialized && connectionState.isConnected ? (
+      {!isInitialized ? (
+        <div className="flex items-center justify-center py-8">
+          <Loader className="h-6 w-6 animate-spin text-white/60" />
+          <span className="ml-2 text-white/60">Initializing Soneium service...</span>
+        </div>
+      ) : (
         <div className="space-y-4">
-          {!connectionState.smartAccountAddress ? (
+          {!smartAccountAddress ? (
             <div className="space-y-4">
               <div>
                 <Label htmlFor="privateKey" className="text-white/80">Private Key</Label>
@@ -205,7 +152,7 @@ export const SoneiumWallet = () => {
             <div className="space-y-4">
               <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                 <p className="text-sm text-green-400">Smart Account Address:</p>
-                <p className="text-xs text-white font-mono break-all">{connectionState.smartAccountAddress}</p>
+                <p className="text-xs text-white font-mono break-all">{smartAccountAddress}</p>
               </div>
 
               <div>
@@ -242,18 +189,6 @@ export const SoneiumWallet = () => {
               </Button>
             </div>
           )}
-        </div>
-      ) : (
-        <div className="flex items-center justify-center py-8">
-          <Button 
-            onClick={initializeService}
-            disabled={isLoading}
-            variant="outline"
-            className="border-white/20 text-white hover:bg-white/10"
-          >
-            {isLoading ? <Loader className="h-4 w-4 animate-spin mr-2" /> : null}
-            Retry Connection
-          </Button>
         </div>
       )}
     </Card>
