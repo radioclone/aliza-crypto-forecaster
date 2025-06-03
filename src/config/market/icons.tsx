@@ -9,20 +9,10 @@ import dogeIcon from "cryptocurrency-icons/svg/color/doge.svg";
 import uniIcon from "cryptocurrency-icons/svg/color/uni.svg";
 import xrpIcon from "cryptocurrency-icons/svg/color/xrp.svg";
 import atomIcon from "cryptocurrency-icons/svg/color/atom.svg";
-import modeIcon from "/lovable-uploads/eec3796c-9458-4edb-a83c-5ff4ae7fd72d.png";
 
 export const icons = {
   BTC: <img src={btcIcon} alt="BTC" className="h-6 w-6" />,
   ETH: <img src={ethIcon} alt="ETH" className="h-6 w-6" />,
-  MODE: (
-    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-[#9b87f5] to-[#7E69AB] p-0.5 -ml-0.5 transition-transform duration-300 hover:scale-110">
-      <img 
-        src={modeIcon} 
-        alt="MODE" 
-        className="w-full h-full object-contain rounded-full transform transition-all duration-300 hover:brightness-110" 
-      />
-    </div>
-  ),
   AR: (
     <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-black/90 to-black/70 p-0.5 transition-transform duration-300 hover:scale-110">
       <img 
@@ -38,6 +28,15 @@ export const icons = {
         src="https://cryptologos.cc/logos/solana-sol-logo.png"
         alt="SOL"
         className="w-full h-full object-contain rounded-full"
+      />
+    </div>
+  ),
+  MODE: (
+    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-green-500 p-0.5 transition-transform duration-300 hover:scale-110">
+      <img 
+        src="/mode-icon.png" 
+        alt="MODE" 
+        className="w-full h-full object-contain rounded-full transform transition-all duration-300 hover:brightness-110" 
       />
     </div>
   ),
