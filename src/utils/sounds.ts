@@ -11,38 +11,43 @@ class SoundManager {
     if (this.initialized) return;
 
     const soundEffects = {
-      click: 'https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/SoundFX/click.mp3',
-      hover: 'https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/SoundFX/hover.mp3',
-      send: 'https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/SoundFX/send.mp3',
-      receive: 'https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/SoundFX/receive.mp3',
-      error: 'https://nifrnbzdjizwmbgatyfr.supabase.co/storage/v1/object/public/SoundFX/error.mp3'
+      click: '/audio/click.mp3',
+      hover: '/audio/hover.mp3',
+      send: '/audio/send.mp3',
+      receive: '/audio/receive.mp3',
+      error: '/audio/error.mp3'
     };
 
     try {
-      // Create and preload all audio elements
+      console.log('Initializing sounds...');
       for (const [key, url] of Object.entries(soundEffects)) {
+        console.log(`Loading sound: ${key} from ${url}`);
         const audio = new Audio();
         audio.src = url;
         audio.preload = 'auto';
-        
+
         // Set volume lower for better UX
         audio.volume = 0.3;
-        
+
         // For mobile devices, we need to load on user interaction
         if (!this.isMobile) {
           await audio.load();
         }
-        
-        this.sounds[key] = audio;
+
+        this.sounds[key] = audio; // Ensure the correct key is used
       }
 
       // Initialize audio context on mobile devices
       if (this.isMobile) {
-        document.addEventListener('touchstart', () => {
-          Object.values(this.sounds).forEach(audio => {
-            audio.load();
-          });
-        }, { once: true });
+        document.addEventListener(
+          'touchstart',
+          () => {
+            Object.values(this.sounds).forEach(audio => {
+              audio.load();
+            });
+          },
+          { once: true }
+        );
       }
 
       this.initialized = true;
@@ -55,6 +60,7 @@ class SoundManager {
   public async playSound(soundName: 'click' | 'hover' | 'send' | 'receive' | 'error') {
     try {
       if (!this.initialized) {
+        console.log('Sounds not initialized. Initializing now...');
         await this.initializeSounds();
       }
 
@@ -64,13 +70,13 @@ class SoundManager {
         return;
       }
 
-      // Create a new Audio instance for each playback to avoid interruption
-      const playSound = new Audio(sound.src);
+      console.log(`Playing sound: ${soundName} from ${sound.src}`);
+      const playSound = new Audio(sound.src); // Create a new instance for playback
       playSound.volume = 0.3;
       await playSound.play();
+      console.log(`Sound ${soundName} played successfully`);
     } catch (error) {
-      // Silently handle audio playback errors to not disrupt the user experience
-      console.debug('Audio playback failed:', error);
+      console.error(`Audio playback failed for sound ${soundName}:`, error);
     }
   }
 }

@@ -4,7 +4,7 @@ import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/components/ui/use-toast";
 
-const PLAYLIST_ID = 'PLPMYp9mz_tPABktqxvG2F-Ct5hllJ8IHP';
+const VIDEO_ID = '020mz4vdLAs'; // Replace playlist ID with video ID
 
 export const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -26,9 +26,9 @@ export const AudioPlayer = () => {
       player = new (window as any).YT.Player('youtube-player', {
         height: '0',
         width: '0',
+        videoId: VIDEO_ID, // Use video ID instead of playlist
         playerVars: {
-          listType: 'playlist',
-          list: PLAYLIST_ID,
+          autoplay: 0, // Do not autoplay
         },
         events: {
           onReady: () => {
